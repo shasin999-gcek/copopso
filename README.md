@@ -23,7 +23,7 @@ git clone https://github.com/shasin999-gcek/copopso.git
 
 ```markdown
 
-  change to repository directory and create a sample.txt file  and execute these commands
+  change to repository directory and create a sample.txt file  and execute thesee commands
   
   git add .
   git commit -m 'message'
