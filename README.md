@@ -15,7 +15,7 @@ sudo apt-get install git
 ```
 ###Clone my repository
 ```markdown
-git clonehttps://github.com/shasin999-gcek/copopso.git
+git clone https://github.com/shasin999-gcek/copopso.git
 ``` 
 ###Initial checking
 ```markdown
