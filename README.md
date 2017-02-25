@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## CO-PO-PSO Accreditation webapp details
 
-You can use the [editor on GitHub](https://github.com/shasin999-gcek/copopso/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Every dependencies used during development will be updated here. I kindly request every one to visit this website gradually.
 
 ### Markdown
 
