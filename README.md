@@ -36,5 +36,5 @@ Having trouble with Installing or any doubt..?
 Ask on our whatsapp group.
 
 with 
-![Love Logo](https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/heart_red.png)
+![Love Logo](http://www.iconshock.com/img_vista/FLAT/networking/jpg/smiley_in_love_icon.jpg)
 ## MUHAMMED SHASIN P
