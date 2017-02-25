@@ -18,6 +18,7 @@ sudo apt-get install git
 git clone https://github.com/shasin999-gcek/copopso.git
 ``` 
 ###Initial checking
+
 ```markdown
   create a sample.txt file in your current directory and execute these commands
   git add .
