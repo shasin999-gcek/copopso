@@ -2,10 +2,10 @@
 
 Every dependencies used during development will be updated here. I kindly request every one to visit this website gradually.
 
-### Install Git o your linux
+### Install Git to your linux
 
 Every code that we written is uploaded to a common github repository. So all our team members can watch and edit our code.
-Before install git on your computer first vreate an account on github.
+Before install git on your computer first create an account on github.
 goto [Link]www.github.com
 ```markdown
 To install Github
