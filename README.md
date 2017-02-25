@@ -6,7 +6,7 @@ Every dependencies used during development will be updated here. I kindly reques
 
 ### Install Git to your linux
 
-Every code that we written is uploaded to a common github repository. So all our team members can watch and edit our code.
+Every code that we write is uploaded to a common github repository. So all our team members can watch and edit our code.
 Before install git on your computer first create an account on github.
 goto www.github.com
 ```markdown
@@ -22,8 +22,9 @@ git clone https://github.com/shasin999-gcek/copopso.git
 ###Initial checking
 
 ```markdown
-  cd copopso
-  (testing) create a sample.txt file in your current directory and execute these commands
+
+  change to repository directory and create a sample.txt file  and execute these commands
+  
   git add .
   git commit -m 'message'
   git push -u origin master
