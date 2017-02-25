@@ -13,10 +13,16 @@ To install Github
 sudo apt-get update
 sudo apt-get install git
 ```
+###Clone my repository
 ```markdown
-clone my repository
-
-```
+git clonehttps://github.com/shasin999-gcek/copopso.git
+``` 
+###Initial checking
+```markdown
+  create a sample.txt file in your current directory and execute these commands
+  git add .
+  git push -u origin master
+ ``` 
 
 ### Support or Contact
 
