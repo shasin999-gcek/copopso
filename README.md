@@ -21,7 +21,7 @@ git clone https://github.com/shasin999-gcek/copopso.git
 ###Initial checking
 
 ```markdown
-  (testing) create a sample.txt file in your current directory and execute these commands
+  change to repository directory and create a sample.txt file and execute these commands
 
   git add .
   git commit -m 'message'
