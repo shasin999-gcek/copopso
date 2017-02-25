@@ -35,5 +35,6 @@ git clone https://github.com/shasin999-gcek/copopso.git
 Having trouble with Installing or any doubt..?
 Ask on our whatsapp group.
 
-with Love
+with 
+![Love Logo](https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/heart_red.png)
 ## MUHAMMED SHASIN P
