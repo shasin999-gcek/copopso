@@ -2,11 +2,12 @@
 
 Every dependencies used during development will be updated here. I kindly request every one to visit this website gradually.
 
-![GitHub Logo]()
+![GitHub Logo](http://cdn.vectorstock.com/i/composite/43,44/anonymous-mask-logo-hacker-icon-design-vector-6454344.jpg)
+
 ### Install Git to your linux
 
-Every code that we write is uploaded to a common github repository. So all our team members can watch and edit our code.
-Before installing git on your computer first create an account on github.
+Every code that we written is uploaded to a common github repository. So all our team members can watch and edit our code.
+Before install git on your computer first create an account on github.
 goto www.github.com
 ```markdown
 To install Github
@@ -21,8 +22,8 @@ git clone https://github.com/shasin999-gcek/copopso.git
 ###Initial checking
 
 ```markdown
-  change to repository directory and create a sample.txt file and execute these commands
-
+  cd copopso
+  (testing) create a sample.txt file in your current directory and execute these commands
   git add .
   git commit -m 'message'
   git push -u origin master
