@@ -6,13 +6,18 @@ Every dependencies used during development will be updated here. I kindly reques
 
 Every code that we written is uploaded to a common github repository. So all our team members can watch and edit our code.
 Before install git on your computer first create an account on github.
-goto [Link]www.github.com
+goto www.github.com
 ```markdown
 To install Github
 
 sudo apt-get update
 sudo apt-get install git
 ```
+```markdown
+clone my repository
+
+```
+
 ### Support or Contact
 
 Having trouble with Installing or any doubt..?
