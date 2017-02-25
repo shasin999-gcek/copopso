@@ -2,6 +2,7 @@
 
 Every dependencies used during development will be updated here. I kindly request every one to visit this website gradually.
 
+![GitHub Logo]()
 ### Install Git to your linux
 
 Every code that we written is uploaded to a common github repository. So all our team members can watch and edit our code.
@@ -20,6 +21,7 @@ git clone https://github.com/shasin999-gcek/copopso.git
 ###Initial checking
 
 ```markdown
+  cd copopso
   (testing) create a sample.txt file in your current directory and execute these commands
   git add .
   git commit -m 'message'
