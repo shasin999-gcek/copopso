@@ -12,12 +12,12 @@ Go to www.github.com
 
 To install Github, execute the following commands.
 ```markdown
-sudo apt-get update
-sudo apt-get install git
+  sudo apt-get update
+  sudo apt-get install git
 ```
 ### Clone my repository
 ```markdown
-git clone https://github.com/shasin999-gcek/copopso.git
+  git clone https://github.com/shasin999-gcek/copopso.git
 ``` 
 ### Initial checking
 Change to repository directory and create a sample.txt file and execute these commands
