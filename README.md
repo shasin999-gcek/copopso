@@ -4,13 +4,15 @@ Every dependencies used during development will be updated here. I kindly reques
 
 ## Setting up development environment
 
-### install apache web server
+### Install apache web server
 
 ```markdown
   sudo apt-get update
   sudo apt-get install apache2
 ```
-### install apache web server
+after installation goto http://localhost . It will display an apache conf page. ie Your installation is a success.
+
+### Install MySQL
 During the installation, your server will ask you to select and confirm a password for the MySQL "root" user. 
 Make sure this is a strong, unique password, and do not leave it blank.
 
@@ -18,7 +20,7 @@ Make sure this is a strong, unique password, and do not leave it blank.
   sudo apt-get install mysql-server
 ```
 
-### install PHP
+### Install PHP
 ```markdown
 sudo apt-get install php7.0 php7.0-fpm php7.0-mysql -y
 ```
