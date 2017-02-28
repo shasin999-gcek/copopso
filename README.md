@@ -1,6 +1,6 @@
 ## CO-PO-PSO Accreditation webapp details
 
-Every dependencies used during development will be updated here. I kindly request every one to visit this website frequently.
+Every dependencies used during development will be updated here.I kindly request every one to visit this website frequently.
 
 ## Setting up development environment
 
