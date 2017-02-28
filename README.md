@@ -2,7 +2,7 @@
 
 Every dependencies used during development will be updated here.I kindly request every one to visit this website frequently.
 
-## Setting up development environment
+## Setting up development environment on linux
 
 ### Install apache web server
 
@@ -24,6 +24,12 @@ Make sure this is a strong, unique password, and do not leave it blank.
 ```markdown
 sudo apt-get install php7.0 php7.0-fpm php7.0-mysql -y
 ```
+## Setting development environment on Windows
+Goto this site and download XAMP for windows version 7.1.1
+[a link](https://www.apachefriends.org/download.html)
+After installing open XAMP control panel
+click on "start" apache.
+goto http://localhost if u c a XAMP intro page your installation is a success.
 
 ### Support or Contact
 
