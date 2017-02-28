@@ -36,6 +36,6 @@ goto http://localhost if u c a XAMP intro page your installation is a success.
 Having trouble with Installing or any doubt..?
 Ask on our whatsapp group.
 
-with 
+With 
 Love
 ### CO-PO-PSO Team
