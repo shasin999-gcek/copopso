@@ -22,7 +22,8 @@ Make sure this is a strong, unique password, and do not leave it blank.
 
 ### Install PHP
 ```markdown
-sudo apt-get install php7.0 php7.0-fpm php7.0-mysql -y
+sudo apt-get install php7.0 php7.0-fpm php7.0-mysql libapache2-mod-php7.0
+sudo service apache2 restart
 ```
 
 ## checking php
@@ -36,6 +37,18 @@ then goto /var/www/html by typing
 `cd /var/www/html` .
 then create a php file by
 `touch index.php`
+
+ Edit index.php in your favourite text editor.
+ 
+ ```php
+  <?php
+     echo "Hello World";
+   ?>
+ ```
+ Save the file and goto http://localhost/index.php.
+ If you can see only "Hello world" then php is executed successfully
+ otherwise there might be error.
+
 
 ## Setting development environment on Windows
 Goto this site and download XAMP for windows version 7.1.1
