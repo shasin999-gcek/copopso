@@ -30,6 +30,10 @@ first goto terminal and type this
 ```diff
  php -v
 ```
+it will shows an version number.then success
+
+then goto /var/www/html by typing >cd /var/www/html .
+then create a php file by >touch index.php
 
 ## Setting development environment on Windows
 Goto this site and download XAMP for windows version 7.1.1
