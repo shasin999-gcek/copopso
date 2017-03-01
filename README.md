@@ -23,13 +23,14 @@ Make sure this is a strong, unique password, and do not leave it blank.
 ### Install PHP
 ```markdown
 sudo apt-get install php7.0 php7.0-fpm php7.0-mysql -y
+```
 
 ## checking php
 first goto terminal and type this
 ```diff
  php -v
 ```
-```
+
 ## Setting development environment on Windows
 Goto this site and download XAMP for windows version 7.1.1
 [a link](https://www.apachefriends.org/download.html)
