@@ -10,7 +10,7 @@ Every dependencies used during development will be updated here.I kindly request
   sudo apt-get update
   sudo apt-get install apache2
 ```
-after installation goto http://localhost . It will display an apache conf page. ie Your installation is a success.
+After installation go to http://localhost . It will display an apache conf page, which means your installation is a success.
 
 ### Install MySQL
 During the installation, your server will ask you to select and confirm a password for the MySQL "root" user. 
@@ -31,14 +31,17 @@ first goto terminal and type this
 ```diff
  php -v
 ```
-it will shows an version number.then success
+If successful, it will show a version number.
 
-then goto /var/www/html by typing
+Then go to /var/www/html by typing: 
+
 `cd /var/www/html` .
+
 then create a php file by
+
 `touch index.php`
 
- Edit index.php in your favourite text editor.
+Edit index.php in your favourite text editor.
  
  ```php
   <?php
