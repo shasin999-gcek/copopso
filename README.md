@@ -74,6 +74,8 @@ After installing open XAMP control panel
 click on "start" apache.
 goto http://localhost if u c a XAMP intro page your installation is a success.
 
+## adminer same as linux. copy adminer to c://xampp/htdocs
+
 
 ### Support or Contact
 
