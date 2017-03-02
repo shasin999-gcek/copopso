@@ -66,7 +66,6 @@ Password: "YOUR PASSWORD OF MYSQL CREATED DURING INSTALLATION"
 Database: (LEFT BLANK)
 ```
 and click login.
-![scrreen shot of adminer](https://drive.google.com/open?id=0B0Ni6m6CItJMcVZLUmlxRTlUbG8)
 
 ## Setting development environment on Windows
 Goto this site and download XAMP for windows version 7.1.1
