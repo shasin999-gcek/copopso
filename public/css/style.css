@@ -1,0 +1,19 @@
+@import './sb-admin-2.css';
+
+#page-wrapper {
+	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
+
+}
+
+.page-header {
+   font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+nav a, nav li>a {
+   font-family: 'Catamaran', sans-serif;
+}
+

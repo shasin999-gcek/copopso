@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('form');
+});
+
+Route::get('/co-po-just', function () {
+	return view('co-po-just');
 });
