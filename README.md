@@ -4,7 +4,7 @@ Every dependencies used during development will be updated here.I kindly request
 
 ### Install Laravel
 
-The Laravel framework has a few system requirements. You will need to make sure your server meets them. un the following command to make it happen:
+The Laravel framework has a few system requirements. You will need to make sure your server meets them. Execute the following command to make it happen:
 
 ```
 sudo apt-get install pdo-mysql php7.0-mbstring php7.0-zip php7.0-xml php7.0-mysql 
