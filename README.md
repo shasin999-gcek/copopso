@@ -4,16 +4,7 @@ Every dependencies used during development will be updated here.I kindly request
 
 ### Install Laravel
 
-The Laravel framework has a few system requirements. You will need to make sure your server meets the following requirements:
-
-PHP >= 5.6.4
-OpenSSL PHP Extension
-PDO PHP Extension
-Mbstring PHP Extension
-Tokenizer PHP Extension
-XML PHP Extension
-
-Run the following command to make it happen:
+The Laravel framework has a few system requirements. You will need to make sure your server meets them. un the following command to make it happen:
 
 ```
 sudo apt-get install pdo-mysql php7.0-mbstring php7.0-zip php7.0-xml php7.0-mysql 
@@ -50,7 +41,8 @@ export PATH="$PATH:~/.config/.composer/vendor/bin"```
 
 Restart apache now with:
 
-```sudo service apache2 restart
+```
+sudo service apache2 restart
 ```
 
 Now, create a working directory of laravel:
