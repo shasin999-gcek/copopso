@@ -64,7 +64,7 @@ If you're able to view the welcome page, you're all set up!
 
 Same as for Linux users, Composer is also required here to use Laravel. Go to this [link](https://getcomposer.org/Composer-Setup.exe) to download the latest version of Composer.
 
-After installing Composer, open Command Prompt and go to the directory where Xampp is installed and run :
+After installing Composer, open Command Prompt and go to the directory where Xampp is installed and run
 
 ```
 cd xampp
