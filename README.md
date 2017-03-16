@@ -4,6 +4,7 @@ Every dependencies used during development will be updated here.I kindly request
 
 ### Install Laravel
 
+### For Linux :
 The Laravel framework has a few system requirements. You will need to make sure your server meets them. Execute the following command to make it happen:
 
 ```
