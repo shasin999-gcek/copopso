@@ -4,7 +4,7 @@ Every dependencies used during development will be updated here.I kindly request
 
 ### Install Laravel
 
-### For Linux Users :
+### For Ubuntu :
 The Laravel framework has a few system requirements. You will need to make sure your server meets them. Execute the following command to make it happen:
 
 ```
@@ -60,9 +60,9 @@ php artsian serve
 
 If you're able to view the welcome page, you're all set up!
 
-### For Windows Users : 
+### For Windows : 
 
-Same as for Linux users, Composer is also required here to use Laravel. Go to this [link](https://getcomposer.org/Composer-Setup.exe) to download the latest version of Composer.
+Composer is also required here to use Laravel. Go to this [link](https://getcomposer.org/Composer-Setup.exe) to download the latest version of Composer.
 
 After installing Composer, open Command Prompt and go to the directory where Xampp is installed and run
 
