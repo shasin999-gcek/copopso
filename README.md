@@ -62,9 +62,10 @@ Change file permissions using
 sudo chmod 777 foldername
 ```
 
-To ensure that Laravel has been properly installed, run 
+To ensure that Laravel has been properly installed, 
 
 ```
+cd foldername
 php artisan serve
 ```
 
