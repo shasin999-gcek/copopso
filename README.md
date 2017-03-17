@@ -55,7 +55,7 @@ laravel new foldername
 To ensure that Laravel has been properly installed, run 
 
 ```
-php artsian serve
+php artisan serve
 ```
 
 If you're able to view the welcome page, you're all set up!
