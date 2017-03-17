@@ -33,11 +33,16 @@ To install the laravel installer,
 ```
 composer global require "laravel/installer"
 ```
-
-To be able to use the laraval executable, add it to the PATH variable. 
+Note the current directory. 
+To be able to use the laraval executable, create an alias, by editting ~/.bashrc:
 
 ```
-export PATH="$PATH:~/.config/.composer/vendor/bin"```
+vim ~/.bashrc
+```
+Add this line at the end, with your own path to composer:
+
+```
+alias laravel='~/.config/composer/vendor/bin/laravel'
 ```
 
 Restart apache now with:
@@ -51,6 +56,11 @@ Now, create a working directory of laravel:
 ```
 laravel new foldername
 ```
+Change file permissions using 
+
+```
+sudo chmod 777 foldername
+```
 
 To ensure that Laravel has been properly installed, run 
 
@@ -58,7 +68,8 @@ To ensure that Laravel has been properly installed, run
 php artisan serve
 ```
 
-If you're able to view the welcome page, you're all set up!
+Go to [localhost:8000](http://localhost:8000)If you're able to view the welcome page, you're all set up!
+
 
 ### For Windows : 
 
