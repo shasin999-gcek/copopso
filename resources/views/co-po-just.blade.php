@@ -3,16 +3,6 @@
 		<h3>CO-PO Mapping Matrix</h3><br>
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
 
-		<form role="form" data-toggle="validator" method="post" action="#">
-         <div class="form-group">
-         
-            <input type="text" class="form-control" required>
-         </div>
-          <button class="btn btn-success" type="submit">vv</button>
-      </form>
-
-
-
 		<form data-toggle="validator" role="form">
 		<table class="table">
 		  <thead class="thead-inverse">
@@ -44,21 +34,37 @@
 			</thead>
 			<tr>
 				<th>2k16...1 </th>
-				<td><div class="form-group"><input class="form-control" type="text" name="co1po1" size="5" required></div></td>
-				<td><input type="text" name="co1po2" size="5"></td>
-				<td><input type="text" name="co1po3" size="5"></td>
-				<td><input type="text" name="co1po4" size="5"></td>
-				<td><input type="text" name="co1po5" size="5"></td>
-				<td><input type="text" name="co1po6" size="5"></td>
-				<td><input type="text" name="co1po7" size="5"></td>
-				<td><input type="text" name="co1po8" size="5"></td>
-				<td><input type="text" name="co1po9" size="5"></td>
-				<td><input type="text" name="co1po10" size="5"></td>
-				<td><input type="text" name="co1po11" size="5"></td>
-				<td><input type="text" name="co1po12" size="5"></td>
-				<td><input type="text" name="co1pso1" size="5"></td>
-				<td><input type="text" name="co1pso2" size="5"></td>
-				<td><input type="text" name="co1pso3" size="5"></td>
+				<td>
+				  <div class="form-group">
+				    <input class="form-control" type="text" name="co1po1" size="5" required>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-group">
+				    <input class="form-control" type="text" name="co1po2" size="5" 
+				    required>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-group">
+				    <input type="text" name="co1po3" size="5">
+				  </div>
+				</td>
+				<td>
+				<div class="form-group">
+				<input type="text" name="co1po4" size="5">
+				</td>
+				<td><div class="form-group"><input type="text" name="co1po5" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po6" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po7" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po8" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po9" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po10" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po11" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1po12" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1pso1" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1pso2" size="5"></td>
+				<td><div class="form-group"><input type="text" name="co1pso3" size="5"></td>
 			</tr>
 			<tr>
 				<th>2k16...2 </th>
@@ -154,4 +160,15 @@
 		<input type="submit" value="SAVE">
 		
 		</form>
+     
+<table><tr><th>CO</th>
+    @for($i = 0; $i < 10; $i++)
+
+				
+				<th>PO {{$i}}</th>
+				
+			
+    @endfor
+</tr></table>
+		
 	@endsection	

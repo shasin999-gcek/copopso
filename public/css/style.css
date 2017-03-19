@@ -5,6 +5,14 @@
 
 }
 
+.panel {
+	margin-top: 80px;
+}
+
+.btn-panel {
+	margin-left: 30px;
+}
+
 .page-header {
    font-family: 'Raleway', sans-serif;
 }
