@@ -27,9 +27,9 @@
 				<th>PO 10</th>
 				<th>PO 11</th>
 				<th>PO 12</th>
-				<th>PSO 1</th>
-				<th>PSO 2</th>
-				<th>PSO 3</th>
+				<th class="text-danger">PSO 1</th>
+				<th class="text-danger">PSO 2</th>
+				<th class="text-danger">PSO 3</th>
 			</tr>
 			</thead>
 
@@ -39,7 +39,7 @@
 				@for($i = 1; $i <= 15; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co1-po{{$i}}" size="5" pattern="[1-3]" required>
+					    <input class="form-control" type="text" name="co1-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
@@ -49,7 +49,7 @@
 				@for($i = 1; $i <= 15; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co2-po{{$i}}" size="5" pattern="[1-3]" required>
+					    <input class="form-control" type="text" name="co2-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
@@ -59,7 +59,7 @@
 				@for($i = 1; $i <= 15; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co3-po{{$i}}" size="5" pattern="[1-3]" required>
+					    <input class="form-control" type="text" name="co3-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
@@ -69,7 +69,7 @@
 				@for($i = 1; $i <= 15; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co4-po{{$i}}" size="5" pattern="[1-3]" required>
+					    <input class="form-control" type="text" name="co4-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
@@ -79,7 +79,7 @@
 				@for($i = 1; $i <= 15; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co5-po{{$i}}" size="5" pattern="[1-3]" required>
+					    <input class="form-control" type="text" name="co5-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
@@ -89,7 +89,7 @@
 			@for($i = 1; $i <= 15; $i++)
 				<td>
 				  <div class="form-group">
-				    <input class="form-control" type="text" name="co6-po{{$i}}" size="5"  pattern="[1-3]" required>
+				    <input class="form-control" type="text" name="co6-po{{$i}}" size="5"  pattern="[1-3.\-]" required>
 				  </div>
 				</td>			
 			@endfor	
@@ -98,31 +98,71 @@
 		<div class="row">
 	      <input class="col-lg-1" type="checkbox" id="check_id">	
 		  <p class="text-danger">
-		     check this box if you wanted to add hypen (-) in blank fields.
+		     Check this box if you wanted to add hypen (-) in blank fields.
 		  </p>
 		</div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success" id="btn-submit">Submit</button>
 	</form>
 
+     <!-- confirm Modal -->
+  <div class="modal fade" id="confirmModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Confirm Changes</h4>
+        </div>
+        <div class="modal-body">
+          <p>Do you want to save changes that u made.?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="btn-success-confirm">Save Changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 
 @endsection				
 
 @section('script')
 <script type="text/javascript">
-  
-  $('#co-po-matrix').validator().on('submit', function (e) {
-	  if (e.isDefaultPrevented()) {
-	    // handle the invalid form...  
-	  } else {
-	    // everything looks good!
-	  }
-  });
+ $(document).ready(function() {
+	$('#co-po-matrix').validator().on('submit', function (e) {
+	    if (e.isDefaultPrevented()) {
+	         console.log("errors");
+	    } else {
+	  	     e.preventDefault();
+	         $('#confirmModal').modal();
+	    }
+	});
+    
 
-  $(document).ready(function() {
-  	var emptyFields = $('input:text').filter(function() { return this.value === ""; });
-  	console.log(emptyFields);
-  });
+  	$('#check_id').change(function() {
+  		if(this.checked) {
+  		   var emptyFields = $('input:text').filter(function() { 
+  		     return this.value === ""; 
+  		   });	
+  		   emptyFields.each(function() {
+ 			 $(this).val('-');
+  		   });
+  		   $('.text-danger').removeClass('text-danger').addClass('text-success');
+  		} else {
+  		   var fieldsWithHypen = $('input:text').filter(function() {
+              return this.value == '-';
+  		   });	
+           fieldsWithHypen.each(function() {
+ 			  $(this).val('');
+  		   });
+  		   $('.text-success').removeClass('text-success').addClass('text-danger');
+  		}    
+  	});
+
+}); 
 </script>
 
 @endsection

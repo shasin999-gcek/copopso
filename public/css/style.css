@@ -1,5 +1,9 @@
 @import './sb-admin-2.css';
 
+body {
+   font-family: 'Droid Sans', sans-serif;
+}
+
 #page-wrapper {
 	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
 
