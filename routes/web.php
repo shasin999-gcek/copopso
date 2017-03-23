@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('form');
 });
 
-Route::get('/co-po-just', function () {
-	return view('co-po-just');
+Route::get('/co-po-matrix', function () {
+	return view('co_po_matrix');
 });
+
