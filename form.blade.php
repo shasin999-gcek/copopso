@@ -7,7 +7,7 @@
      <h1 class="text-primary">Define Cource Outcomes</h1>
    </div>
    
-   <form method="POST" action="/store" data-toggle="validator" class="form-horizontal" role="form">
+   <form method="POST" action="/copojust" data-toggle="validator" class="form-horizontal" role="form">
     	{{ csrf_field() }}
 		<div class="form-group has-feedback">
 			<label for="inputName" class="col-lg-1 control-label"><h4>2K16...1</h4></label>
