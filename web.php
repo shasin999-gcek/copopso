@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('form');
 });
 
-Route::post('/copojust', 'CoController@store');
+Route::post('/store', 'CoController@storecopo');
 
+Route::post('/copojust', 'CoController@store');
 
 Route::get('/copojust', function () {
     return view('co-po-just');
