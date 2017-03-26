@@ -11,11 +11,28 @@
 |
 */
 
+class Person 
+{
+	
+	function __construct($name, $age)
+	{
+		$this->name = $name;
+		$this->age = $age;
+	}
+}
+
+
 Route::get('/', function () {
     return view('form');
 });
 
 Route::get('/co-po-matrix', function () {
 	return view('co_po_matrix');
+});
+
+Route::get('/test', function() {
+   $random = str_random(6);
+   dd($random);
+  
 });
 
