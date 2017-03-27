@@ -14,8 +14,7 @@ class CreateCopoMatrixTable extends Migration
     public function up()
     {
         Schema::create('copo_matrix', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            
         });
     }
 
