@@ -5,9 +5,7 @@ import random
 
 #Make necessary changes when using with your database
 db = MySQLdb.Connect(host="host", port=3306, user="username", passwd="password", db="database")
-
 cursor = db.cursor()
-
 
 try:
 	cursor.execute("""SELECT COUNT(*) FROM user;""")
