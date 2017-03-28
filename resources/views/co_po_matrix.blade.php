@@ -2,8 +2,10 @@
     @section('main_content')
 		<h3>CO-PO Mapping Matrix</h3><br>
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
+		
+		<form class="form-vertical" id="co-po-matrix" role="form" method='POST' action='/store'>
+		{{ csrf_field() }}
 
-		<form class="form-vertical" id="co-po-matrix" role="form">
 		<table class="table">
 		  <thead class="thead-inverse">
 			<tr>
@@ -104,43 +106,14 @@
       <button type="submit" class="btn btn-success" id="btn-submit">Submit</button>
 	</form>
 
-     <!-- confirm Modal -->
-  <div class="modal fade" id="confirmModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Confirm Changes</h4>
-        </div>
-        <div class="modal-body">
-          <p>Do you want to save changes that u made.?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" id="btn-success-confirm">Save Changes</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-
+  
+ 
 @endsection				
 
 @section('script')
 <script type="text/javascript">
  $(document).ready(function() {
-	$('#co-po-matrix').validator().on('submit', function (e) {
-	    if (e.isDefaultPrevented()) {
-	         console.log("errors");
-	    } else {
-	  	     e.preventDefault();
-	         $('#confirmModal').modal();
-	    }
-	});
-    
+
 
   	$('#check_id').change(function() {
   		if(this.checked) {
