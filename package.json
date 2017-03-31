@@ -9,14 +9,12 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap-validator": "^0.11.9",
     "cross-env": "^3.2.3",
-    "jquery": "^3.1.1",
     "laravel-mix": "^0.8.3",
-    "lodash": "^4.17.4",
-    "vue": "^2.1.10"
-  },
-  "dependencies": {
+    "metismenu": "^2.7.0",
+    "vue": "^2.1.10",
     "vue-router": "^2.3.1"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,29 +1,22 @@
+/* 
+   (Development only in production we use cdn)
+*/
 
-window._ = require('lodash');
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+// jquery 
+window.$ = window.jQuery = require('jquery');
 
-//window.$ = window.jQuery = require('jquery');
+// bootstrap.js (javasctipt plugin)
+require('bootstrap-sass');
 
-//require('bootstrap-sass');
+// bootstrap validator
+require('bootstrap-validator');
 
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
+// metisMenu
+require('metismenu');
 
+// vuejs (UI designing)
 window.Vue = require('vue');
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
 
 window.axios = require('axios');
 
@@ -32,15 +25,49 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
+/*!
+ * metismenu - used to apply metismenu features sidebar
  */
 
-// import Echo from "laravel-echo"
+$(function() {
+    $('#side-menu').metisMenu();
+});
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size
+$(function() {
+    $(window).bind("load resize", function() {
+        var topOffset = 50;
+        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    var url = window.location;
+    // var element = $('ul.nav a').filter(function() {
+    //     return this.href == url;
+    // }).addClass('active').parent().parent().addClass('in').parent();
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url;
+    }).addClass('active').parent();
+
+    while (true) {
+        if (element.is('li')) {
+            element = element.parent().addClass('in').parent();
+        } else {
+            break;
+        }
+    }
+});

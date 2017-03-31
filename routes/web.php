@@ -22,3 +22,7 @@ Route::post('/copojust', 'CoController@store');
 Route::get('/copojust', function () {
     return view('co_po_matrix');
 });
+
+Route::get('/test', function() {
+   return view('test');
+});

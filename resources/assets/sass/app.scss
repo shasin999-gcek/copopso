@@ -2,8 +2,13 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// metisMenu
+@import "node_modules/metismenu/src/metisMenu";
+
+//custom style
+@import 'style';
+
+

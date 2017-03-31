@@ -1,12 +1,13 @@
-@import './sb-admin-2.css';
+
+@import 'nav-sidebar';
 
 body {
+
    font-family: 'Droid Sans', sans-serif;
 }
 
 #page-wrapper {
 	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
-
 }
 
 .panel {
@@ -28,4 +29,3 @@ h1, h2, h3, h4, h5, h6 {
 nav a, nav li>a {
    font-family: 'Catamaran', sans-serif;
 }
-

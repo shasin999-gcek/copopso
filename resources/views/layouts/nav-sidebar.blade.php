@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Octaco.co</title>
-
-       <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css')}}">
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">
-
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <!--custom styles-->
-        <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
-    </head>
-    <body>
-         
-
-    <div id="wrapper">
-
-    <!-- Navigation -->
+  <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -120,27 +96,5 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
-         
-         <div id="page-wrapper">
-          
-                    @yield('main_content')
-              
-         </div>
 
-    </div>
-
-        <!--jQuery-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        
-       <!--bootstrap-->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.js"></script>
-         <script src="{{ URL::asset('js/sb-admin.js') }}"></script>
-
-        @yield('script')
-       
-    </body>
-</html>
+  
