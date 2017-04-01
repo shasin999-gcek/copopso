@@ -2,7 +2,7 @@
 
 Every dependencies used during development will be updated here.I kindly request every one to visit this website frequently.
 
-## To Install thisproject
+## To Install this project
 
 ```
    git clone https://github.com/shasin999-gcek/copopso.git
