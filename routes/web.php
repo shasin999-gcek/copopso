@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,19 +9,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('form');
 });
-
 Route::post('/store', 'CoController@storecopo');
-
 Route::post('/copojust', 'CoController@store');
-
 Route::get('/copojust', function () {
     return view('co_po_matrix');
 });
-
 Route::get('/test', function() {
    return view('test');
+});
+Route::get('/subjectform', function () {
+	return view('subjectform');
 });
