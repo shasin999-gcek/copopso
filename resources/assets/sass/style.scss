@@ -2,16 +2,22 @@
 @import 'nav-sidebar';
 
 body {
-
    font-family: 'Droid Sans', sans-serif;
 }
 
+
 #page-wrapper {
+	padding-top: 80px;
 	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
 }
 
-.panel {
-	margin-top: 80px;
+
+
+.centered {
+  overflow: hidden;
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
 }
 
 .btn-panel {

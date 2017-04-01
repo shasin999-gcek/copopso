@@ -1,6 +1,6 @@
 @extends('layouts.master')
     @section('main_content')
-		<h3>CO-PO Mapping Matrix</h3><br>
+		
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
 
 		<form class="form-vertical" id="co-po-matrix" role="form">
