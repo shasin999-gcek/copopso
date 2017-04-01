@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
     @section('main_content')
     <h2> <small>Subject selection</small></h2>
     <div class="container">

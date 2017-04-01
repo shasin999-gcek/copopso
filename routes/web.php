@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 
 /*
@@ -11,6 +11,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 
@@ -18,6 +19,9 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/home', function() {
+	return redirect('/co');
+});
 
 Route::get('/co', function () {
     return view('form');
@@ -42,3 +46,4 @@ Route::get('/subjectform', function () {
 });
 
 
+?>
