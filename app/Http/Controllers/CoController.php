@@ -79,7 +79,7 @@ class CoController extends Controller
         }
        
 
-        DB::table('co_po')->insert($matrix);
+        DB::table('co_list')->insert($matrix);
         
         echo "success!";
     }
