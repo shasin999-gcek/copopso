@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 /*
@@ -36,5 +37,8 @@ Route::get('/test', function() {
    return view('test');
 });
 
+Route::get('/subjectform', function () {
+	return view('subjectform');
+});
 
 
