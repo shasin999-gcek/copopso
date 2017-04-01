@@ -5,25 +5,55 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Octaco.co</title>
+         <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css')}}">
-       
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <!-- Scripts -->
+        <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken' => csrf_token(),
+            ]) !!};
+        </script>
+        
+    
     </head>
 
     <body>
          
-    <div id="wrapper">
+   
 
-       @include('layouts.nav-sidebar')
-         
-         <div id="page-wrapper">
-          
-            @yield('main_content')
-              
-         </div>
+         @if (Auth::guest())
 
-    </div>
+              <div id="guest">
+
+                 @include('layouts.guest-nav')
+
+                 @yield('guest_content')
+                 
+              </div>  
+
+         @else
+
+             <div id="wrapper">
+
+                @include('layouts.nav-sidebar')
+
+                <div id="page-wrapper">
+                  
+                    @yield('main_content')
+                      
+                </div>
+
+             </div>
+
+         @endif    
+
+    
 
        
      <script src="{{ URL::asset('js/app.js') }}"></script>

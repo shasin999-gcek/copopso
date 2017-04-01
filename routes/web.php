@@ -10,19 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
 
 Route::get('/', function () {
-    return view('form');
+    return redirect('/login');
 });
 
-Route::post('/store', 'CoController@storecopo');
 
-Route::post('/copojust', 'CoController@store');
+Route::get('/co', function () {
+    return view('form');
+})->middleware('auth');
 
 Route::get('/copojust', function () {
     return view('co_po_matrix');
-});
+})->middleware('auth');
+
+Route::post('/store', 'CoController@storecopo')->middleware('auth');
+
+Route::post('/copojust', 'CoController@store')->middleware('auth');
+
+
 
 Route::get('/test', function() {
    return view('test');
 });
+
+
+
