@@ -45,5 +45,9 @@ Route::get('/subjectform', function () {
 	return view('subjectform');
 });
 
+Route::get ('upload', 'MarksController@showForm');
+
+Route::post('upload', 'MarksController@store');
+
 
 ?>
