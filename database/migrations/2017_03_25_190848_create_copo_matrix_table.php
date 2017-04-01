@@ -32,6 +32,7 @@ class CreateCopoMatrixTable extends Migration
             $table->integer('pso13');
             $table->integer('pso14');
             $table->integer('pso15');
+            $table->primary(array('course_id', 'academic_year'));
         });
 
         Schema::table('copo_matrix', function (Blueprint $table) {

@@ -19,7 +19,7 @@ class CreateUserCourseMapTable extends Migration
             $table->integer('semester');
             $table->integer('academic_year')->unsigned();
             $table->string('branch');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('course');
         });
     }
