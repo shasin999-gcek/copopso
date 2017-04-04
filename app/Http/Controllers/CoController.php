@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
+use Auth;
+use App\UserCourse;
+use App\Course;
 
 class CoController extends Controller
 {
@@ -12,6 +15,20 @@ class CoController extends Controller
     public function index()
     {
         //
+        $currentid=Auth::User()->id;
+        $courses=UserCourse::where('user_id', '=', $currentid)->get();
+        $usercourse=array();
+        foreach ($courses as $course) {
+            $coursedata=array();
+            $courseinfo=Course::where('id', '=', $course->course_id)->first();
+            $coursedata["code"]=$courseinfo->course_code;
+            $coursedata["name"]=$courseinfo->course_name;
+            $coursedata["year"]=$course->academic_year;
+            $coursedata["semester"]=$course->semester;
+            $coursedata["branch"]=$course->branch;
+            $usercourse[]=$coursedata;
+        }
+        return view('homepage')->with('usercourse', $usercourse);
     }
 
     
@@ -61,7 +78,7 @@ class CoController extends Controller
         $matrix = array();
         for ($i=1; $i<=6; $i++){
             $values=array();
-            $values["co"]="co$i";
+            $values["co_id"]="co$i";
             for ($j=1; $j<=12; $j++){
                 $level = request("co$i-po$j");
                 if ($level === '-')
@@ -79,9 +96,9 @@ class CoController extends Controller
         }
        
 
-        DB::table('co_list')->insert($matrix);
+        DB::table('co_po')->insert($matrix);
         
-        echo "success!";
+        return redirect('po1just');
     }
 
     

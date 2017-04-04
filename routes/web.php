@@ -19,9 +19,8 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/home', function() {
-	return redirect('/co');
-});
+
+Route::get('/home', 'CoController@index')->middleware('auth');
 
 Route::get('/co', function () {
     return view('form');
@@ -31,7 +30,11 @@ Route::get('/copojust', function () {
     return view('co_po_matrix');
 })->middleware('auth');
 
-Route::post('/store', 'CoController@storecopo')->middleware('auth');
+Route::get('/po1just', function () {
+    return view('po1_just');
+})->middleware('auth');
+
+Route::post('/po1just', 'CoController@storecopo')->middleware('auth');
 
 Route::post('/copojust', 'CoController@store')->middleware('auth');
 
