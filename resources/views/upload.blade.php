@@ -1,7 +1,7 @@
-@extends('layouts.base')
+@extends('layouts.master')
 
 
-@section('content')
+@section('main_content')
 
     <form action="{{url('/upload')}}" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
