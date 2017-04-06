@@ -48,9 +48,9 @@ Route::get('/subjectform', function () {
 	return view('subjectform');
 });
 
-Route::get ('upload', 'MarksController@showForm');
+Route::get ('upload', 'MarksController@showForm')->middleware('auth');
 
-Route::post('upload', 'MarksController@store');
+Route::post('upload', 'MarksController@store')->middleware('auth');
 
 
 ?>
