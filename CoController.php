@@ -63,20 +63,69 @@ class CoController extends Controller
             $values=array();
             $values["co"]="co$i";
             for ($j=1; $j<=12; $j++){
-                $values["po$j"] = request("co$i-po$j");
+                $level = request("co$i-po$j");
+                if ($level === '-')
+                    $level=0;
+                $values["po$j"] = $level;
+                if($level!='1' and $level!='2'and $level!='3' and $level!='0')
+                {
+                    $e++;
+                }
+                
             }
             for ($j=13; $j<=15; $j++){
-                $values["pso$j"] = request("co$i-po$j");
+                $level = request("co$i-po$j");
+                if ($level === '-')
+                    $level=0;
+                $values["pso$j"] = $level;
+                if($level!='1' and $level!='2'and $level!='3' and $level!='0')
+                {
+                    $e++;
+                }
             }
             $matrix[]=$values;
             
         }
        
-
-        DB::table('co_po')->insert($matrix);
-        
-        echo "success!";
-    }
+            if($e!=0)
+            {
+                
+                return view('co_po_matrix');
+            }
+            else
+            {
+                DB::table('co_po')->insert($matrix);
+                
+                return view('co_po_matrix');
+            }}
+     public function  storeco(Request $request)
+     {  
+        $weight=array('A','I','A2','A1','T2','T1','U');
+       
+        $matrix=array();
+        foreach ($weight as $key)
+        {
+            $values=array();
+            $values['id']=$key;
+            for($i=1;$i<2;$i++)
+            {
+                $level=request("$key-W");
+                if ($level === '-')
+                    $level=0;
+                $values["weightage"] = $level;
+            }
+            for($i=1;$i<=6;$i++)
+            {
+                $level=request("$key-co$i");
+                if ($level === '-')
+                    $level=0;
+                $values["co$i"] = $level;
+            }
+        $matrix[]=$values;
+           
+        }
+        DB::table('co weightage')->insert($matrix); 
+    }     
 
     
     public function edit($id)
