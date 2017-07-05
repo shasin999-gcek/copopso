@@ -53,7 +53,8 @@ Login as "abc@xyz.com" with password "12345". Two courses have already been asso
    * Assign *composite primary keys* in some of the tables needing them
    * PSOs are different for each branch - devise method to store and access them. 
    * Store academic_year in user course as string? Using date formats not possible since two years are concatenated. Temporarily being stored as an integer.
- I'll update the rest as I remember them. Choose an area to work on and inform the rest.
+ 
+I'll update the rest as I remember them. Choose an area to work on and inform the rest.
  
  
 ## Coming Up Soon
