@@ -14,7 +14,7 @@ class CreateCoPoTable extends Migration {
 	{
 		Schema::create('co_po', function(Blueprint $table)
 		{
-			$table->string('co_id', 10);
+			$table->integer('cos_id');
 			$table->integer('po1');
 			$table->integer('po2');
 			$table->integer('po3');
@@ -27,9 +27,12 @@ class CreateCoPoTable extends Migration {
 			$table->integer('po10');
 			$table->integer('po11');
 			$table->integer('po12');
-			$table->integer('pso13');
-			$table->integer('pso14');
-			$table->integer('pso15');
+			$table->integer('pso1');
+			$table->integer('pso2');
+			$table->integer('pso3');
+			$table->integer('pso4');
+
+			$table->foreign('cos_id')->references('id')->on('cos')->onDelete('cascade');
 		});
 	}
 

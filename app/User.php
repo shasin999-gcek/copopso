@@ -17,7 +17,7 @@ class User extends Eloquent implements Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'department', 'username' ,'password',
+        'name', 'email', 'department', 'password',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -27,4 +27,14 @@ class User extends Eloquent implements Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function courses()
+    {
+        return $this -> belongsToMany(Course::class, 'user_course')->withPivot('id','semester','academic_year','branch','co_count', 'status');
+    }
+
+    // public function usercourse()
+    // {
+    //     return $this -> belongsToMany(UserCourse::class, 'user_course');
+    // }
   }

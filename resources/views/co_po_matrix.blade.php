@@ -3,7 +3,7 @@
 		
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
 
-		<form class="form-vertical" id="co-po-matrix" role="form" action="/po1just" method="POST">
+		<form class="form-vertical" id="co-po-matrix" role="form" action="/co/popso/{{$id}}" method="POST">
 		{{ csrf_field() }}
 		<table class="table">
 		  <thead class="thead-inverse">
@@ -34,67 +34,25 @@
 			</tr>
 			</thead>
 
-			<!--creating form dynamically-->
+			@foreach ($cos as $co)
 			<tr>
-			   <th>2k16...1</th>
-				@for($i = 1; $i <= 15; $i++)
+			   <th>{{$co->name}}</th>
+				@for($i = 1; $i <= 12; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co1-po{{$i}}" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
 				@endfor	
-			</tr>
-			<tr>
-			   <th>2k16...2</th>
-				@for($i = 1; $i <= 15; $i++)
+				@for($i = 1; $i <= 4; $i++)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co2-po{{$i}}" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-pso{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
 					</td>			
-				@endfor	
+				@endfor
 			</tr>
-			<tr>
-			   <th>2k16...3</th>
-				@for($i = 1; $i <= 15; $i++)
-					<td>
-					  <div class="form-group">
-					    <input class="form-control" type="text" name="co3-po{{$i}}" size="5" pattern="[1-3.\-]" required>
-					  </div>
-					</td>			
-				@endfor	
-			</tr>
-			<tr>
-			   <th>2k16...4</th>
-				@for($i = 1; $i <= 15; $i++)
-					<td>
-					  <div class="form-group">
-					    <input class="form-control" type="text" name="co4-po{{$i}}" size="5" pattern="[1-3.\-]" required>
-					  </div>
-					</td>			
-				@endfor	
-			</tr>
-			<tr>
-			   <th>2k16...5</th>
-				@for($i = 1; $i <= 15; $i++)
-					<td>
-					  <div class="form-group">
-					    <input class="form-control" type="text" name="co5-po{{$i}}" size="5" pattern="[1-3.\-]" required>
-					  </div>
-					</td>			
-				@endfor	
-			</tr>
-			<tr>
-			   <th>2k16...6</th>
-			@for($i = 1; $i <= 15; $i++)
-				<td>
-				  <div class="form-group">
-				    <input class="form-control" type="text" name="co6-po{{$i}}" size="5"  pattern="[1-3.\-]" required>
-				  </div>
-				</td>			
-			@endfor	
-			</tr>
+			@endforeach
 		</table>
 		<div class="row">
 	      <input class="col-lg-1" type="checkbox" id="check_id">	

@@ -19,34 +19,24 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-
-Route::get('/home', 'CoController@index')->middleware('auth');
-
-Route::get('/co', function () {
-    return view('form');
-})->middleware('auth');
-
-Route::get('/copojust', function () {
-    return view('co_po_matrix');
-})->middleware('auth');
-
-Route::get('/po1just', function () {
-    return view('po1_just');
-})->middleware('auth');
-
-Route::post('/po1just', 'CoController@storecopo')->middleware('auth');
-
-Route::post('/copojust', 'CoController@store')->middleware('auth');
-
-
-
-Route::get('/test', function() {
-   return view('test');
-});
-
 Route::get('/subjectform', function () {
-	return view('subjectform');
+    return view('subjectform');
 });
+
+Route::get('/home', 'HomeController@index')->middleware('auth');
+
+Route::get('/co/{id}', 'CoController@index')->middleware('auth');
+Route::get('/co/create/{id}', 'CoController@create')->middleware('auth');
+Route::post('/co/{id}', 'CoController@store')->middleware('auth');
+
+Route::get('/co/popso/create/{id}', 'CoController@createpopso')->middleware('auth');
+Route::post('/co/popso/{id}', 'CoController@storepopso')->middleware('auth');
+
+Route::get('/co/po/{id}/{po_id}', 'CoController@view')->middleware('auth');
+Route::post('/co/storejust/{id}/{po_id}', 'CoController@storejust')->middleware('auth');
+
+Route::get('/co/{id}/weightage', 'CoController@createweightage')->middleware('auth');
+Route::post('/co/{id}/weightage', 'CoController@storeweightage')->middleware('auth');
 
 Route::get ('upload', 'MarksController@showForm')->middleware('auth');
 

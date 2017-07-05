@@ -177,6 +177,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+        * Package to scan database and create models
+        * WORKS ONLY ON MYSQL CONNECTIONS
+        */
+
+        //Reliese\Coders\CodersServiceProvider::class
+
+
     ],
 
     /*
