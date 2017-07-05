@@ -22,6 +22,8 @@ Every dependencies used during development will be updated here.I kindly request
    php artisan serve
 ```
 
+Login as "abc@xyz.com" with password "12345". Two courses have already been associated with this user.
+
 ## Areas to Work on
 
 1. Routes:
@@ -50,8 +52,9 @@ Every dependencies used during development will be updated here.I kindly request
    * Check if fields have been assigned the correct data types (ie, int vs smallint etc)
    * Assign *composite primary keys* in some of the tables needing them
    * PSOs are different for each branch - devise method to store and access them. 
-
- I'll update the rest as I remember them. Choose an area to work on and inform the rest. 
+   * Store academic_year in user course as string? Using date formats not possible since two years are concatenated. Temporarily being stored as an integer.
+ I'll update the rest as I remember them. Choose an area to work on and inform the rest.
+ 
  
 ## Coming Up Soon
 
