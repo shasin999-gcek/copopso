@@ -17,7 +17,7 @@ class CreatePoJustificationsTable extends Migration
             //
             $table->integer('co_id');
             $table->integer('po_id');
-            $table->string('justifications');
+            $table->string('justification');
             
             $table->foreign('co_id')->references('id')->on('cos')->onDelete('cascade');
             $table->foreign('po_id')->references('id')->on('pos')->onDelete('cascade');
