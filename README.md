@@ -35,12 +35,14 @@ Every dependencies used during development will be updated here.I kindly request
    * Prevent duplicate form submission.
 3. Co View:
    * The status of each user_course determines what's shown on this page. Current setup is such that, for the given values of $status:
+   ```
       0 -> No steps completed. Link to CO Form. 
       1 -> COs have been defined. Display them. Link to CO-PO Matrix form. 
       2-17 -> CO-PO Matrix defined. Display matrix. Link to ($status-1)th PO Justification form.
       18 -> All PO's and PSO's justified. Link to CO Weightage form.
       19 -> Weightages filled. Link to Upload page. 
       20 -> Upload completed.
+   ```
    * There are minor bugs in this page, but more time can be spent on that after confirming that we're going ahead with this way of keeping account of the status.
    * Client-side verifications (calculating total weightages, etc)
 4. Database:
@@ -52,8 +54,9 @@ Every dependencies used during development will be updated here.I kindly request
  I'll update the rest as I remember them. Choose an area to work on and inform the rest. 
  
 ## Coming Up Soon
-   Site Map
-   Database Design 
+
+1. Site Map
+2. Database Design 
    
 ### Support or Contact
 
