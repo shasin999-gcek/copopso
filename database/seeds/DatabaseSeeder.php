@@ -74,10 +74,80 @@ class DatabaseSeeder extends Seeder
 	                'id'   => '12',
 	                'name' => 'Project Management and Finance',
 	                'body' => 'Demonstrate knowledge and understanding of the engineering and management principles and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.'  
+	        ),
+	        array(
+	                'id'   => '13',
+	                'name' => 'PSO1',
+	                'body' => 'Body for PSO1'  
+	        ),
+	        array(
+	                'id'   => '14',
+	                'name' => 'PSO2',
+	                'body' => 'Body for PSO2'  
+	        ),
+	        array(
+	                'id'   => '15',
+	                'name' => 'PSO3',
+	                'body' => 'Body for PSO3'  
+	        ),
+	        array(
+	                'id'   => '16',
+	                'name' => 'PSO4',
+	                'body' => 'Body for PSO4'  
 	        )
 
 	 	)
        );
+
+		DB::table('users')->insert([
+			'id' => 100,
+			'name' => "ABC",
+			'email' => "abc@xyz.com",
+			'password' => bcrypt("12345"),
+			'department' => 'CSE'                                
+	                      
+	    ]);
+
+	    DB::table('course')->insert([
+				array(
+					'id' => 200,
+					'course_code' => "MA100",
+					'course_name' => "Calculus"
+				),
+				array(
+					'id' => 201,
+					'course_code' => "CS101",
+					'course_name' => "Algorithms"
+				)
+			
+	    ]);
+
+	    DB::table('user_course')->insert([
+				array(
+					'id' => 1,
+					'user_id' => 100,
+					'course_id' => 200,
+					'semester' => 1,
+					'academic_year' => 2016,
+					'branch' => "ME",
+					'co_count' => 0,
+					'status' => 0
+
+				),
+				array(
+					'id' => 2,
+					'user_id' => 100,
+					'course_id' => 201,
+					'semester' => 2,
+					'academic_year' => 2017,
+					'branch' => "ME",
+					'co_count' => 0,
+					'status' => 0
+				)
+			
+	    ]);
+
+
     }
     
 }
