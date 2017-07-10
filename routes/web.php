@@ -39,8 +39,6 @@ Route::get('/co/{id}/weightage', 'CoController@createweightage')->middleware('au
 Route::post('/co/{id}/weightage', 'CoController@storeweightage')->middleware('auth');
 
 Route::get ('upload', 'MarksController@showForm')->middleware('auth');
-
 Route::post('upload', 'MarksController@store')->middleware('auth');
-
 
 ?>
