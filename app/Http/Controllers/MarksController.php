@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\upload;
 
 use App\Http\Requests;
@@ -32,7 +33,7 @@ class MarksController extends Controller
               session()->flash('success', "Succesfully uploaded!");
               return redirect()->back();
         } 
-
+      
 
         //get file
         $upload=$request->file('upload-file');
@@ -40,8 +41,18 @@ class MarksController extends Controller
           session()->flash('danger', "PLEASE SELECT A FILE");
           return redirect()->back();
         }
+
+        $validator = Validator::make(['file'=>$upload,'extension'=>strtolower($upload->getClientOriginalExtension()),],['file'=>'required','extension'=>'required|in:csv',]);
+        
+        if ($validator->fails()) {
+          session()->flash('danger', "INVALID FILE!!");
+          return redirect()->back();          
+        }  
+
         $filePath=$upload->getRealPath();
         $file=fopen($filePath, 'r');
+
+        
         $header= fgetcsv($file);
         
         //open and read
