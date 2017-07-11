@@ -22,7 +22,7 @@ Every dependencies used during development will be updated here.I kindly request
    php artisan serve
 ```
 
-Login as "abc@xyz.com" with password "12345". Two courses have already been associated with this user.
+Login as "abc@xyz.com" with password "12345". Two courses have already been associated with this user .
 
 ## Areas to Work on
 
