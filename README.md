@@ -11,7 +11,7 @@ Every dependencies used during development will be updated here.I kindly request
    
    composer install
    
-   mv .env.example .env
+   cp .env.example .env
    
    php artisan key:generate
    
