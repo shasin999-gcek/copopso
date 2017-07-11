@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\upload;
 
 use App\Http\Requests;
@@ -25,23 +26,33 @@ class MarksController extends Controller
         if($request->has('discard'))
         {
           upload::truncate();
-          return view('upload');     
+          return redirect()->back();    
 
         }
         elseif ($request->has('save')) {
-              echo '<script language="javascript">';
-              echo 'alert("SUCCESFULLY SAVED!");';
-              echo '</script>';
-              return view('upload');
+              session()->flash('success', "Succesfully uploaded!");
+              return redirect()->back();
         } 
-
-        $blank=true;
+      
 
         //get file
         $upload=$request->file('upload-file');
+        if (!$upload) {
+          session()->flash('danger', "PLEASE SELECT A FILE");
+          return redirect()->back();
+        }
+
+        $validator = Validator::make(['file'=>$upload,'extension'=>strtolower($upload->getClientOriginalExtension()),],['file'=>'required','extension'=>'required|in:csv',]);
+        
+        if ($validator->fails()) {
+          session()->flash('danger', "INVALID FILE!!");
+          return redirect()->back();          
+        }  
 
         $filePath=$upload->getRealPath();
         $file=fopen($filePath, 'r');
+
+        
         $header= fgetcsv($file);
         
         //open and read
@@ -69,19 +80,12 @@ class MarksController extends Controller
            //Displaying error if a blank field is found
            foreach ($data as $key => $value) {
              if ($value=="") {
-               echo '<script language="javascript">';
-               echo 'alert("BLANK FIELD AT '.$key.' FOR STUDENT '.$data['name'].' PLEASE UPLOAD A VALID CSV FILE");';
-               echo "window.location.href= './upload';";
-               echo '</script>';
-               $blank=false;
-               break;
+               $message = 'BLANK FIELD AT ' . $key . ' FOR STUDENT ' . $data['name'] . '. PLEASE UPLOAD A VALID CSV FILE';
+               //blank field found.... deleting all data
+               upload::truncate();
+               session()->flash('danger',$message);
+               return redirect()->back();
              }
-           }
-
-           //blank field found... deleting all data....
-           if (!$blank) {
-             upload::truncate();
-             break;
            }
 
            // Table update

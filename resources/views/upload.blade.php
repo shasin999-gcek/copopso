@@ -8,31 +8,22 @@
         
     	<br>
     	</br>
-    	<br>
-    	</br>
         <div class="form-group">
            
             <input type="file" name="upload-file" class="form-control">
         </div>
-        <br>
-    	</br>
     	
-        <input type="submit" class="btn btn-success" name="submit" value="Upload" disabled>
+        <input type="submit" class="btn btn-success" name="submit" value="Upload">
+        <br>
+        </br>
     </form>
+    
+    @if (Session::has('danger'))
+        <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+    @endif
 
-@endsection
-
-@section('add-script')
-
-    <script>
-            $('input[type=file]').change(function(){
-                if($('input[type=file]').val()==''){
-                    $('input').attr('disabled',true)
-                } 
-                else{
-                $('input').attr('disabled',false);
-                }
-            })
-    </script>
+    @if (Session::has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
 
 @endsection
