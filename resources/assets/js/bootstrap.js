@@ -1,9 +1,9 @@
-/* 
+/*
    (Development only in production we use cdn)
 */
 
 
-// jquery 
+// jquery
 window.$ = window.jQuery = require('jquery');
 
 // bootstrap.js (javasctipt plugin)
@@ -12,11 +12,6 @@ require('bootstrap-sass');
 // bootstrap validator
 require('bootstrap-validator');
 
-// metisMenu
-require('metismenu');
-
-// vuejs (UI designing)
-window.Vue = require('vue');
 
 window.axios = require('axios');
 
@@ -25,9 +20,11 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
+
+
 /*!
  * metismenu - used to apply metismenu features sidebar
- */
+
 
 $(function() {
     $('#side-menu').metisMenu();
@@ -71,3 +68,5 @@ $(function() {
         }
     }
 });
+
+*/
