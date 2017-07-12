@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 
 class App extends React.Component {
@@ -9,10 +8,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>This is home</h1>
+      <h1>This is home is sh </h1>
     );
   }
 }
 
 
-export defaults App;
+export default App;

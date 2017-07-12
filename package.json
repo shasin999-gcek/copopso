@@ -9,14 +9,14 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap-sass": "^3.3.7",
     "bootstrap-validator": "^0.11.9",
     "cross-env": "^3.2.3",
-    "laravel-mix": "^0.8.3"
+    "laravel-mix": "next"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.4",
+    "bootstrap.native": "^2.0.12",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
