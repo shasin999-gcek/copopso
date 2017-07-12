@@ -1,9 +1,10 @@
 @extends('layouts.master')
     @section('main_content')
-		
+
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
 
-		<form class="form-vertical" id="co-po-matrix" role="form" action="/co/popso/{{$id}}" method="POST">
+		<form class="form-vertical" id="co-po-matrix" data-toggle="validator"
+    role="form" action="/co/popso/{{$id}}" method="POST">
 		{{ csrf_field() }}
 		<table class="table">
 		  <thead class="thead-inverse">
@@ -42,20 +43,20 @@
 					  <div class="form-group">
 					    <input class="form-control" type="text" name="co{{$co->id}}-po{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
-					</td>			
-				@endfor	
+					</td>
+				@endfor
 				@for($i = 1; $i <= 4; $i++)
 					<td>
 					  <div class="form-group">
 					    <input class="form-control" type="text" name="co{{$co->id}}-pso{{$i}}" size="5" pattern="[1-3.\-]" required>
 					  </div>
-					</td>			
+					</td>
 				@endfor
 			</tr>
 			@endforeach
 		</table>
 		<div class="row">
-	      <input class="col-lg-1" type="checkbox" id="check_id">	
+	      <input class="col-lg-1" type="checkbox" id="check_id">
 		  <p class="text-danger">
 		     Check this box if you wanted to add hypen (-) in blank fields.
 		  </p>
@@ -64,28 +65,19 @@
 	</form>
 
 
- 
 
 
-@endsection				
+
+@endsection
 
 @section('add-script')
 <script type="text/javascript">
- $(document).ready(function() {
-	$('#co-po-matrix').validator().on('submit', function (e) {
-	    if (e.isDefaultPrevented()) {
-	         console.log("errors");
-	    } else {
-	  	  
-	    }
-	});
-    
-
+ 
   	$('#check_id').change(function() {
   		if(this.checked) {
-  		   var emptyFields = $('input:text').filter(function() { 
-  		     return this.value === ""; 
-  		   });	
+  		   var emptyFields = $('input:text').filter(function() {
+  		     return this.value === "";
+  		   });
   		   emptyFields.each(function() {
  			 $(this).val('-');
   		   });
@@ -93,15 +85,15 @@
   		} else {
   		   var fieldsWithHypen = $('input:text').filter(function() {
               return this.value == '-';
-  		   });	
+  		   });
            fieldsWithHypen.each(function() {
  			  $(this).val('');
   		   });
   		   $('.text-success').removeClass('text-success').addClass('text-danger');
-  		}    
+  		}
   	});
 
-}); 
+});
 </script>
 
 @endsection

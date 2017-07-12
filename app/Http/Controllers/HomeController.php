@@ -31,8 +31,8 @@ class HomeController extends Controller
         $user = Auth::User();
         $coursedata = $user->courses;
 
-          return $coursedata;
-      //  return view('home', compact('coursedata'));
+      //    return $coursedata;
+        return view('home', compact('coursedata'));
 
     }
 

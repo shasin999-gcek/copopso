@@ -19,13 +19,13 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
-        
-    
+
+
     </head>
 
     <body>
-         
-   
+
+
 
          @if (Auth::guest())
 
@@ -34,32 +34,26 @@
                  @include('layouts.guest-nav')
 
                  @yield('guest_content')
-                 
-              </div>  
+
+              </div>
 
          @else
 
-             <div id="wrapper">
 
-                @include('layouts.nav-sidebar')
+          <div id="root">
+          </div>
 
-                <div id="page-wrapper">
-                  
-                    @yield('main_content')
-                      
-                </div>
 
-             </div>
+          
+         @endif
 
-         @endif    
 
-    
 
-       
+
      <script src="{{ URL::asset('js/app.js') }}"></script>
      <script src="https://use.fontawesome.com/62b073ec0c.js"></script>
 
       @yield('add-script')
-       
+
     </body>
 </html>

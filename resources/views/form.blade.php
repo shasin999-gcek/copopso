@@ -18,12 +18,12 @@
 				<textarea type="text" class="form-control" id="inputName" name="co{{$i}}"
 				 cols="80" rows="4" pattern="^[_A-z0-9]{1,}$"  value="{{ old('co1') }}" required></textarea >
 				 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-			     <p class="help-block with-errors"></p>	
+			     <p class="help-block with-errors"></p>
 			</div>
 		</div>
 		@endfor
 
-		
+
 	<div class="form-group">
 			 <button type="submit" class="btn btn-success btn-panel">Submit</button>
 		</div>
@@ -32,7 +32,7 @@
    </div><!--end panel-->
   </div><!--end col-->
  </div><!--end row-->
-   
+
 		@if(count($errors))
 		<div class="form-group">
 			<div class="alert alert-danger">
@@ -45,15 +45,11 @@
 		</div>
 		@endif
 
-	
-	
+
+
 
 @endsection
 
 @section('add-script')
-	<script type="text/javascript">
-		$(function() {
-			$('#form1').validator();
-		});
-	</script>
+	
 @endsection
