@@ -32,7 +32,9 @@ class HomeController extends Controller
         $coursedata = $user->courses;
 
       //    return $coursedata;
-        return view('home', compact('coursedata'));
+      //  return view('home', compact('coursedata'));
+
+      return view('layouts.app');
 
     }
 
