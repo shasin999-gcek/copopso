@@ -53,10 +53,11 @@ class MarksController extends Controller
         $file=fopen($filePath, 'r');
 
         
-        $header= fgetcsv($file);
+        $header1= fgetcsv($file);
+        $header2 =fgetcsv($file);
+        $header = array_replace($header1,array(0 => $header2[0] , 1 => $header2[1]));
         
         //open and read
-
 
         $escapedHeader=[];
         
@@ -72,6 +73,7 @@ class MarksController extends Controller
         {
             if($columns[0]=="")
             {
+                dd("hi");
                 continue;
             }
 
@@ -112,7 +114,12 @@ class MarksController extends Controller
        //To prevent deletion of temp file for displaying of csv
        move_uploaded_file($filePath, substr($filePath, 0,strlen($filePath)-4).'A.tmp');
        //To delete the copy of temp file
+       
+       //if(file_exists($filePath)){
+        //    unlink($filePath);
+       //}    
        unlink(substr($filePath, 0,strlen($filePath)-4).'A.tmp');
+       //$filePath = substr($filePath, 0,strlen($filePath)-4).'A.tmp';
        return  view('display',['id'=>$filePath]);
     }
 
