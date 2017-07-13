@@ -109,11 +109,28 @@ class MarksController extends Controller
            $Upload->save();           
 
         }
-       //To prevent deletion of temp file for displaying of csv
+
+      /*
+       * UnComment following if working on Windows.  
+       */
+
+      /*
+
+      //To prevent deletion of temp file for displaying of csv
        move_uploaded_file($filePath, substr($filePath, 0,strlen($filePath)-4).'A.tmp');
        //To delete the copy of temp file
        unlink(substr($filePath, 0,strlen($filePath)-4).'A.tmp');
-       return  view('display',['id'=>$filePath]);
+       return  view('display',['id'=>$filePath, 0,strlen($filePath)-4).'A.tmp']);
+    
+      */
+
+      /*
+       * Comment following  if working on Windows.  
+       */
+
+      return  view('display',['id'=>$filePath]);
+
+
     }
 
 
