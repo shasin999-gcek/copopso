@@ -1,5 +1,6 @@
 import React from "react";
 
+import NavBar from "./Navigation/NavBar";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>This is home is sh </h1>
+      <div id="wrapper">
+        <NavBar />
+        <div id="page-wrapper">
+
+        </div>
+      </div>
     );
   }
 }
