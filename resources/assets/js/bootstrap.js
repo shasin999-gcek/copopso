@@ -1,13 +1,3 @@
-/*
-   (Development only in production we use cdn)
-*/
-
-
-// jquery
-window.$ = window.jQuery = require('jquery');
-
-// bootstrap.js (javasctipt plugin)
-require('bootstrap-sass');
 
 // bootstrap validator
 require('bootstrap-validator');
