@@ -62,9 +62,9 @@ Choose an area to work on and inform the rest.
  
 ## DATABASE SCHEMA
 
-![Current](https://ibb.co/n0mxja)
+![Current](https://image.ibb.co/jvaq4a/current_db.png)
 
-![Modified](https://ibb.co/foRKxv)
+![Modified](https://image.ibb.co/d88oqF/modified_db.png)
 
 ## Coming Up Soon
  
