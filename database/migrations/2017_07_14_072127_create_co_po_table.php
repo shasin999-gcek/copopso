@@ -31,8 +31,6 @@ class CreateCoPoTable extends Migration {
 			$table->integer('pso2');
 			$table->integer('pso3');
 			$table->integer('pso4');
-
-			$table->foreign('cos_id')->references('id')->on('cos')->onDelete('cascade');
 		});
 	}
 
