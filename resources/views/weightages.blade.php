@@ -21,13 +21,13 @@
 			   <th>University</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="u" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="u" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-u" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-u" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -38,13 +38,13 @@
 			   <th>Series 1</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="t1" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="t1" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-t1" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-t1" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -55,13 +55,13 @@
 			   <th>Series 2</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="t2" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="t2" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-t2" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-t2" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -72,13 +72,13 @@
 			   <th>Internal</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="i" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="i" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-i" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-i" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -89,13 +89,13 @@
 			   <th>Assignment 1</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="a1" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="a1" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-a1" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-a1" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -105,13 +105,13 @@
 			   <th>Assignment 2</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="a2" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="a2" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-a2" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-a2" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach
@@ -121,13 +121,13 @@
 			   <th>Attendance</th>
 			   		<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="attendance" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="attendance" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>	
 				@foreach ($cos as $co)
 					<td>
 					  <div class="form-group">
-					    <input class="form-control" type="text" name="co{{$co->id}}-attendance" size="5" pattern="[1-3.\-]" required>
+					    <input class="form-control" type="text" name="co{{$co->id}}-attendance" size="5" pattern="[0-100.\-]" required>
 					  </div>
 					</td>			
 				@endforeach				
@@ -171,12 +171,12 @@
   		     return this.value === ""; 
   		   });	
   		   emptyFields.each(function() {
- 			 $(this).val('-');
+ 			 $(this).val(0);
   		   });
   		   $('.text-danger').removeClass('text-danger').addClass('text-success');
   		} else {
   		   var fieldsWithHypen = $('input:text').filter(function() {
-              return this.value == '-';
+              return this.value == 0;
   		   });	
            fieldsWithHypen.each(function() {
  			  $(this).val('');

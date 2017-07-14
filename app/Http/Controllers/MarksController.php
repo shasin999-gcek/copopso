@@ -25,15 +25,13 @@ class MarksController extends Controller
         //To discard or save uploaded csv file
         if($request->has('discard'))
         {
-          upload::truncate();
           return redirect()->back();    
 
         }
-        elseif ($request->has('save')) {
-              session()->flash('success', "Succesfully uploaded!");
+        /*elseif ($request->has('save')) {
+              session()->flash('danger', "Some error occured");
               return redirect()->back();
-        } 
-      
+        } */
 
         //get file
         $upload=$request->file('upload-file');
@@ -53,10 +51,11 @@ class MarksController extends Controller
         $file=fopen($filePath, 'r');
 
         
-        $header= fgetcsv($file);
+        $header1= fgetcsv($file);
+        $header2 =fgetcsv($file);
+        $header = array_replace($header1,array(0 => $header2[0] , 1 => $header2[1]));
         
         //open and read
-
 
         $escapedHeader=[];
         
@@ -72,13 +71,14 @@ class MarksController extends Controller
         {
             if($columns[0]=="")
             {
+                dd("hi");
                 continue;
             }
 
            $data= array_combine($escapedHeader, $columns);
            
            //Displaying error if a blank field is found
-           foreach ($data as $key => $value) {
+           /*foreach ($data as $key => $value) {
              if ($value=="") {
                $message = 'BLANK FIELD AT ' . $key . ' FOR STUDENT ' . $data['name'] . '. PLEASE UPLOAD A VALID CSV FILE';
                //blank field found.... deleting all data
@@ -86,7 +86,7 @@ class MarksController extends Controller
                session()->flash('danger',$message);
                return redirect()->back();
              }
-           }
+           }*/
 
            // Table update
            $rollno=$data['rollno'];
@@ -110,10 +110,17 @@ class MarksController extends Controller
 
         }
        //To prevent deletion of temp file for displaying of csv
-       move_uploaded_file($filePath, substr($filePath, 0,strlen($filePath)-4).'A.tmp');
+       //move_uploaded_file($filePath, substr($filePath, 0,strlen($filePath)-4).'A.tmp');
        //To delete the copy of temp file
-       unlink(substr($filePath, 0,strlen($filePath)-4).'A.tmp');
-       return  view('display',['id'=>$filePath]);
+       
+       //if(file_exists($filePath)){
+        //    unlink($filePath);
+       //}    
+       //unlink(substr($filePath, 0,strlen($filePath)-4).'A.tmp');
+       //$filePath = substr($filePath, 0,strlen($filePath)-4).'A.tmp';
+       //return  view('display',['id'=>$filePath]);
+      session()->flash('success', "Successfully uploaded!!");
+      return redirect()->back();
     }
 
 
