@@ -1,4 +1,8 @@
 
+
+window.$ = require('jquery');
+window.jQuery = require('jquery');
+
 // bootstrap validator
 require('bootstrap-validator');
 
