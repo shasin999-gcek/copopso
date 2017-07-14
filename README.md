@@ -60,11 +60,15 @@ Login as "abc@xyz.com" with password "12345". Two courses have already been asso
  
 Choose an area to work on and inform the rest.
  
- 
-## Coming Up Soon
+## DATABASE SCHEMA
 
-1. Site Map
-2. Database Design 
+![Current](https://ibb.co/n0mxja)
+
+![Modified](https://ibb.co/foRKxv)
+
+## Coming Up Soon
+ 
+ Site Map
    
 ### Support or Contact
 
