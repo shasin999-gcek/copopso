@@ -1,36 +1,31 @@
 import React from "react";
 
+class NavRightList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+  }
 
-const NavRight = (props) => {
-  return (
-    <li className="dropdown">
+  toggle(e) {
+    e.preventDefault();
+    var dropdownInit = new bsn.Dropdown(e.target, true).toggle();
+  }
 
-      <a className="dropdown-toggle" data-toggle="dropdown" href="#">
+  render() {
+    return (
+      <li className="dropdown">
+
+        <a id="ds" className="dropdown-toggle" onClick={this.toggle} href="">
           <i className="fa fa-user fa-fw"></i> <i className="fa fa-caret-down"></i>
-      </a>
+        </a>
 
-      <ul className="dropdown-menu dropdown-user">
-          <li><a href="#"><i className="fa fa-user fa-fw"></i>
-              </a>
-          </li>
+        <ul className="dropdown-menu dropdown-user">
+          { this.props.children }
+        </ul>
 
-          <li><a href="#"><i className="fa fa-gear fa-fw"></i> Settings</a>
-          </li>
-
-          <li className="divider"></li>
-
-          <li>
-            <a href="">
-              <i className="fa fa-sign-out fa-fw"></i>
-               Logout
-            </a>
-          </li>
-
-      </ul>
-
-
-    </li>
-  )
+      </li>
+    );
+  }
 }
 
 
@@ -41,18 +36,18 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top" style={{ marginBottom: 0 }}>
+      <div>
         <div className="navbar-header">
             <a className="navbar-brand" href="">CO-PO-PSO Automation</a>
         </div>
 
         <ul className="nav navbar-top-links navbar-right">
-            <NavRight />
+          { this.props.children }
         </ul>
-      </nav>
+      </div>
     );
   }
 }
 
 
-export default NavBar;
+export { NavBar, NavRightList };

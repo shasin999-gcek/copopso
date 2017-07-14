@@ -1,8 +1,7 @@
 
-require('bootstrap.native');
+window.bsn = require('bootstrap.native');
 
 require('bootstrap-validate');
-
 
 window.axios = require('axios');
 

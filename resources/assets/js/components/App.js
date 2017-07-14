@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavBar from "./Navigation/NavBar";
+import Nav from "./Navigation/Nav";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="wrapper">
-        <NavBar />
+        <Nav />
         <div id="page-wrapper">
 
         </div>
