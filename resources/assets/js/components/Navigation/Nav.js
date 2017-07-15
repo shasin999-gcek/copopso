@@ -1,8 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
+// importing components
 import { NavBar, NavRightList } from "./NavBar";
 import SideBar from "./SideBar";
 
+// import api object
+import api from "../../Utils/api";
 
 const ListItem = (props) => {
   return (
@@ -18,6 +22,20 @@ const ListItem = (props) => {
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userName: null
+    };
+  }
+
+  componentDidMount() {
+    api.getUserCourseDetails()
+      .then(function(response) {
+        this.setState(() => {
+          return {
+            userName: response.userInfo.name
+          }
+        });
+      }.bind(this));
   }
 
   render() {
@@ -26,7 +44,7 @@ class Nav extends React.Component {
         <NavBar>
           <NavRightList>
             <ListItem icon="user">
-              Muhammed shasin
+              { this.state.userName }
             </ListItem>
           </NavRightList>
         </NavBar>

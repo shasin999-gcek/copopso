@@ -2,6 +2,7 @@ import React from "react";
 
 import Nav from "./Navigation/Nav";
 import CourseOutcomes from "./Forms/CourseOutcomes";
+import Home from "./Home";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
       <div id="wrapper">
         <Nav />
         <div id="page-wrapper">
-          <CourseOutcomes />
+          <Home />
         </div>
       </div>
     );

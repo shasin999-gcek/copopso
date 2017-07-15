@@ -1,16 +1,6 @@
 import React  from 'react';
 
-const Panel = (props) => {
-  return (
-    <div className="panel panel-primary">
-      <div className="panel-heading">{ props.heading }</div>
-      <div className="panel-body">
-        { props.children }
-
-      </div>
-    </div>
-  );
-}
+import { Panel } from '../Reusable';
 
 class CourseOutcomes extends React.Component {
   constructor(props) {
