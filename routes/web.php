@@ -23,6 +23,7 @@ Route::get('/subjectform', function () {
     return view('subjectform');
 });
 
+// load initial app
 Route::get('/home', 'HomeController@index')->middleware('auth');
 
 Route::get('/co/{id}', 'CoController@index')->middleware('auth');
@@ -40,5 +41,11 @@ Route::post('/co/{id}/weightage', 'CoController@storeweightage')->middleware('au
 
 Route::get ('upload', 'MarksController@showForm')->middleware('auth');
 Route::post('upload', 'MarksController@store')->middleware('auth');
+
+
+// REST APIs
+Route::get('/users/api/getUserData', 'HomeController@get_auth_user')->middleware('auth');
+Route::get('/users/api/getUserCourseData', 'HomeController@get_user_course_list')->middleware('auth');
+
 
 ?>

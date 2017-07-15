@@ -26,16 +26,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-       public function index()
-    {
-        $user = Auth::User();
-        $coursedata = $user->courses;
 
-      //    return $coursedata;
-      //  return view('home', compact('coursedata'));
-
+    public function index() {
       return view('layouts.app');
+    }
 
+    public function get_user_course_list() {
+      return Auth::User() -> courses;
+    }
+
+    public function get_auth_user() {
+      return Auth::User();
     }
 
     public function createweightage($id)

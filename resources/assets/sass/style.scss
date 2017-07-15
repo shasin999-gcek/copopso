@@ -8,10 +8,7 @@ body {
 
 #page-wrapper {
 	padding-top: 80px;
-	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
 }
-
-
 
 .centered {
   overflow: hidden;
@@ -30,6 +27,16 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Droid Sans', sans-serif;
+}
+
+.navbar-inverse {
+    background-color: rgb(27, 36, 101);
+    border-color: rgb(70, 61, 61);
+    box-shadow: 0px 2px 10px 3px rgba(0,0,0,0.20);
+}
+
+.navbar-inverse .navbar-brand {
+    color: rgb(255, 255, 255);
 }
 
 nav a, nav li>a {
