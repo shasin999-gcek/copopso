@@ -14,7 +14,7 @@ class CreateCoPoTable extends Migration {
 	{
 		Schema::create('co_po', function(Blueprint $table)
 		{
-			$table->integer('co_id');
+			$table->integer('co_id')->unique();
 			$table->integer('po1');
 			$table->integer('po2');
 			$table->integer('po3');

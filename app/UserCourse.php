@@ -11,7 +11,7 @@ class UserCourse extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'user_id', 'course_id', 'semester', 'academic_year','branch','co_count', 'status'
+        'id', 'user_id', 'course_id', 'semester', 'academic_year','branch','co_count'
     ];
 
 
@@ -23,6 +23,11 @@ class UserCourse extends Model
     public function course()
     {
         return $this ->belongsTo(Course::class);
+    }
+
+    public function status()
+    {
+         return $this ->hasOne(Status::class);
     }
 
 

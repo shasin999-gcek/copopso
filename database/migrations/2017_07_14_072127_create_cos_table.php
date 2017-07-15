@@ -18,6 +18,9 @@ class CreateCosTable extends Migration {
 			$table->integer('user_course_id');
 			$table->string('name');
 			$table->string('description');
+			//Uncomment following line after setting validation for composite primary key
+
+			//$table->unique(['user_course_id', 'name']);
 		});
 	}
 

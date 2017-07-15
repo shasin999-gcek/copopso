@@ -25,7 +25,7 @@ class WeightagesController extends Controller
         $cos = Co::where('user_course_id', $id)->get();
         $co_count = $coursedata->co_count;
 
-        return view('weightages', compact('id','cos', 'co_count'));
+        return view('weightages.create', compact('id','cos', 'co_count'));
 
     }
 

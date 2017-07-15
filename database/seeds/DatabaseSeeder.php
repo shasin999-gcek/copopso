@@ -130,9 +130,7 @@ class DatabaseSeeder extends Seeder
 					'semester' => 1,
 					'academic_year' => 2016,
 					'branch' => "ME",
-					'co_count' => 0,
-					'status' => 0
-
+					'co_count' => 0
 				),
 				array(
 					'id' => 2,
@@ -141,8 +139,16 @@ class DatabaseSeeder extends Seeder
 					'semester' => 2,
 					'academic_year' => 2017,
 					'branch' => "ME",
-					'co_count' => 0,
-					'status' => 0
+					'co_count' => 0
+				)
+			
+	    ]);
+	   	DB::table('status')->insert([
+				array(
+					'user_course_id' => 1
+				),
+				array(
+					'user_course_id' => 2
 				)
 			
 	    ]);

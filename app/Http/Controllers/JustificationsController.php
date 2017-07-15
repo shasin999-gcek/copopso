@@ -72,7 +72,7 @@ class JustificationsController extends Controller
 
         $podata = Po::find($po_id);
 
-        return view('po_justifications', compact('id','copo', 'podata'));
+        return view('po_justifications.create', compact('id','copo', 'podata'));
     }
 
 

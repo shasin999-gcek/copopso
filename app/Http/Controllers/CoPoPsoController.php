@@ -8,6 +8,8 @@ use Validator;
 use Auth;
 use App\UserCourse;
 use App\Co;
+use App\Status;
+use App\CoPo;
 
 class CoPoPsoController extends Controller
 {
@@ -22,7 +24,7 @@ class CoPoPsoController extends Controller
          */
 
         $cos = Co::where('user_course_id', $id)->get();
-        return view('co_po_matrix', compact('id', 'cos'));
+        return view('copopso.create', compact('id', 'cos'));
     }
 
     public function store(Request $request, $id)
@@ -33,10 +35,7 @@ class CoPoPsoController extends Controller
             
         */
 
-        $cos = Co::where('user_course_id', $id)->get();
-        $coursedata =UserCourse::find($id);
-        $co_count = $coursedata->co_count;
-    
+        $cos = Co::where('user_course_id', $id)->get();    
 
         //Each row is stored in the associative array $values
         //Each row is stored in the array $matrix
@@ -63,11 +62,80 @@ class CoPoPsoController extends Controller
         }
        
         DB::table('co_po')->insert($matrix);
-
-        $coursedata->status = 2;
-        $coursedata->save();
+        Status::where('user_course_id', $id)->update(['copopso' => true]);
         
         return redirect(url('co/'.$id));
     }
 
+    public function edit($id)
+    {
+        /* 
+            Function for editing the CO-PO-PSO matrix
+            Accepts user_course_id as $id 
+            Returns the COs associated with it.
+         */
+
+        $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
+
+
+        foreach ($cos as $co) {
+            $copopso= CoPo::where('co_id', $co->id)->first();
+
+            //to convert 0 to -
+            $copopso=$copopso->getAttributes();
+            foreach ($copopso as $key => $value) {
+                
+                if ($key !== "co_id")
+                {
+                    if ($value === 0)
+                    {
+                        $copopso[$key] = "-";
+                    }
+                }
+            }
+
+            $co["popso"] = array_except($copopso,['co_id']);
+
+        }
+
+        return view('copopso.edit', compact('id', 'cos'));
+
+    }
+
+    public function update(Request $request, $id)
+    {   
+        /*
+            Function for updating the CO-PO-PSO matrix
+            Accepts user_course_id as $id, request objects.  
+        */
+
+        $cos = Co::where('user_course_id', $id)->get();
+
+        //Each row is stored in the associative array $values
+        //Each row is stored in the array $matrix
+
+        foreach ($cos as $co){
+            $co_id= $co->id;
+            $values=array();
+            for ($j=1; $j<=12; $j++){
+
+                $po = 'po'.$j;
+                $value = request("co$co_id-$po");
+                if ($value === '-')
+                    $value = 0;
+                $values[$po] = $value;
+            }
+            for ($j=1; $j<=4; $j++){
+                $pso = 'pso'.$j;
+                $value = request("co$co_id-$pso");
+                if ($value === '-')
+                    $value = 0;
+                $values[$pso] = $value;
+            }
+            CoPo::where('co_id', $co_id)->update($values);
+            
+        }
+       
+        return redirect(url('co/'.$id));
+    }
 }
