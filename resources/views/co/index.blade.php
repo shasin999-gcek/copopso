@@ -100,10 +100,35 @@
 
 			<a href="/co/{{$coursedata->id}}/editmap" class="btn btn-success btn-panel">Edit CO-PO-PSO values</a>
 
+			<hr>
+
+			<h3 class="text-primary">Enter PO Justifications</h3>
+			<small> Section under construction. </small>
+			<br><br>
+
+			<a href="/co/{{$coursedata->id}}/po/1" class="btn btn-success btn-panel">Justify POS</a>
+
+
 		@else
 
 			<a href="/co/{{$coursedata->id}}/createmap" class="btn btn-success btn-panel">Map CO-PO-PSO</a>
-		
+
+			<hr>
+
+			
+			
+			<h3 class="text-primary">Define CO Weightages</h3>
+
+			@if ($status->weightage)
+
+				<small>Weightages will be displayed here. </small>
+
+			@else
+
+				<a href="/co/{{$coursedata->id}}/weightage" class="btn btn-success btn-panel">Define </a>
+	
+			@endif
+
 		@endif
 
 	@else
@@ -112,7 +137,13 @@
 
 	@endif
 
+	<hr>
 
+	<h3 class="text-primary">Upload Marklist</h3>
+
+	<a href="/upload" class="btn btn-success btn-panel">Upload</a>
+
+	<hr>
 		
 @endsection
 	
