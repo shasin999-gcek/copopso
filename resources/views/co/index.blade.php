@@ -6,7 +6,7 @@
 		<h1 class="text-primary">Status</h1>
 	</div>
 	<hr>
-	<h4 class="text-primary">Course Outcomes</h3>
+	<h3 class="text-primary">Course Outcomes</h3>
 	
 	@if ($status->co)
 
@@ -35,9 +35,68 @@
 		<a href="/co/{{$coursedata->id}}/edit" class="btn btn-success btn-panel">Edit COs</a>
 
 		<hr>
-		<h4 class="text-primary">CO-PO-PS0 Mapping</h3>
+		<h3 class="text-primary">CO-PO-PSO Mapping</h3>
 
 		@if ($status->copopso)
+
+			<table class="table">
+		  <thead class="thead-inverse">
+			<tr>
+				<th></th>
+				<th colspan="12">General PO</th>
+				<th colspan="3">Dept PSO</th>
+			</tr>
+		   </thead>
+		   <thead class="thead-inverse">
+			<tr>
+				<th>CO</th>
+				<th>PO 1</th>
+				<th>PO 2</th>
+				<th>PO 3</th>
+				<th>PO 4</th>
+				<th>PO 5</th>
+				<th>PO 6</th>
+				<th>PO 7</th>
+				<th>PO 8</th>
+				<th>PO 9</th>
+				<th>PO 10</th>
+				<th>PO 11</th>
+				<th>PO 12</th>
+				<th class="text-danger">PSO 1</th>
+				<th class="text-danger">PSO 2</th>
+				<th class="text-danger">PSO 3</th>
+				<th class="text-danger">PSO 4</th>
+			</tr>
+			</thead>
+
+			@foreach ($cos as $co)
+			<tr>
+			   <th>{{$co->name}}</th>
+				@for($i = 1; $i <= 12; $i++)
+					<?php 
+						$po = 'po'.$i;
+						$value = $co["popso"][$po];
+					?>
+					<td>
+					  <div class="form-group">
+					    {{$value}}
+					  </div>
+					</td>			
+				@endfor	
+				@for($i = 1; $i <= 4; $i++)
+					<?php 
+						$pso = 'pso'.$i;
+						$value = $co["popso"][$pso];
+					?>
+					<td>
+					  <div class="form-group">
+					    {{$value}}
+					  </div>
+					</td>			
+				@endfor
+			</tr>
+			@endforeach
+		</table>
 
 			<a href="/co/{{$coursedata->id}}/editmap" class="btn btn-success btn-panel">Edit CO-PO-PSO values</a>
 

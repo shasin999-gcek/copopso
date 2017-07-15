@@ -11,6 +11,7 @@ use App\Course;
 use App\Co;
 use App\Po;
 use App\Status;
+use App\CoPo;
 
 class CoController extends Controller
 {
@@ -27,6 +28,29 @@ class CoController extends Controller
         $coursedata = UserCourse::find($id);
         $status = $coursedata->status;
         $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
+
+        //to return CO-PO-PSO matrix values
+
+        foreach ($cos as $co) {
+            $copopso= CoPo::where('co_id', $co->id)->first();
+
+            //to convert 0 to -
+            $copopso=$copopso->getAttributes();
+            foreach ($copopso as $key => $value) {
+                
+                if ($key !== "co_id")
+                {
+                    if ($value === 0)
+                    {
+                        $copopso[$key] = "-";
+                    }
+                }
+            }
+
+            $co["popso"] = array_except($copopso,['co_id']);
+
+        }
+
         return view('co.index', compact('coursedata', 'status', 'cos'));
     }
 
