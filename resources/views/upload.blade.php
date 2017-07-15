@@ -81,7 +81,7 @@
                 $("#success").remove();
             $("#blank").css('display','none');
 
-            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+            var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
             if (regex.test($("#upload-file").val().toLowerCase())) {
                 if (typeof (FileReader) != "undefined") {
                     var reader = new FileReader();
