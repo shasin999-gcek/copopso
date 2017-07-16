@@ -1,9 +1,11 @@
+const url = "http://127.0.0.1:8000";
+
 function getAuthUser() {
-  return axios.get('/users/api/getUserData');
+  return axios.get(`${url}/api/user`);
 }
 
 function getCoursesList() {
-  return axios.get('/users/api/getUserCourseData');
+  return axios.get(`${url}/api/user/courses`);
 }
 
 function handleError(e) {

@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import uuid from 'uuid';
+import { Link } from "react-router-dom";
 
 import Loading from "./Loading";
-import { Panel, Table } from "./Reusable";
+import { Panel, Table, Button } from "./Reusable";
 
 import api from "../Utils/api";
 
 const CoursePreview = (props) => {
   const { courses } = props;
-  const tHeads = ['Sl.No', 'Year', 'Course', 'Branch', 'Semester'];
+  const tHeads = ['Sl.No', 'Year', 'Course', 'Branch', 'Semester','Action'];
 
   return (
-    <Panel heading="Registed Courses">
+    <Panel heading="Registed Courses" panelStyle="primary">
       <Table tableStyle="stripped">
         <thead>
           <tr>
@@ -23,11 +24,18 @@ const CoursePreview = (props) => {
           {courses.map(function(course, indx) {
             return (
               <tr key={ uuid.v4() }>
-                <td>{indx + 1}</td>
-                <td>{course.pivot.academic_year}</td>
-                <td>{course.course_name}</td>
-                <td>{course.pivot.branch}</td>
-                <td>{course.pivot.semester}</td>
+                <td>{ indx + 1 }</td>
+                <td>{ course.pivot.academic_year }</td>
+                <td>{ course.course_name }</td>
+                <td>{ course.pivot.branch }</td>
+                <td>{ course.pivot.semester }</td>
+                <td>
+                  <Link
+                    className="btn btn-primary"
+                    to={"/app/viewcourse?user_course_id=" + course.pivot.id}>
+                      View
+                  </Link>
+                </td>
               </tr>
             )
           })}

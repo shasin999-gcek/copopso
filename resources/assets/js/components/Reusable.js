@@ -38,4 +38,26 @@ Table.propTypes = {
   tableStyle: PropTypes.string.isRequired
 }
 
-export { Panel, Table };
+const Button = (props) => {
+  const btnProps = Object.assign({}, props);
+  delete btnProps.btnType;
+  delete btnProps.btnStyle;
+
+  return (
+    <button type={props.btnType} className={"btn btn-" + props.btnStyle} {...btnProps}>
+      { props.children }
+    </button>
+  )
+}
+
+Button.defaultProps = {
+  btnType: 'submit',
+  btnStyle: 'default'
+}
+
+Button.propTypes = {
+  btnType: PropTypes.string.isRequired,
+  btnStyle: PropTypes.string.isRequired
+}
+
+export { Panel, Table, Button };

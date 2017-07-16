@@ -19,16 +19,23 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
-        <script src="https://use.fontawesome.com/62b073ec0c.js"></script>
 
 
     </head>
 
     <body>
 
-     <div id="root">
-     </div>
+      <div id="guest">
+
+         @include('layouts.guest-nav')
+
+         @yield('guest_content')
+         
+      </div>
+
 
      <script src="{{ URL::asset('js/app.js') }}"></script>
+     <script src="https://use.fontawesome.com/62b073ec0c.js"></script>
+
     </body>
 </html>

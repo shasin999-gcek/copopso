@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // importing components
 import { NavBar, NavRightList } from "./NavBar";
@@ -9,12 +10,13 @@ import SideBar from "./SideBar";
 import api from "../../Utils/api";
 
 const ListItem = (props) => {
+
   return (
     <li>
-      <a href="#">
+      <Link to={ props.linkTo }>
         <i className={"fa fa-" + props.icon + " fa-fw"}></i>
           { props.children }
-      </a>
+      </Link>
     </li>
   )
 }
@@ -43,14 +45,14 @@ class Nav extends React.Component {
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation" style={{ marginBottom: 0 }}>
         <NavBar>
           <NavRightList>
-            <ListItem icon="user">
+            <ListItem linkTo="#" icon="user">
               { this.state.userName }
             </ListItem>
           </NavRightList>
         </NavBar>
 
         <SideBar>
-          <ListItem icon="dashboard">
+          <ListItem linkTo="/app/dashboard" icon="dashboard">
             Dashboard
           </ListItem>
         </SideBar>
