@@ -12,6 +12,8 @@
 |
 */
 
+
+
 Auth::routes();
 
 
@@ -24,7 +26,7 @@ Route::get('/subjectform', function () {
 });
 
 // load initial app
-Route::get('/home', 'HomeController@index')->middleware('auth');
+Route::get('/app/dashboard', 'HomeController@index')->middleware('auth');
 
 Route::get('/co/{id}', 'CoController@index')->middleware('auth');
 Route::get('/co/create/{id}', 'CoController@create')->middleware('auth');
@@ -44,8 +46,8 @@ Route::post('upload', 'MarksController@store')->middleware('auth');
 
 
 // REST APIs
-Route::get('/users/api/getUserData', 'HomeController@get_auth_user')->middleware('auth');
-Route::get('/users/api/getUserCourseData', 'HomeController@get_user_course_list')->middleware('auth');
-
+Route::get('/api/user', 'UserApiController@get_auth_user')->middleware('auth');
+Route::get('/api/user/courses', 'UserApiController@get_courses')->middleware('auth');
+Route::get('/api/user/courses/{id}', 'UserApiController@get_user_course_map')->middleware('auth');
 
 ?>
