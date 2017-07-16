@@ -3,7 +3,7 @@
 		
 		<!--Second form starts here ...form type the action to be done on form of CO-PO mapping Outcome-->
 
-		<form class="form-vertical" id="co-po-matrix" role="form" action="/co/popso/{{$id}}" method="POST">
+		<form class="form-vertical" id="co-po-matrix" role="form" action="/co/{{$id}}/storemap" method="POST">
 		{{ csrf_field() }}
 		<table class="table">
 		  <thead class="thead-inverse">
@@ -31,6 +31,7 @@
 				<th class="text-danger">PSO 1</th>
 				<th class="text-danger">PSO 2</th>
 				<th class="text-danger">PSO 3</th>
+				<th class="text-danger">PSO 4</th>
 			</tr>
 			</thead>
 

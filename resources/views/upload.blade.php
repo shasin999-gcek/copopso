@@ -81,8 +81,14 @@
                 $("#success").remove();
             $("#blank").css('display','none');
 
+<<<<<<< Updated upstream
             var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
             if (regex.test($("#upload-file").val().toLowerCase())) {
+=======
+            var negregex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
+            var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
+            if (alert(regex.test($("#upload-file").val().toLowerCase()))) {
+>>>>>>> Stashed changes
                 if (typeof (FileReader) != "undefined") {
                     var reader = new FileReader();
                     reader.onload = function (e) {

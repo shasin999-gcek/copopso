@@ -10,7 +10,7 @@
    </div>
    		<?php $po_id=$podata->id; ?>  
    		<!-- Check: for some reason, specifying $podata->id in route for action is buggy -->
-   		<form class="form-vertical" role="form" method='POST' action='/co/storejust/{{$id}}/{{$podata->id}}'>
+   		<form class="form-vertical" role="form" method='POST' action='/co/{{$id}}/storejust/{{$podata->id}}'>
 		{{ csrf_field() }}
 
 		<table class="table">

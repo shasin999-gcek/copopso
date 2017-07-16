@@ -72,7 +72,7 @@ class JustificationsController extends Controller
 
         $podata = Po::find($po_id);
 
-        return view('po_justifications', compact('id','copo', 'podata'));
+        return view('po_justifications.create', compact('id','copo', 'podata'));
     }
 
 
@@ -104,8 +104,21 @@ class JustificationsController extends Controller
         
         DB::table('po_justifications')->insert($justifications);
         
-        $coursedata->status += 1;
-        $coursedata->save();
+        //Checking if PO or PSO, to get the column name for status
+
+        if ($po_id>12)
+        {   
+            $pso_id= $po_id-12;
+            $po="pso".$pso_id;
+        }
+        else
+        {
+            $po="po".$po_id;
+        }
+
+
+        Status::where('user_course_id', $id)->update([$po => true]);
+
         
         //To redirect to next PO/PSO
 
