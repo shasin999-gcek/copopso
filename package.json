@@ -17,6 +17,7 @@
   "dependencies": {
     "bootstrap.native": "^2.0.12",
     "prop-types": "^15.5.10",
+    "query-string": "^4.3.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "next",

@@ -30,6 +30,7 @@ class UserApiController extends Controller
         return UserCourse::find($id);
     }
 
-    return ["NULL"];
+    return response("Forbidden",403)
+            -> header('Content-Type', 'application/json');
   }
 }
