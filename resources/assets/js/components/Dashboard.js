@@ -49,7 +49,7 @@ CoursePreview.propTypes = {
   courses: PropTypes.array.isRequired
 }
 
-class Home extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,4 +83,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Dashboard;

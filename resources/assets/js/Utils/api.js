@@ -24,5 +24,14 @@ module.exports = {
         courseInfo: response[1].data
       }
     }).catch(handleError);
+  },
+  getUserCourseMap(id) {
+    return axios.get(`${url}/api/user/courses/${id}`)
+      .then(response => {
+        return {
+          status: response.status,
+          data: response.data
+        }
+      });
   }
 }
