@@ -13,13 +13,13 @@ use App\Po;
 
 class CoController extends Controller
 {
-    
- 
+
+
     public function index($id)
     {
         $coursedata = UserCourse::find($id);
         $cos = Co::where('user_course_id', $id)->get();
-        return view('co', compact('coursedata', 'cos'));
+        return [$coursedata, $cos];
     }
 
     public function create($id)
@@ -31,7 +31,7 @@ class CoController extends Controller
         return view('form', compact('coursedata', 'coursecode'));
     }
 
-    
+
     public function store(Request $request, $id)
     {
         //Since _token is also returned as request among other form fields, subtract 1
@@ -39,9 +39,9 @@ class CoController extends Controller
         $co_count = count($request->all())-1;
         $coursedata = UserCourse::find($id);
         $coursecode = $coursedata->course->course_code;
-        
+
         //validation
-            
+
         $conditions = array();
         for ($i=1; $i<=$co_count; $i++){
              $conditions["co$i"] = 'bail|required|string|max:400';
@@ -55,7 +55,7 @@ class CoController extends Controller
                         ->withErrors($validator);
 
         }
-       
+
         //dd(request()->all());  //gives JSON
         $rows = array();
         for ($i=1; $i<=$co_count; $i++){
@@ -65,14 +65,14 @@ class CoController extends Controller
             $row["description"]=request("co$i");
             $rows[]=$row;
         }
-        
+
         Co::insert($rows);
         //UserCourse::find($id)->update(["status" => 1]);
         $coursedata->co_count = $co_count;
         $coursedata->status = 1;
         $coursedata->save();
 
-        
+
 
         return redirect(url('co/'.$id));
 
@@ -91,7 +91,7 @@ class CoController extends Controller
         $cos = Co::where('user_course_id', $id)->get();
         $coursedata =UserCourse::find($id);
         $co_count = $coursedata->co_count;
-    
+
         $matrix = array();
         foreach ($cos as $co){
             $values=array();
@@ -110,25 +110,25 @@ class CoController extends Controller
                 $values["pso$j"] = $level;
             }
             $matrix[]=$values;
-            
+
         }
-       
+
         DB::table('co_po')->insert($matrix);
         $coursedata->status = 2;
         $coursedata->save();
-        
+
         return redirect(url('co/'.$id));
     }
 
-    
+
     public function view($id, $po_id)
     {
-       
+
         $coursedata = UserCourse::find($id);
         $podata = Po::find($po_id);
         $cos = Co::where('user_course_id', $id)->get();
         if ($po_id>12)
-        {   
+        {
             $pso_id= $po_id-12;
             $po="pso".$pso_id;
         }
@@ -147,13 +147,13 @@ class CoController extends Controller
                 $codata["po_value"]=$co->copo->$po;
                 $copo[] = $codata;
             }
-            
+
         };
         return view('po_justifications', compact('id','copo', 'podata'));
     }
 
 
-   
+
     public function storejust(Request $request, $id, $po_id)
     {
         $coursedata = UserCourse::find($id);
@@ -168,7 +168,7 @@ class CoController extends Controller
             $codata["justification"]=$justification;
             $justifications[] = $codata;
         };
-        
+
 
         DB::table('po_justifications')->insert($justifications);
         $coursedata->status += 1;
@@ -180,12 +180,12 @@ class CoController extends Controller
         }
         else
         {
-            return redirect(url('co/'.$id));   
+            return redirect(url('co/'.$id));
         }
 
     }
 
-   
+
     public function createweightage($id)
     {
 
@@ -232,14 +232,14 @@ class CoController extends Controller
                     $value=0;
                 $row[$column] = $value;
             }
-            
+
             $rows[]=$row;
         }
-       
+
         DB::table('co_weightage')->insert($rows);
         $coursedata->status +=1;
         $coursedata->save();
-        
+
         return redirect(url('co/'.$id));
 
     }
