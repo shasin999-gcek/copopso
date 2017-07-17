@@ -10,38 +10,97 @@ use App\UserCourse;
 use App\Course;
 use App\Co;
 use App\Po;
+use App\Status;
+use App\CoPo;
 
 class CoController extends Controller
 {
-
-
+    //To do: Code to check if user has access to page (to that user_course_id), else redirect
+ 
     public function index($id)
     {
+        /*
+            Function for viewing current status of all tasks and to edit+modify. 
+            Accepts user_course_id as $id. 
+            Returns the data belonging to that user_course as well as cos associated with it.
+        */
+
         $coursedata = UserCourse::find($id);
-        $cos = Co::where('user_course_id', $id)->get();
-        return [$coursedata, $cos];
+        $status = $coursedata->status;
+        $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
+
+        //to return CO-PO-PSO matrix values
+
+        foreach ($cos as $co) {
+            $copopso= CoPo::where('co_id', $co->id)->first();
+
+            //to convert 0 to -
+            $copopso=$copopso->getAttributes();
+            foreach ($copopso as $key => $value) {
+                
+                if ($key !== "co_id")
+                {
+                    if ($value === 0)
+                    {
+                        $copopso[$key] = "-";
+                    }
+                }
+            }
+
+            $co["popso"] = array_except($copopso,['co_id']);
+
+        }
+
+        return view('co.index', compact('coursedata', 'status', 'cos'));
     }
 
     public function create($id)
-    {
-        //To do: Code to check if user has access to page, else redirect
+    {   
+        /* 
+            Function for viewing the CO DEFINITION form
+            Accepts user_course_id as $id 
+            Returns the data belonging to that user_course, 
+            as well as the course_code of the associated course
+         */
         $coursedata = UserCourse::find($id);
         $course_id = $coursedata->course_id;
         $coursecode = Course::find($course_id)->course_code;
-        return view('form', compact('coursedata', 'coursecode'));
+        return view('co.create', compact('coursedata', 'coursecode'));
     }
 
-
-    public function store(Request $request, $id)
+    public function show($id)
     {
-        //Since _token is also returned as request among other form fields, subtract 1
+        /*
+            Function for viewing current status of all tasks and to edit+modify. 
+            Accepts user_course_id as $id. 
+            Returns the data belonging to that user_course as well as cos associated with it.
+        */
+
+        $coursedata = UserCourse::find($id);
+        $cos = Co::where('user_course_id', $id)->get();
+        return view('co.show', compact('cos'));
+    }
+    
+    public function store(Request $request, $id)
+    {   
+        /*
+            Function for storing the CO DEFINITIONS
+            Accepts user_course_id as $id, request objects.
+            
+        */
+
+        //Since _token is also returned as request among other form fields, subtract 1 to get co_count. 
+        //Alternately, try count($request->except(_token))
 
         $co_count = count($request->all())-1;
+        
+
         $coursedata = UserCourse::find($id);
         $coursecode = $coursedata->course->course_code;
-
+        
         //validation
 
+          
         $conditions = array();
         for ($i=1; $i<=$co_count; $i++){
              $conditions["co$i"] = 'bail|required|string|max:400';
@@ -50,13 +109,16 @@ class CoController extends Controller
         $validator = Validator::make($request->all(), $conditions);
 
         if ($validator->fails()) {
-        return redirect('/')
+        return redirect(url('co/'.$id.'/create'))
                         ->withInput()
                         ->withErrors($validator);
 
         }
 
-        //dd(request()->all());  //gives JSON
+
+       
+        //$row stores all the values for a row in table cos
+
         $rows = array();
         for ($i=1; $i<=$co_count; $i++){
             $row=array();
@@ -65,182 +127,55 @@ class CoController extends Controller
             $row["description"]=request("co$i");
             $rows[]=$row;
         }
-
+        
         Co::insert($rows);
+        
         //UserCourse::find($id)->update(["status" => 1]);
+
         $coursedata->co_count = $co_count;
-        $coursedata->status = 1;
         $coursedata->save();
 
-
+        Status::where('user_course_id', $id)->update(['co' => true]);
 
         return redirect(url('co/'.$id));
 
     }
 
-    public function createpopso($id)
-    {
-
-        //To do: Code to check if user has access to page, else redirect
-        $cos = Co::where('user_course_id', $id)->get();
-        return view('co_po_matrix', compact('id', 'cos'));
+    public function edit($id)
+    {   
+        /* 
+            Function for editing  the CO DEFINITION form
+            Accepts user_course_id as $id 
+            Returns the data belonging to that user_course, 
+            as well as the course_code of the associated course
+         */
+        
+        //Check if the co has been defined first 
+        
+        //Pass data
+        
+        $coursedata = UserCourse::find($id);
+        $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
+        return view('co.edit', compact('coursedata', 'cos'));
     }
 
-    public function storepopso(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $cos = Co::where('user_course_id', $id)->get();
-        $coursedata =UserCourse::find($id);
-        $co_count = $coursedata->co_count;
 
-        $matrix = array();
-        foreach ($cos as $co){
-            $values=array();
-            $co_id= $co->id;
-            $values["co_id"]= $co_id;
-            for ($j=1; $j<=12; $j++){
-                $level = request("co$co_id-po$j");
-                if ($level === '-')
-                    $level=0;
-                $values["po$j"] = $level;
-            }
-            for ($j=1; $j<=4; $j++){
-                $level = request("co$co_id-pso$j");
-                if ($level === '-')
-                    $level=0;
-                $values["pso$j"] = $level;
-            }
-            $matrix[]=$values;
+        $coursedata = UserCourse::find($id);
+        $cos=$coursedata->cos;
+        
+        //To do: validation
 
+        //Updating each co
+
+        foreach ($request->except('_method', '_token') as $co_id => $description)
+        {
+            $updated_co = Co::find($co_id);
+            $updated_co->description = $description;
+            $updated_co->save();
         }
-
-        DB::table('co_po')->insert($matrix);
-        $coursedata->status = 2;
-        $coursedata->save();
 
         return redirect(url('co/'.$id));
-    }
-
-
-    public function view($id, $po_id)
-    {
-
-        $coursedata = UserCourse::find($id);
-        $podata = Po::find($po_id);
-        $cos = Co::where('user_course_id', $id)->get();
-        if ($po_id>12)
-        {
-            $pso_id= $po_id-12;
-            $po="pso".$pso_id;
-        }
-        else
-        {
-            $po="po".$po_id;
-        }
-
-        $copo=array();
-        foreach ($cos as $co) {
-            if ($co->copo->$po != 0)
-            {
-                $codata=array();
-                $codata["name"]=$co->name;
-                $codata["id"]=$co->id;
-                $codata["po_value"]=$co->copo->$po;
-                $copo[] = $codata;
-            }
-
-        };
-        return view('po_justifications', compact('id','copo', 'podata'));
-    }
-
-
-
-    public function storejust(Request $request, $id, $po_id)
-    {
-        $coursedata = UserCourse::find($id);
-
-        $cos = Co::where('user_course_id', $id)->get();
-
-        $justifications=array();
-        foreach ($request->except('_token') as $co_id => $justification) {
-            $codata=array();
-            $codata["co_id"]=$co_id;
-            $codata["po_id"]=$po_id;
-            $codata["justification"]=$justification;
-            $justifications[] = $codata;
-        };
-
-
-        DB::table('po_justifications')->insert($justifications);
-        $coursedata->status += 1;
-        $coursedata->save();
-        if ($po_id<=15)
-        {
-            $po_id+=1;
-            return redirect(url('co/po/'.$id.'/'.$po_id));
-        }
-        else
-        {
-            return redirect(url('co/'.$id));
-        }
-
-    }
-
-
-    public function createweightage($id)
-    {
-
-        $coursedata = UserCourse::find($id);
-        $cos = Co::where('user_course_id', $id)->get();
-        $co_count = $coursedata->co_count;
-
-        return view('weightages', compact('id','cos', 'co_count'));
-
-    }
-
-    public function storeweightage(Request $request, $id)
-    {
-
-        $coursedata = UserCourse::find($id);
-        $cos = Co::where('user_course_id', $id)->get();
-        $co_count = $coursedata->co_count;
-
-        //WEIGHTAGE MATRIX
-        //Can't accept '-' as there's no checking involved, so only accept 0 or do checking for each case
-        $weightage = array(
-            "user_course_id"    => $id,
-            "u"                 => request("u"),
-            "t1"                => request("t1"),
-            "t2"                => request("t2"),
-            "i"                 => request("i"),
-            "a1"                => request("a1"),
-            "a2"                => request("a2"),
-            "attendance"        => request("attendance")
-        );
-        DB::table('weightages')->insert($weightage);
-
-        $columns = ["u","t1","t2","i","a1","a2","attendance"];
-        $rows = array();
-
-        foreach ($cos as $co){
-            $row=array();
-            $co_id= $co->id;
-            $row["co_id"]= $co_id;
-            foreach ($columns as $column)
-            {
-                $value = request("co$co_id-$column");
-                if ($value === '-')
-                    $value=0;
-                $row[$column] = $value;
-            }
-
-            $rows[]=$row;
-        }
-
-        DB::table('co_weightage')->insert($rows);
-        $coursedata->status +=1;
-        $coursedata->save();
-
-        return redirect(url('co/'.$id));
-
     }
 }

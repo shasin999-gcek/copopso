@@ -21,25 +21,29 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/subjectform', function () {
-    return view('subjectform');
-});
-
 // load initial app
 Route::get('/app/dashboard', 'HomeController@index')->middleware('auth');
 
 Route::get('/co/{id}', 'CoController@index')->middleware('auth');
-Route::get('/co/create/{id}', 'CoController@create')->middleware('auth');
+Route::get('/co/{id}/show', 'CoController@show')->middleware('auth');
+
+Route::get('/co/{id}/create', 'CoController@create')->middleware('auth');
 Route::post('/co/{id}', 'CoController@store')->middleware('auth');
 
-Route::get('/co/popso/create/{id}', 'CoController@createpopso')->middleware('auth');
-Route::post('/co/popso/{id}', 'CoController@storepopso')->middleware('auth');
+Route::get('/co/{id}/edit', 'CoController@edit')->middleware('auth');
+Route::put('/co/{id}', 'CoController@update')->middleware('auth');
 
-Route::get('/co/po/{id}/{po_id}', 'CoController@view')->middleware('auth');
-Route::post('/co/storejust/{id}/{po_id}', 'CoController@storejust')->middleware('auth');
+Route::get('/co/{id}/createmap', 'CoPoPsoController@create')->middleware('auth');
+Route::post('/co/{id}/storemap', 'CoPoPsoController@store')->middleware('auth');
+Route::get('/co/{id}/editmap', 'CoPoPsoController@edit')->middleware('auth');
 
-Route::get('/co/{id}/weightage', 'CoController@createweightage')->middleware('auth');
-Route::post('/co/{id}/weightage', 'CoController@storeweightage')->middleware('auth');
+Route::put('/co/{id}/updatemap', 'CoPoPsoController@update')->middleware('auth');
+
+Route::get('/co/{id}/po/{po_id}', 'JustificationsController@create')->middleware('auth');
+Route::post('/co/{id}/storejust/{po_id}', 'JustificationsController@store')->middleware('auth');
+
+Route::get('/co/{id}/weightage', 'WeightagesController@create')->middleware('auth');
+Route::post('/co/{id}/weightage', 'WeightagesController@store')->middleware('auth');
 
 Route::get ('upload', 'MarksController@showForm')->middleware('auth');
 Route::post('upload', 'MarksController@store')->middleware('auth');
