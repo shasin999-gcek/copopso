@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import uuid from 'uuid';
 import { Link } from "react-router-dom";
 
-import Loading from "./Loading";
-import { Panel, Table, Button } from "./Reusable";
+import Loading from "../Loading";
+import { Panel, Table, Button } from "../Reusable";
 
-import api from "../Utils/api";
+import api from "../../Utils/api";
 
 const CoursePreview = (props) => {
   const { courses } = props;
@@ -32,7 +32,7 @@ const CoursePreview = (props) => {
                 <td>
                   <Link
                     className="btn btn-primary"
-                    to={"/app/viewcourse?user_course_id=" + course.pivot.id}>
+                    to={"/app/course/" + course.pivot.id}>
                       View
                   </Link>
                 </td>
@@ -76,9 +76,14 @@ class Dashboard extends React.Component {
     const { courses } = this.state;
 
     return (
-      this.state.loading
-        ? <Loading />
-        : <CoursePreview courses={ courses } />
+      <div>
+        <div className="page-header">Dashboard</div>
+        {
+          this.state.loading
+            ? <Loading />
+            : <CoursePreview courses={ courses } />
+        }
+      </div>
     );
   }
 }

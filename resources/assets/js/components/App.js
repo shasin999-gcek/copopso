@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom";
 
 import Nav from "./Navigation/Nav";
 import CourseOutcomes from "./Forms/CourseOutcomes";
-import Dashboard from "./Dashboard";
-import ViewCourses from "./ViewCourses";
+import Dashboard from "./Pages/Dashboard";
+import ViewCourse from "./Pages/ViewCourse";
 import Error from "./Error";
 
 class App extends React.Component {
@@ -19,7 +19,13 @@ class App extends React.Component {
         <div id="page-wrapper">
           <Switch>
             <Route exact path="/app/dashboard" component={ Dashboard } />
-            <Route path="/app/viewcourse" component={ ViewCourses } />
+            <Route exact path="/app/course/:userCourseId" component={ ViewCourse } />
+            <Route exact path="/app/course/:userCourseId/add/task/:taskId"
+              render={() => <CourseOutcomes action="add" />}
+            />
+          <Route exact path="/app/course/:userCourseId/view/task/:taskId"
+              render={() => <CourseOutcomes action="view" />}
+            />
             <Route render={() => {
                 return (
                   <Error>

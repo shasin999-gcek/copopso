@@ -7,7 +7,7 @@ body {
 
 
 #page-wrapper {
-	padding-top: 80px;
+	padding-top: 40px;
 }
 
 .centered {
@@ -23,6 +23,8 @@ body {
 
 .page-header {
    font-family: 'Raleway', sans-serif;
+   font-weight: bold;
+   font-size: 30px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -44,7 +46,7 @@ nav a, nav li>a {
 }
 
 .error {
-  margin: 0 auto;
+  margin-top: 50px;
   text-align: center;
 }
 

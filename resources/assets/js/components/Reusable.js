@@ -14,7 +14,7 @@ const Panel = (props) => {
 }
 
 Panel.defaultProps = {
-  panelStyle: 'default'
+  panelStyle: 'primary'
 }
 
 Panel.propTypes = {
@@ -23,10 +23,13 @@ Panel.propTypes = {
 }
 
 const Table = (props) => {
+  const tableProps = Object.assign({}, props);
+  delete tableProps.tableStyle;
+
   return (
-    <table className={"table table-" + props.tableStyle}>
-      {props.children}
-    </table>
+    <table
+      className={"table table-" + props.tableStyle}
+      {...tableProps} />
   )
 }
 
