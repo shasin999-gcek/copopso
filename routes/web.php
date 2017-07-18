@@ -12,7 +12,7 @@
 |
 */
 
-
+// Auth routes
 
 Auth::routes();
 
@@ -20,6 +20,13 @@ Auth::routes();
 Route::get('/', function () {
     return redirect('/login');
 });
+
+Route::get('/logout', function() {
+  Auth::logout();
+  return redirect('/');
+});
+
+//__________________________________________
 
 // load initial app
 Route::get('/app/dashboard', 'HomeController@index')->middleware('auth');
@@ -53,5 +60,13 @@ Route::post('upload', 'MarksController@store')->middleware('auth');
 Route::get('/api/user', 'UserApiController@get_auth_user')->middleware('auth');
 Route::get('/api/user/courses', 'UserApiController@get_courses')->middleware('auth');
 Route::get('/api/user/courses/{id}', 'UserApiController@get_user_course_map')->middleware('auth');
+
+// catching all routes
+Route::get('{any?}', function ($any = null) {
+  if(Auth::check()) {
+    return view('layouts.app');
+  }
+  abort(404);
+})->where('any', '.*');
 
 ?>
