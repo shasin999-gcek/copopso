@@ -34,8 +34,10 @@ class MarksController extends Controller
         } */
 
         //get file
+
         $upload=$request->file('upload-file');
-        if (!$upload) {
+        
+        /*if (!$upload) {
           session()->flash('danger', "PLEASE SELECT A FILE");
           return redirect()->back();
         }
@@ -46,6 +48,7 @@ class MarksController extends Controller
           session()->flash('danger', "INVALID FILE!!");
           return redirect()->back();          
         }  
+        */
 
         $filePath=$upload->getRealPath();
         $file=fopen($filePath, 'r');
@@ -71,7 +74,7 @@ class MarksController extends Controller
         {
             if($columns[0]=="")
             {
-                dd("hi");
+                //dd("hi");
                 continue;
             }
 
