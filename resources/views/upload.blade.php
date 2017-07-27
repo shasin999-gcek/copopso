@@ -69,7 +69,7 @@
         var message = sessionStorage.getItem('message');
         if(message!==null){
             document.getElementById('blank').style.display='';
-            $("#blank").append("<strong>INVALID CSV FILE!</strong> "+message);
+            $("#blank").append("<strong>ERROR!!</strong> "+message);
             sessionStorage.removeItem('message');
         }
     }
@@ -82,6 +82,7 @@
             $("#blank").css('display','none');
 
             var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
+
             if (regex.test($("#upload-file").val().toLowerCase())) {
                 if (typeof (FileReader) != "undefined") {
                     var reader = new FileReader();
@@ -129,10 +130,23 @@
                 }
             } 
         else {
-            document.getElementById("upload-form").submit();
+                window.onbeforeunload = function(){
+                            var message = "";
+                            if(document.getElementById("upload-file").value==""){
+                                message = "PLEASE SELECT A FILE!!";
+                            }
+                            else{
+                                message = "INVALID FILE NAME!!";
+                            }
+                            sessionStorage.setItem('message',message);
+                }
+                                    
+                location.reload();
+            //document.getElementById("upload-form").submit();
         }
         });
     });
 </script>
 
 @endsection
+
