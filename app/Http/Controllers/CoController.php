@@ -30,25 +30,28 @@ class CoController extends Controller
         $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
 
         //to return CO-PO-PSO matrix values
+        
+        if ($status->copo)
+        {
+            foreach ($cos as $co) {
+                $copopso= CoPo::where('co_id', $co->id)->first();
 
-        foreach ($cos as $co) {
-            $copopso= CoPo::where('co_id', $co->id)->first();
-
-            //to convert 0 to -
-            $copopso=$copopso->getAttributes();
-            foreach ($copopso as $key => $value) {
-                
-                if ($key !== "co_id")
-                {
-                    if ($value === 0)
+                //to convert 0 to -
+                $copopso=$copopso->getAttributes();
+                foreach ($copopso as $key => $value) {
+                    
+                    if ($key !== "co_id")
                     {
-                        $copopso[$key] = "-";
+                        if ($value === 0)
+                        {
+                            $copopso[$key] = "-";
+                        }
                     }
                 }
+
+                $co["popso"] = array_except($copopso,['co_id']);
+
             }
-
-            $co["popso"] = array_except($copopso,['co_id']);
-
         }
 
         return view('co.index', compact('coursedata', 'status', 'cos'));
@@ -79,7 +82,7 @@ class CoController extends Controller
         $coursedata = UserCourse::find($id);
         $cos = Co::where('user_course_id', $id)->get();
         return view('co.show', compact('cos'));
-    }
+     }
     
     public function store(Request $request, $id)
     {   
@@ -100,7 +103,7 @@ class CoController extends Controller
         
         //validation
 
-          
+           
         $conditions = array();
         for ($i=1; $i<=$co_count; $i++){
              $conditions["co$i"] = 'bail|required|string|max:400';
@@ -130,7 +133,7 @@ class CoController extends Controller
         
         Co::insert($rows);
         
-        //UserCourse::find($id)->update(["status" => 1]);
+        //Use rCourse::find($id)->update(["status" => 1]);
 
         $coursedata->co_count = $co_count;
         $coursedata->save();
@@ -141,10 +144,10 @@ class CoController extends Controller
 
     }
 
-    public function edit($id)
+     public function edit($id)
     {   
         /* 
-            Function for viewing the CO DEFINITION form
+            Fu nction for viewing the CO DEFINITION form
             Accepts user_course_id as $id 
             Returns the data belonging to that user_course, 
             as well as the course_code of the associated course
@@ -172,5 +175,5 @@ class CoController extends Controller
         }
 
         return redirect(url('co/'.$id));
-    }
+    } 
 }

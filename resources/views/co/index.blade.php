@@ -114,8 +114,6 @@
 			<a href="/co/{{$coursedata->id}}/createmap" class="btn btn-success btn-panel">Map CO-PO-PSO</a>
 
 			<hr>
-
-			
 			
 			<h3 class="text-primary">Define CO Weightages</h3>
 

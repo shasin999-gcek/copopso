@@ -116,10 +116,8 @@ class JustificationsController extends Controller
             $po="po".$po_id;
         }
 
-
         Status::where('user_course_id', $id)->update([$po => true]);
 
-        
         //To redirect to next PO/PSO
 
         if ($po_id<=15)

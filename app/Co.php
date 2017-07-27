@@ -9,7 +9,7 @@ use App\CoPo;
 class Co extends Model
 {
     //
-
+ 
     protected $table = 'cos';
     public $timestamps = false;
 

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 
-class User extends Eloquent implements Authenticatable
+class User extends Eloquent implements Authenticatable 
 {
     use Notifiable;
     use AuthenticableTrait;
@@ -37,4 +37,4 @@ class User extends Eloquent implements Authenticatable
     // {
     //     return $this -> belongsToMany(UserCourse::class, 'user_course');
     // }
-  }
+  } 
