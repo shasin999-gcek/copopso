@@ -9,18 +9,8 @@ import api from "../../Utils/api";
 
 // importing external components
 import Loading from "../Loading";
-import Error from "../Error";
+import { Error403 } from "../Errors/Errors";
 import { Table } from "../Reusable"
-
-const Error403 = (props) => {
-  return (
-    <Error
-      status="403"
-      heading="Forbidden">
-        You have no access rights to the following content
-    </Error>
-  )
-}
 
 
 const TaskPreview = (props) => {
@@ -47,7 +37,7 @@ const TaskPreview = (props) => {
                 <Link
                   className={"btn btn-primary " + disableClass}
                   to={{
-                    pathname: match.url + "/" + btnText.toLowerCase() +"/task/" + (index + 1)
+                    pathname: match.url + "/task/" + (index + 1)
                   }}>
 
                   { btnText }

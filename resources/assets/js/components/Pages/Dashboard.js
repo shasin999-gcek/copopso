@@ -10,12 +10,12 @@ import api from "../../Utils/api";
 
 const CoursePreview = (props) => {
   const { courses } = props;
-  const tHeads = ['Sl.No', 'Year', 'Course', 'Branch', 'Semester','Action'];
+  const tHeads = ['#', 'Year', 'Course', 'Branch', 'Semester','Action'];
 
   return (
     <Panel heading="Registed Courses" panelStyle="primary">
       <Table tableStyle="stripped">
-        <thead>
+        <thead className="bg-info">
           <tr>
             { tHeads.map(tHead => <th key={ uuid.v4() }> { tHead }</th>) }
           </tr>

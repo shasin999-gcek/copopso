@@ -5,7 +5,21 @@ import Nav from "./Navigation/Nav";
 import CourseOutcomes from "./Forms/CourseOutcomes";
 import Dashboard from "./Pages/Dashboard";
 import ViewCourse from "./Pages/ViewCourse";
-import Error from "./Error";
+import { Error404, Error400 } from "./Errors/Errors";
+import Footer from "./Footer";
+
+// return Form component based on taskId
+const RenderTask = (props) => {
+  const { taskId } = props.match.params;
+
+  switch (taskId) {
+    case '1':
+      return <CourseOutcomes {...props} />;
+      break;
+    default:
+      return <Error400 />;
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -14,27 +28,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="wrapper">
-        <Nav />
-        <div id="page-wrapper">
-          <Switch>
-            <Route exact path="/app/dashboard" component={ Dashboard } />
-            <Route exact path="/app/course/:userCourseId" component={ ViewCourse } />
-            <Route exact path="/app/course/:userCourseId/add/task/:taskId"
-              render={() => <CourseOutcomes action="add" />}
-            />
-          <Route exact path="/app/course/:userCourseId/view/task/:taskId"
-              render={() => <CourseOutcomes action="view" />}
-            />
-            <Route render={() => {
-                return (
-                  <Error>
-                    Sorry, but the page you are looking for was either not found or does not exist. <br/>
-                    Try refreshing the page or click the button below to go back to the Homepage.
-                  </Error>
-                )}}
-            />
-          </Switch>
+      <div>
+        <div id="wrapper">
+          <Nav />
+          <div id="page-wrapper">
+            <Switch>
+              <Route exact path="/app/dashboard" component={ Dashboard } />
+              <Route exact path="/app/course/:userCourseId" component={ ViewCourse } />
+              <Route exact path="/app/course/:userCourseId/task/:taskId" render={ RenderTask } />
+              <Route component={ Error404 } />
+            </Switch>
+              <Footer />
+          </div>
         </div>
       </div>
     );

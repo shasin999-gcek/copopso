@@ -92,7 +92,7 @@ class CoController extends Controller
         //Since _token is also returned as request among other form fields, subtract 1 to get co_count.
         //Alternately, try count($request->except(_token))
 
-        $co_count = count($request->all())-1;
+        $co_count = count($request->all());
 
 
         $coursedata = UserCourse::find($id);
@@ -130,14 +130,15 @@ class CoController extends Controller
 
         Co::insert($rows);
 
-        //UserCourse::find($id)->update(["status" => 1]);
+        UserCourse::find($id)->update(["status" => 1]);
 
         $coursedata->co_count = $co_count;
         $coursedata->save();
 
-        Status::where('user_course_id', $id)->update(['co' => true]);
+        return $coursedata;
+      //  Status::where('user_course_id', $id)->update(['co' => true]);
 
-        return redirect(url('co/'.$id));
+      //  return redirect(url('co/'.$id));
 
     }
 

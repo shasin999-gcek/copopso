@@ -10,7 +10,8 @@ const Error = (props) => {
       <h3 className="font-bold">{ props.heading }</h3>
 
       <div className="error-desc">
-        { props.children }
+        { props.children } <br/>
+        Try refreshing the page or click the button below to go back to the Homepage.
         <div>
           <Link className="login-detail-panel-button btn" to={ props.link }>
             <i className="fa fa-arrow-left"></i>
@@ -36,4 +37,33 @@ Error.propTypes = {
   linkBody: PropTypes.string.isRequired
 }
 
-export default Error
+
+const Error403 = (props) => {
+  return (
+    <Error
+      status="403"
+      heading="Forbidden">
+        You have no access rights to the following content.
+    </Error>
+  )
+}
+
+const Error404 = (props) => {
+  return (
+    <Error>
+      Sorry, but the page you are looking for was either not found or does not exist.
+    </Error>
+  )
+}
+
+const Error400 = (props) => {
+  return (
+    <Error
+      status="400"
+      heading="Bad Request">
+        This one is a Bad request.Make sure the Url You entered is Correct
+    </Error>
+  )
+}
+
+export { Error404, Error403, Error400 };

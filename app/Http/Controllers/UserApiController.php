@@ -26,11 +26,17 @@ class UserApiController extends Controller
     $userCourseIds = UserCourse::where('user_id', $currUserId)->pluck('id');
 
     foreach ($userCourseIds as $value) {
-      if($id == $value)
-        return UserCourse::find($id);
+      if($id == $value) {
+        $map = UserCourse::find($id);
+        $map->course;
+        $map->cos;
+
+        return $map;
+      }
     }
 
     return response("Forbidden",403)
             -> header('Content-Type', 'application/json');
   }
+
 }
