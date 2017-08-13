@@ -1,4 +1,4 @@
-const url = "https://reactcopopso.herokuapp.com";
+var url = location.protocol + '//' + location.host;
 
 function getAuthUser() {
   return axios.get(`${url}/api/user`);
