@@ -35,10 +35,18 @@ class NavBar extends React.Component {
   }
 
   render() {
+    var host = location.host;
+    var protocol = location.protocol;
+    var url = protocol +"//" + host;
     return (
       <div>
         <div className="navbar-header">
-            <a className="navbar-brand" href="">CO-PO-PSO Automation</a>
+            <a className="navbar-brand" href="">
+              <object type="image/svg+xml" data={url + "/images/octaco.svg"} style={{width: "50px", marginTop: "-5px"}}>
+                Your browser does not support SVG
+                </object>
+              <p className="pull-right">CO-PO-PSO Automation</p>
+            </a>
         </div>
 
         <ul className="nav navbar-top-links navbar-right">

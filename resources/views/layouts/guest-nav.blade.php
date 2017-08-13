@@ -4,7 +4,10 @@
         <div class="navbar-header">
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+              <object type="image/svg+xml" data={{asset('images/octaco.svg')}} style="width: 50px;margin-top: -5px;">
+                Your browser does not support SVG
+                </object>
+                <p class="pull-right">{{ config('app.name', 'Laravel') }}</p>
             </a>
         </div>
 
