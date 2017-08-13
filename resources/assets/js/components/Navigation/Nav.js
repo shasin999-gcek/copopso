@@ -48,6 +48,12 @@ class Nav extends React.Component {
             <ListItem linkTo="#" icon="user">
               { this.state.userName }
             </ListItem>
+            <li>
+              <a href="/logout">
+                <i className="fa fa-sign-out fa-fw"></i>
+                log out
+              </a>
+            </li>
           </NavRightList>
         </NavBar>
 
