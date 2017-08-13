@@ -11,7 +11,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link href="https://reactcopopso.herokuapp.com/css/app.css" rel="stylesheet">
+        <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>
@@ -29,6 +29,6 @@
      <div id="root">
      </div>
 
-     <script src="https://reactcopopso.herokuapp.com/js/app.js"></script>
+     <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
 </html>
