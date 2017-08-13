@@ -11,7 +11,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="https://reactcopopso.herokuapp.com/js/app.css" rel="stylesheet">
 
         <!-- Scripts -->
         <script>
@@ -30,11 +30,11 @@
          @include('layouts.guest-nav')
 
          @yield('guest_content')
-         
+
       </div>
 
 
-     <script src="{{ URL::asset('js/app.js') }}"></script>
+     <script src="https://reactcopopso.herokuapp.com/js/app.js"></script>
      <script src="https://use.fontawesome.com/62b073ec0c.js"></script>
 
     </body>
