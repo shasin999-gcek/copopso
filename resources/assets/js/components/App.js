@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Nav from "./Navigation/Nav";
 import CourseOutcomes from "./Forms/CourseOutcomes";
+import CoPoMap from "./Forms/CoPoMap";
 import Dashboard from "./Pages/Dashboard";
 import ViewCourse from "./Pages/ViewCourse";
 import { Error404, Error400 } from "./Errors/Errors";
@@ -15,6 +16,9 @@ const RenderTask = (props) => {
   switch (taskId) {
     case '1':
       return <CourseOutcomes {...props} />;
+      break;
+    case '2':
+      return <CoPoMap {...props} />;
       break;
     default:
       return <Error400 />;

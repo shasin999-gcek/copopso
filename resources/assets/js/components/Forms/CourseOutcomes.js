@@ -98,7 +98,7 @@ class CourseOutcomes extends React.Component {
             return null;
           });
 
-          // update the task status to VIEW because this form is already saved
+          // update the task status to VIEW because this form is already saved to db
           if(response.data.status >= 1) {
             taskStatus = "VIEW";
           }
