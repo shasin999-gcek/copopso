@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>
+        <title>Accreditation management software - Govt College of engineering, Kannur</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="Description" content="Developer: Octa.co,
+          CEO: Muhammed Shasin P, Category: Education, github: https://github.com/shasin999-gcek">
          <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
