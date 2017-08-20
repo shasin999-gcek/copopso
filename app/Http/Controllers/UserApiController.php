@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\UserCourse;
+use App\Po;
 
 class UserApiController extends Controller
 {
@@ -37,6 +38,10 @@ class UserApiController extends Controller
 
     return response("Forbidden",403)
             -> header('Content-Type', 'application/json');
+  }
+
+  public function get_program_outcomes() {
+    return Po::all();
   }
 
 }

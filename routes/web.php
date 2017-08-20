@@ -59,6 +59,7 @@ Route::post('upload', 'MarksController@store')->middleware('auth');
 
 // REST APIs
 Route::get('/api/user', 'UserApiController@get_auth_user')->middleware('auth');
+Route::get('/api/user/pos', 'UserApiController@get_program_outcomes')->middleware('auth');
 Route::get('/api/user/courses', 'UserApiController@get_courses')->middleware('auth');
 Route::get('/api/user/courses/{id}', 'UserApiController@get_user_course_map')->middleware('auth');
 

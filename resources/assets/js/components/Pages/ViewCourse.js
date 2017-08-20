@@ -22,6 +22,7 @@ const TaskPreview = (props) => {
         <tr>
           <th>Tasks</th>
           <th>Action</th>
+          <th>Completed</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@ const TaskPreview = (props) => {
 
           const disableClass = (props.formStatus >= index) ? "active" : "disabled";
           const btnText = (props.formStatus === index) ? "Add" : "View";
+          const isCompleted = (props.formStatus > index) ? true : false;
 
           return (
             <tr key={uuid.v4()} className={ disableClass }>
@@ -43,6 +45,12 @@ const TaskPreview = (props) => {
                   { btnText }
 
                 </Link>
+              </td>
+              <td>
+                  {isCompleted
+                    ? <i className="text-success fa fa-check" aria-hidden="true"></i>
+                    : <i className="text-danger fa fa-times" aria-hidden="true"></i>
+                  }
               </td>
             </tr>
           )

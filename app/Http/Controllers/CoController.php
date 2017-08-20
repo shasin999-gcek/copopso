@@ -162,21 +162,36 @@ class CoController extends Controller
 
     public function update(Request $request, $id)
     {
+        // get new co_count
+        $co_count = count($request->all());
 
-        $coursedata = UserCourse::find($id);
-        $cos=$coursedata->cos;
+        $course_data = UserCourse::find($id);
+        $course_data->co_count = $co_count;   // update the new co_count
+        $course_data->save();
 
-        //To do: validation
+        $course_code = $course_data->course->course_code;
 
-        //Updating each co
+        // TODO: Validaton
 
-        foreach ($request->except('_method', '_token') as $co_id => $description)
+
+        for($i = 1; $i <= $co_count; $i++)
         {
-            $updated_co = Co::find($co_id);
-            $updated_co->description = $description;
-            $updated_co->save();
+          $update_co = Co::where('name', $course_code.".".$i)->first();
+          // if the fetched data is null that means we want to add new Co to table (maybe co7..).
+          if($update_co == null) {
+            $new_co = array();
+            $new_co['name'] = $course_code.".".$i;
+            $new_co['user_course_id'] = $id;
+            $new_co['description'] = request('co'.$i);
+            Co::insert($new_co);
+          } else {
+            // otherwise update the row asusual
+            $update_co->description = request('co'.$i);
+            $update_co->save();
+          }
+
         }
 
-        return redirect(url('co/'.$id));
+        return $course_data;
     }
 }

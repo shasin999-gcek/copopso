@@ -1,6 +1,5 @@
 import React  from 'react';
 import uuid from "uuid";
-import validator from "validator";
 import PropTypes from "prop-types";
 
 // apis
@@ -30,11 +29,11 @@ const PreviewForm = (props) => {
           { props.createUI() }
         </tbody>
       </Table>
-      {props.taskStatus === "EDIT" &&
+      {(props.taskStatus === "EDIT" || props.taskStatus === "ADD") &&
         <Button
           btnStyle="primary"
           disabled={!props.isFormValid}
-          onClick={ props.onSubmit.bind(null, props.history) }>
+          onClick={ props.onSubmit.bind(null, props.taskStatus) }>
           Save
         </Button>
       }
@@ -88,8 +87,8 @@ class CourseOutcomes extends React.Component {
         // update formStatus when response not equal to null
         if(response !== null) {
 
-          // initially assume form wants to be edited
-          let taskStatus = "EDIT";
+          // initially assume data wants to added
+          let taskStatus = "ADD";
 
           // extract course outcomes description only and store that in cos object
           let cos = {};
@@ -117,17 +116,33 @@ class CourseOutcomes extends React.Component {
       }.bind(this));
   }
 
-  handleOnSubmit(history) {
+  handleOnSubmit(taskStatus) {
     const { userCourseId } =  this.props.match.params;
     let cos = Object.assign({}, this.state.cos);
 
-    // post request to server
-    axios.post('/co/'+ userCourseId, cos )
-      .then(res => {
-        if(res.status === 200) {
-          history.goBack();
-        }
-      });
+    // show loading effect
+    this.setState({ loading: true });
+
+    if(taskStatus === "EDIT") {
+      // put request to server (update data)
+      axios.put('/co/'+ userCourseId, cos )
+        .then(response => {
+          if(response.status === 200) {
+            this.setState({ taskStatus: "VIEW", loading: false });
+          }
+        });
+    }
+
+    if(taskStatus === "ADD") {
+      // post request to server (add data)
+      axios.post('/co/'+ userCourseId, cos )
+        .then(response => {
+          if(response.status === 200) {
+            this.setState({ taskStatus: "VIEW", loading: false });
+          }
+        });
+    }
+
   }
 
   handleInputChange(e) {
@@ -168,9 +183,12 @@ class CourseOutcomes extends React.Component {
     this.setState({ taskStatus: "EDIT" });
   }
 
-  // to create dynamic UI based on taskStatus whether it is in EDIT mode or VIEW mode
+  // to create dynamic UI based on taskStatus whether it is in EDIT, ADD or VIEW mode
   createUI() {
     let uiItems = [];
+    // check the task status whether it is to be edited or added newly
+    let isAddOrEdit = (this.state.taskStatus === "ADD" || this.state.taskStatus === "EDIT");
+
     for(var rows = 1; rows <= this.state.rows; rows++) {
       uiItems.push(
         <tr key={rows}>
@@ -181,7 +199,7 @@ class CourseOutcomes extends React.Component {
             {this.state.taskStatus === "VIEW" &&
               this.state.cos['co' + rows]
             }
-            {this.state.taskStatus === "EDIT" &&
+            {isAddOrEdit &&
               <div className="form-group has-feedback">
                 <textarea
                   className="form-control"
@@ -192,14 +210,14 @@ class CourseOutcomes extends React.Component {
               </div>
             }
           </td>
-          {(rows === this.state.rows && this.state.taskStatus === "EDIT") &&
+          {(rows === this.state.rows && isAddOrEdit) &&
             <td style={{ border: "1px solid #eee", width: "60px" }}>
               <div className="button-group">
                 <Button btnStyle="success" onClick={this.handleAddRow}>
                   <i className="fa fa-plus">
                   </i>
                 </Button>
-                {(rows > 6 && this.state.taskStatus === "EDIT") &&
+                {(rows > 6 && isAddOrEdit) &&
                   <Button btnStyle="danger" onClick={this.handleDeleteRow.bind(null, rows)}>
                     <i className="fa fa-minus">
                     </i>
