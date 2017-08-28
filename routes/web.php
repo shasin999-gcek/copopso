@@ -36,8 +36,8 @@ Route::get('/co/{id}/editmap', 'CoPoPsoController@edit')->middleware('auth');
 
 Route::put('/co/{id}/updatemap', 'CoPoPsoController@update')->middleware('auth');
 
-Route::get('/co/po/{id}/{po_id}', 'JustificationsController@create')->middleware('auth');
-Route::post('/co/storejust/{id}/{po_id}', 'JustificationsController@store')->middleware('auth');
+Route::get('/co/{id}/po/{po_id}', 'JustificationsController@create')->middleware('auth');
+Route::post('/co/{id}/storejust/{po_id}', 'JustificationsController@store')->middleware('auth');
 
 Route::get('/co/{id}/weightage', 'WeightagesController@create')->middleware('auth');
 Route::post('/co/{id}/weightage', 'WeightagesController@store')->middleware('auth');
@@ -45,4 +45,4 @@ Route::post('/co/{id}/weightage', 'WeightagesController@store')->middleware('aut
 Route::get ('upload', 'MarksController@showForm')->middleware('auth');
 Route::post('upload', 'MarksController@store')->middleware('auth');
 
-?>
+?>  

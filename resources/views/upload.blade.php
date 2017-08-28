@@ -69,7 +69,7 @@
         var message = sessionStorage.getItem('message');
         if(message!==null){
             document.getElementById('blank').style.display='';
-            $("#blank").append("<strong>INVALID CSV FILE!</strong> "+message);
+            $("#blank").append("<strong>ERROR!!</strong> "+message);
             sessionStorage.removeItem('message');
         }
     }
@@ -81,14 +81,9 @@
                 $("#success").remove();
             $("#blank").css('display','none');
 
-<<<<<<< Updated upstream
             var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
+
             if (regex.test($("#upload-file").val().toLowerCase())) {
-=======
-            var negregex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
-            var regex = /^([a-zA-Z0-9\s_\\.\-:\()])+(.csv|.txt)$/;
-            if (alert(regex.test($("#upload-file").val().toLowerCase()))) {
->>>>>>> Stashed changes
                 if (typeof (FileReader) != "undefined") {
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -135,10 +130,23 @@
                 }
             } 
         else {
-            document.getElementById("upload-form").submit();
+                window.onbeforeunload = function(){
+                            var message = "";
+                            if(document.getElementById("upload-file").value==""){
+                                message = "PLEASE SELECT A FILE!!";
+                            }
+                            else{
+                                message = "INVALID FILE NAME!!";
+                            }
+                            sessionStorage.setItem('message',message);
+                }
+                                    
+                location.reload();
+            //document.getElementById("upload-form").submit();
         }
         });
     });
 </script>
 
 @endsection
+
