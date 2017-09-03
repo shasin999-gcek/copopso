@@ -15,7 +15,7 @@ use App\CoPo;
 
 class CoController extends Controller
 {
-    //To do: Code to check if user has access to page (to that user_course_id), else redirect
+    //TODO: Code to check if user has access to page (to that user_course_id), else redirect
 
     public function index($id)
     {
@@ -142,56 +142,60 @@ class CoController extends Controller
 
     }
 
-    public function edit($id)
-    {
-        /*
-            Function for editing  the CO DEFINITION form
-            Accepts user_course_id as $id
-            Returns the data belonging to that user_course,
-            as well as the course_code of the associated course
-         */
+// HACK: editing currently disabled
 
-        //Check if the co has been defined first
+    // public function edit($id)
+    // {
+    //     /*
+    //         Function for editing  the CO DEFINITION form
+    //         Accepts user_course_id as $id
+    //         Returns the data belonging to that user_course,
+    //         as well as the course_code of the associated course
+    //      */
+    //
+    //     //Check if the co has been defined first
+    //
+    //     //Pass data
+    //
+    //     $coursedata = UserCourse::find($id);
+    //     $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
+    //     return view('co.edit', compact('coursedata', 'cos'));
+    // }
+    //
+    // public function update(Request $request, $id)
+    // {
+    //     // get new co_count
+    //     $co_count = count($request->all());
+    //
+    //     $course_data = UserCourse::find($id);
+    //     $course_data->co_count = $co_count;   // update the new co_count
+    //     $course_data->save();
+    //
+    //     $course_code = $course_data->course->course_code;
+    //
+    //     // TODO: Validaton
+    //
+    //
+    //     for($i = 1; $i <= $co_count; $i++)
+    //     {
+    //       $update_co = Co::where('name', $course_code.".".$i)->first();
+    //       // if the fetched data is null that means we want to add new Co to table (maybe co7..).
+    //       if($update_co == null) {
+    //         $new_co = array();
+    //         $new_co['name'] = $course_code.".".$i;
+    //         $new_co['user_course_id'] = $id;
+    //         $new_co['description'] = request('co'.$i);
+    //         Co::insert($new_co);
+    //       } else {
+    //         // otherwise update the row asusual
+    //         $update_co->description = request('co'.$i);
+    //         $update_co->save();
+    //       }
+    //
+    //     }
+    //
+    //     return $course_data;
+    // }
 
-        //Pass data
 
-        $coursedata = UserCourse::find($id);
-        $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
-        return view('co.edit', compact('coursedata', 'cos'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        // get new co_count
-        $co_count = count($request->all());
-
-        $course_data = UserCourse::find($id);
-        $course_data->co_count = $co_count;   // update the new co_count
-        $course_data->save();
-
-        $course_code = $course_data->course->course_code;
-
-        // TODO: Validaton
-
-
-        for($i = 1; $i <= $co_count; $i++)
-        {
-          $update_co = Co::where('name', $course_code.".".$i)->first();
-          // if the fetched data is null that means we want to add new Co to table (maybe co7..).
-          if($update_co == null) {
-            $new_co = array();
-            $new_co['name'] = $course_code.".".$i;
-            $new_co['user_course_id'] = $id;
-            $new_co['description'] = request('co'.$i);
-            Co::insert($new_co);
-          } else {
-            // otherwise update the row asusual
-            $update_co->description = request('co'.$i);
-            $update_co->save();
-          }
-
-        }
-
-        return $course_data;
-    }
 }

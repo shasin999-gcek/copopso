@@ -9,6 +9,7 @@ import api from "../../Utils/api";
 import { Table, Button } from '../Reusable';
 import { Error403 } from "../Errors/Errors";
 import Loading from "../Loading";
+import BootstrapModal from "../BootstrapModal";
 
 
 const PreviewForm = (props) => {
@@ -29,23 +30,64 @@ const PreviewForm = (props) => {
           { props.createUI() }
         </tbody>
       </Table>
-      {(props.taskStatus === "EDIT" || props.taskStatus === "ADD") &&
-        <Button
-          btnStyle="primary"
-          disabled={!props.isFormValid}
-          onClick={ props.onSubmit.bind(null, props.taskStatus) }>
-          Save
-        </Button>
-      }
     </div>
   )
 }
 
 PreviewForm.propTypes = {
-  createUI: PropTypes.func.isRequired,
-  isFormValid: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  taskStatus: PropTypes.string.isRequired
+  createUI: PropTypes.func.isRequired
+}
+
+// simple modal component to ask clarification about co Definitions
+class SubmitButton extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModel = this.closeModel.bind(this);
+    this.handleOnConfirm = this.handleOnConfirm.bind(this);
+  }
+
+  handleOnConfirm() {
+    this.props.submit();
+  }
+
+  openModal() {
+    this.refs.modal.open();
+  }
+
+  closeModel() {
+    this.refs.modal.close();
+  }
+
+  render() {
+    const modal = (
+      <BootstrapModal
+        ref="modal"
+        heading="Warning"
+        onConfirm = {this.handleOnConfirm}
+        onCancel = {this.closeModel}>
+          This cannot be changed, So check whether all CO definitions are correct
+          and click "Save Changes" to continue Or click cancel button.
+      </BootstrapModal>
+    );
+    return (
+      <div>
+        { modal }
+        <Button
+          btnStyle={ this.props.btnStyle }
+          disabled={this.props.disabled}
+          onClick={ this.openModal }>
+            Save
+        </Button>
+      </div>
+    );
+  }
+}
+
+SubmitButton.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  submit: PropTypes.func.isRequired
 }
 
 class CourseOutcomes extends React.Component {
@@ -57,7 +99,8 @@ class CourseOutcomes extends React.Component {
       cos: {},
       loading: true,
       error: false,
-      isFormValid: true,
+      isFormValid: false,
+      errorFields: {},
       taskStatus: null
     };
 
@@ -67,7 +110,7 @@ class CourseOutcomes extends React.Component {
     this.handleAddRow = this.handleAddRow.bind(this);
     this.handleDeleteRow = this.handleDeleteRow.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.changeTaskStatus = this.changeTaskStatus.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   componentDidMount() {
@@ -123,16 +166,6 @@ class CourseOutcomes extends React.Component {
     // show loading effect
     this.setState({ loading: true });
 
-    if(taskStatus === "EDIT") {
-      // put request to server (update data)
-      axios.put('/co/'+ userCourseId, cos )
-        .then(response => {
-          if(response.status === 200) {
-            this.setState({ taskStatus: "VIEW", loading: false });
-          }
-        });
-    }
-
     if(taskStatus === "ADD") {
       // post request to server (add data)
       axios.post('/co/'+ userCourseId, cos )
@@ -149,10 +182,25 @@ class CourseOutcomes extends React.Component {
     const name = e.target.name;
     const value = e.target.value;
 
-    let cos = Object.assign({}, this.state.cos);
-    cos[name] = value;
+      let cos = Object.assign({}, this.state.cos);
+      let errorFields = Object.assign({}, this.state.errorFields);
+
+    // validate the data before saving
+    const valRegExp = /^[\w+.\s.\w]{1,100}$/;
+    if(valRegExp.test(value)) {
+
+      cos[name] = value;
+      errorFields[name] = false;
+
+    } else {
+      cos[name] = value;
+      errorFields[name] = true;
+    }
+
     // update the state
-    this.setState({ cos });
+    this.setState({ cos, errorFields });
+
+    this.validateForm();
   }
 
   handleAddRow() {
@@ -179,17 +227,42 @@ class CourseOutcomes extends React.Component {
     });
   }
 
-  changeTaskStatus() {
-    this.setState({ taskStatus: "EDIT" });
+  validateForm() {
+    let inputFeilds = document.getElementsByTagName("textarea");
+
+    for(var i = 0; i < inputFeilds.length; i++) {
+
+        var regExp = /^[\w+.\s.\w]{1,100}$/;
+        if(!regExp.test(inputFeilds[i].value)) {
+          this.setState({ isFormValid: false });
+          break;
+        }
+
+        this.setState({ isFormValid: true });
+
+    }
   }
 
-  // to create dynamic UI based on taskStatus whether it is in EDIT, ADD or VIEW mode
+  // to create dynamic UI based on taskStatus whether it is in ADD or VIEW mode
   createUI() {
     let uiItems = [];
     // check the task status whether it is to be edited or added newly
-    let isAddOrEdit = (this.state.taskStatus === "ADD" || this.state.taskStatus === "EDIT");
+    let isAdd = (this.state.taskStatus === "ADD");
+    let errorFieldClass = "";
+    let errorMsg = "";
 
     for(var rows = 1; rows <= this.state.rows; rows++) {
+
+      errorFieldClass = (
+        this.state.errorFields['co' + rows] === true ?
+        "form-group has-error" : null
+      );
+
+      // errorMsg = (
+      //   this.state.errorFields['co' + rows] === true ?
+      //   "Please Fill this field, it may not contain any special characters" : null
+      // );
+
       uiItems.push(
         <tr key={rows}>
           <td style={{ fontWeight: "bold"}}>
@@ -199,8 +272,8 @@ class CourseOutcomes extends React.Component {
             {this.state.taskStatus === "VIEW" &&
               this.state.cos['co' + rows]
             }
-            {isAddOrEdit &&
-              <div className="form-group has-feedback">
+            {isAdd &&
+              <div className={ errorFieldClass }>
                 <textarea
                   className="form-control"
                   value={ this.state.cos['co' + rows] }
@@ -210,14 +283,14 @@ class CourseOutcomes extends React.Component {
               </div>
             }
           </td>
-          {(rows === this.state.rows && isAddOrEdit) &&
+          {(rows === this.state.rows && isAdd) &&
             <td style={{ border: "1px solid #eee", width: "60px" }}>
               <div className="button-group">
                 <Button btnStyle="success" onClick={this.handleAddRow}>
                   <i className="fa fa-plus">
                   </i>
                 </Button>
-                {(rows > 6 && isAddOrEdit) &&
+                {(rows > 6 && isAdd) &&
                   <Button btnStyle="danger" onClick={this.handleDeleteRow.bind(null, rows)}>
                     <i className="fa fa-minus">
                     </i>
@@ -234,7 +307,16 @@ class CourseOutcomes extends React.Component {
   }
 
   render () {
-    const { error, loading, course, cos, rows, taskStatus } = this.state;
+
+    const {
+      error,
+      loading,
+      course,
+      cos,
+      rows,
+      taskStatus,
+      isFormValid
+     } = this.state;
 
     if(error) {
       return <Error403 />
@@ -249,25 +331,32 @@ class CourseOutcomes extends React.Component {
         <div className="page-header">
           Define Course Outcomes
         </div>
+
         {taskStatus === "VIEW" &&
           <div
             className="alert alert-info"
             style={{width: "800px"}}>
-            <button className="btn btn-danger btn-sm pull-right" onClick={this.changeTaskStatus}>
-              <i className="fa fa-edit">
-              </i>
-            </button>
             <strong>Info: </strong>
-            If you want to edit defined course outcomes click on EDIT icon
+            You Can't Edit Course Outcomes Definitions
           </div>
         }
+
         <PreviewForm
           createUI={ this.createUI }
-          isFormValid={this.state.isFormValid}
+          isFormValid={ isFormValid }
           onSubmit={this.handleOnSubmit}
-          taskStatus={this.state.taskStatus}
+          taskStatus={ taskStatus }
           {...this.props}
-          />
+        />
+
+        {(taskStatus === "ADD") &&
+          <SubmitButton
+            btnStyle="primary"
+            disabled={ !isFormValid }
+            submit={ this.handleOnSubmit.bind(null, taskStatus) }>
+            Save
+          </SubmitButton>
+        }
       </div>
     );
   }
