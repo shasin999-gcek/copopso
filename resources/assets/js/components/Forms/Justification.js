@@ -80,6 +80,12 @@ class Justification extends React.Component {
     const userCourseId = match.params.userCourseId;
     const poId = tab.substr(2); // extract poId from tab name
 
+    this.setState(() => {
+      return {
+        tabLoading: true
+      }
+    });
+
     // request for po mapping with current poId
     api.getCoPoMap(userCourseId, poId)
       .then(response => {
