@@ -328,10 +328,7 @@ class CourseOutcomes extends React.Component {
 
     return (
       <div>
-        <div className="page-header">
-          Define Course Outcomes
-        </div>
-
+        
         {taskStatus === "VIEW" &&
           <div
             className="alert alert-info"

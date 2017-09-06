@@ -90,6 +90,7 @@ const PageHeader = (props) => {
 }
 
 const Icon = (props) => {
-  return <i className={"fa fa-" + props.name || ""}></i>
+  return <i className={"fa fa-" + props.name || ""} {...props}></i>
 }
+
 export { Panel, Table, Button, InputField, PageHeader, Icon };

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {Icon} from './Reusable';
+
 class Loading extends React.Component {
   render () {
     return (
@@ -19,7 +21,7 @@ class Loading extends React.Component {
           <div className="sk-circle12 sk-circle"></div>
         </div>
       </div>
-    )
+    );
   }
 }
 

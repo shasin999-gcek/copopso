@@ -43,6 +43,7 @@ class JustificationsController extends Controller
                 //If the value is non-zero, store co_name, co_id and po_value in $codata
                 $codata=array();
                 $codata["name"]=$co->name;
+								$codata["description"]=$co->description;
                 $codata["id"]=$co->id;
                 $codata["po_value"]=$co->copo->$po;
                 $copo[] = $codata;

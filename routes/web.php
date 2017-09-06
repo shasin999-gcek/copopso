@@ -43,11 +43,11 @@ Route::post('/co/{id}', 'CoController@store')->middleware('auth');
 
 //Route::get('/co/{id}/createmap', 'CoPoPsoController@create')->middleware('auth');
 Route::post('/co/{id}/storemap', 'CoPoPsoController@store')->middleware('auth');
-Route::get('/co/{id}/editmap', 'CoPoPsoController@edit')->middleware('auth');
+//Route::get('/co/{id}/editmap', 'CoPoPsoController@edit')->middleware('auth');
 
 Route::put('/co/{id}/updatemap', 'CoPoPsoController@update')->middleware('auth');
 
-Route::get('/co/{id}/po/{po_id}', 'JustificationsController@create')->middleware('auth');
+//Route::get('/co/{id}/po/{po_id}', 'JustificationsController@create')->middleware('auth');
 Route::post('/co/{id}/storejust/{po_id}', 'JustificationsController@store')->middleware('auth');
 
 Route::get('/co/{id}/weightage', 'WeightagesController@create')->middleware('auth');
@@ -63,6 +63,7 @@ Route::get('/api/user/pos', 'UserApiController@get_program_outcomes')->middlewar
 Route::get('/api/user/courses', 'UserApiController@get_courses')->middleware('auth');
 Route::get('/api/user/courses/{id}', 'UserApiController@get_user_course_map')->middleware('auth');
 Route::get('/api/user/courses/{id}/copopso-map', 'UserApiController@get_copopso_map')->middleware('auth');
+Route::get('/api/user/courses/{id}/copo-map/{po_id}', 'UserApiController@get_copo_map')->middleware('auth');
 
 // catching all routes
 Route::get('{any?}', function ($any = null) {

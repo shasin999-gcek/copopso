@@ -10,7 +10,7 @@ import api from "../../Utils/api";
 // importing external components
 import Loading from "../Loading";
 import { Error403 } from "../Errors/Errors";
-import { Table } from "../Reusable"
+import { Icon, Table } from "../Reusable"
 
 
 const TaskPreview = (props) => {
@@ -48,8 +48,8 @@ const TaskPreview = (props) => {
               </td>
               <td>
                   {isCompleted
-                    ? <i className="text-success fa fa-check" aria-hidden="true"></i>
-                    : <i className="text-danger fa fa-times" aria-hidden="true"></i>
+                    ? <Icon name="check text-success"></Icon>
+                    : <Icon name="times text-danger"></Icon>
                   }
               </td>
             </tr>
@@ -109,18 +109,17 @@ class ViewCourses extends React.Component {
   render () {
     // show 403 warning
     if(this.state.error) {
-      return <Error403 />
+      return <Error403 />;
+    }
+
+    if(this.state.loading) {
+      return <Loading />;
     }
 
     return (
-      <div>
-        <div className="page-header">Tasks To Do</div>
-        {
-          this.state.loading
-            ? <Loading />
-            : <TaskPreview formStatus={ this.state.formStatus } {...this.props}/>
-        }
-      </div>
+      <TaskPreview
+        formStatus={ this.state.formStatus }
+        {...this.props}/>
     );
   }
 }

@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import { Link } from "react-router-dom";
 
 import Loading from "../Loading";
+import { Error403 } from "../Errors/Errors";
 import { PageHeader, Icon, Panel, Table, Button } from "../Reusable";
 
 import api from "../../Utils/api";
@@ -73,20 +74,18 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { courses } = this.state;
+    const { error, loading, courses } = this.state;
+
+    if(error) {
+      return <Error403 />
+    }
+
+    if(loading) {
+      return <Loading />
+    }
 
     return (
-      <div>
-        <PageHeader>
-          <Icon name="dashboard"></Icon>
-          &nbsp;Dashboard
-        </PageHeader>
-        {
-          this.state.loading
-            ? <Loading />
-            : <CoursePreview courses={ courses } />
-        }
-      </div>
+      <CoursePreview courses={ courses } />
     );
   }
 }

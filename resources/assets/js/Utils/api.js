@@ -41,6 +41,11 @@ module.exports = {
       .catch(handleError);
   },
 
+  getCoPoMap(id, poId) {
+    return axios.get(`${url}/api/user/courses/${id}/copo-map/${poId}`)
+      .catch(handleError);
+  },
+
   fetchProgramOutcomes() {
     return axios.get(`${url}/api/user/pos`)
       .catch(handleError);

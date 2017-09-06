@@ -8,6 +8,7 @@ import Justification from "./Forms/Justification";
 import Dashboard from "./Pages/Dashboard";
 import ViewCourse from "./Pages/ViewCourse";
 import ProgramOutcomes from "./Pages/ProgramOutcomes";
+import { PageHeader, Icon } from "./Reusable";
 import { Error404, Error400 } from "./Errors/Errors";
 import Footer from "./Footer";
 
@@ -17,17 +18,74 @@ const RenderTask = (props) => {
 
   switch (taskId) {
     case '1':
-      return <CourseOutcomes {...props} />;
+      return (
+        <div>
+          <Header heading="Define Course Outcomes"/>
+          <CourseOutcomes {...props}/>
+        </div>
+      );
       break;
+
     case '2':
-      return <CoPoMap {...props} />;
+      return (
+        <div>
+          <Header heading="CO-PO-PSO Mapping"/>
+          <CoPoMap {...props}/>
+        </div>
+      );
       break;
+
     case '3':
-      return <Justification {...props} />;
+      return (
+        <div>
+          <Header heading="Add Justification"/>
+          <Justification {...props}/>
+        </div>
+      );
       break;
+
     default:
       return <Error400 />;
   }
+}
+
+const RenderDashboard = (props) => {
+  return (
+    <div>
+      <Header heading="Dashboard" iconName="dashboard"/>
+      <Dashboard {...props}/>
+    </div>
+  );
+}
+
+const RenderProgramOutcomes = (props) => {
+  return (
+    <div>
+      <Header heading="Program Outcomes" iconName="th-list"/>
+      <ProgramOutcomes {...props}/>
+    </div>
+  );
+}
+
+const RenderViewCourse = (props) => {
+  return (
+    <div>
+      <Header heading="Tasks To Do"/>
+      <ViewCourse {...props}/>
+    </div>
+  );
+}
+
+const Header = ({ heading, iconName }) => {
+  return (
+    <PageHeader>
+      <Icon
+        name={iconName}
+        style={{paddingRight: "5px"}}>
+      </Icon>
+      { heading }
+    </PageHeader>
+  );
 }
 
 class App extends React.Component {
@@ -42,9 +100,9 @@ class App extends React.Component {
           <Nav />
           <div id="page-wrapper">
             <Switch>
-              <Route exact path="/app/dashboard" component={ Dashboard } />
-              <Route exact path="/app/program-outcomes" component={ ProgramOutcomes } />
-              <Route exact path="/app/course/:userCourseId" component={ ViewCourse } />
+              <Route exact path="/app/dashboard" component={ RenderDashboard } />
+              <Route exact path="/app/program-outcomes" component={ RenderProgramOutcomes } />
+              <Route exact path="/app/course/:userCourseId" component={ RenderViewCourse } />
               <Route exact path="/app/course/:userCourseId/task/:taskId" render={ RenderTask } />
               <Route component={ Error404 } />
             </Switch>
@@ -55,6 +113,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;

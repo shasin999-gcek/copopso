@@ -68,7 +68,7 @@ class UserApiController extends Controller
 
         if($copopso == null)
           break;
-          
+
         //to convert 0 to -
         $copopso=$copopso->getAttributes();
         foreach ($copopso as $key => $value) {
@@ -90,6 +90,33 @@ class UserApiController extends Controller
 
     // return copopso map, status and co_count
     return ['copopso_map' => $cos, 'status' => $usercourse->status, 'co_count' => $usercourse->co_count];
+  }
+
+  /**
+  * grab all copo map
+  * @param user_course_id. po_id
+  * @return assossiative array contains po mapping
+  */
+
+  public function get_copo_map($user_course_id, $po_id) {
+
+    $coursedata = UserCourse::find($user_course_id);
+    $cos = Co::where('user_course_id', $user_course_id)->get();
+
+
+    $copo=array();
+    foreach ($cos as $co) {
+      //If the value is non-zero, store co_name, co_id and po_value in $codata
+      $codata=array();
+      $codata["name"]=$co->name;
+      $codata["description"]=$co->description;
+      $codata["id"]=$co->id;
+      $codata["po_value"]=$co->copo["po".$po_id];
+      $copo[] = $codata;
+
+    };
+
+    return $copo;
   }
 
 }

@@ -49,10 +49,6 @@ class ProgramOutcomes extends React.Component {
 
     return (
       <div>
-        <PageHeader>
-          <Icon name="th-list"></Icon>
-          &nbsp;Program Outcomes
-        </PageHeader>
         <div className="well">
           {this.state.programOutcomes.map((programOutcome, indx) => {
             return (

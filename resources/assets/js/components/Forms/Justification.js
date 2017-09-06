@@ -25,13 +25,14 @@ class Justification extends React.Component {
       tabs: [],
       selectedTab: "PO1",
       programOutcomes: [],
-      copopsoMaps: []
+      copoMaps: []
     }
 
     this.updateTab = this.updateTab.bind(this);
   }
 
   componentDidMount() {
+
     const { match } = this.props;
     const userCourseId = match.params.userCourseId;
 
@@ -63,17 +64,41 @@ class Justification extends React.Component {
             tabs,
             error: null,
             loading: false,
-            programOutcomes: response[0].data,
-            copopsoMaps: response[1].data.copopso_map
+            programOutcomes: response[0].data
           }
         });
       }
 
     });
 
+    this.updateTab(this.state.selectedTab);
   }
 
   updateTab(tab) {
+    const { match } = this.props;
+    const userCourseId = match.params.userCourseId;
+    const poId = tab.substr(2); // extract poId from tab name
+
+    // request for po mapping with current poId
+    api.getCoPoMap(userCourseId, poId)
+      .then(response => {
+        if(response === null) {
+          this.setState(() => {
+            return {
+              error: true,
+            }
+          });
+        }
+        if(response != null) {
+          this.setState(() => {
+            return {
+              copoMaps: response.data,
+            }
+          });
+        }
+      });
+
+    // update the tab
     this.setState(() => {
       return {
         selectedTab: tab
@@ -81,7 +106,7 @@ class Justification extends React.Component {
     });
   }
 
-  render () {
+  render() {
 
     if(this.state.loading) {
       return <Loading />;
@@ -93,9 +118,6 @@ class Justification extends React.Component {
 
     return (
       <div>
-        <PageHeader>
-          Add Justifications
-        </PageHeader>
 
         <SelectTabs
           tabs={this.state.tabs}
@@ -107,7 +129,7 @@ class Justification extends React.Component {
           tabs={this.state.tabs}
           selectedTab= {this.state.selectedTab}
           programOutcomes = {this.state.programOutcomes}
-          copopsoMaps= {this.state.copopsoMaps}
+          copoMaps= {this.state.copoMaps}
           />
 
       </div>
@@ -135,26 +157,24 @@ const SelectTabs = (props) => {
 }
 
 const PreviewTabContent = (props) => {
+  const poId = Number(props.selectedTab.substr(2));
+
   return (
     <TabContent>
-      {props.tabs.map(function(tab, indx) {
-        return (
-          <TabPanel key={100 + indx} activeClass={props.selectedTab === tab ? "active" : null}>
-            <Panel
-              style={{width: "900px"}}
-              heading={props.programOutcomes[indx].name}>
-              <PreviewDescription
-                heading="Description:-"
-                body={props.programOutcomes[indx].body}
-                />
-              <PreviewTable copopsoMaps={props.copopsoMaps}/>
-              <Button btnStyle="primary">
-                Save
-              </Button>
-            </Panel>
-          </TabPanel>
-        );
-      })}
+      <TabPanel>
+        <Panel
+          style={{width: "900px"}}
+          heading={props.programOutcomes[poId].name}>
+          <PreviewDescription
+            heading="Description:-"
+            body={props.programOutcomes[poId].body}
+            />
+          <PreviewTable copoMaps={props.copoMaps} poId={poId}/>
+          <Button btnStyle="primary">
+            Save
+          </Button>
+        </Panel>
+      </TabPanel>
     </TabContent>
   );
 }
@@ -170,20 +190,20 @@ const PreviewTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.copopsoMaps.map((copopsoMap, indx) => {
+        {props.copoMaps.map((copoMap, indx) => {
           return (
             <tr key={indx}>
               <td>
                 <a
                   data-placement="left"
-                  data-title={copopsoMap.name}
-                  data-content={copopsoMap.description}
+                  data-title={copoMap.name}
+                  data-content={copoMap.description}
                   onMouseOver={(e) => new bsn.Popover(e.target)}
                   style={{fontWeight: "bold", color: "#000", cursor: "pointer"}}>
-                  {copopsoMap.name}
+                  {copoMap.name}
                 </a>
               </td>
-              <td>{copopsoMap.popso["po" + (indx + 1)]}</td>
+              <td>{copoMap.po_value}</td>
               <td>
                 <InputField type="text" />
               </td>
@@ -233,14 +253,8 @@ const TabContent = (props) => {
 }
 
 const TabPanel = (props) => {
-  let copyProps = Object.assign({}, props);
-  delete copyProps.activeClass;
-
   return (
-    <div
-      className={"tab-pane " + props.activeClass || ""}
-      {...copyProps}
-      />
+    <div className="tab-pane active" {...props} />
   );
 }
 

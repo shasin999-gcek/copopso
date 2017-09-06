@@ -354,11 +354,7 @@ class CoPoMap extends React.Component {
 
     return (
       <div>
-
-        <PageHeader>
-          Co-Po-Pso Mapping
-        </PageHeader>
-
+        
         {this.state.taskMode === "VIEW" &&
           <AlertInfo style={{width: "800px"}}>
             <strong>Info: </strong>
