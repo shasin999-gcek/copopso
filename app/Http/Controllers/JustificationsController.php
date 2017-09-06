@@ -15,19 +15,19 @@ class JustificationsController extends Controller
 
 	public function create($id, $po_id)
     {
-        /* 
+        /*
             Function for viewing the PO JUSTIFICATION form
             Accepts user_course_id as $id, the number of po/pso as $po_id
-          
+
          */
 
         $coursedata = UserCourse::find($id);
         $cos = Co::where('user_course_id', $id)->get();
-        
+
         //Checking if requested for PO or PSO
 
         if ($po_id>12)
-        {   
+        {
             $pso_id= $po_id-12;
             $po="pso".$pso_id;
         }
@@ -39,16 +39,15 @@ class JustificationsController extends Controller
 
         $copo=array();
         foreach ($cos as $co) {
-            if ($co->copo->$po != 0)
-            {   
+
                 //If the value is non-zero, store co_name, co_id and po_value in $codata
                 $codata=array();
                 $codata["name"]=$co->name;
                 $codata["id"]=$co->id;
                 $codata["po_value"]=$co->copo->$po;
                 $copo[] = $codata;
-            }
-            
+
+
         };
 
         //If no value was assigned to PO, redirect to next one.
@@ -64,7 +63,7 @@ class JustificationsController extends Controller
             }
             else
             {
-                return redirect(url('co/'.$id));   
+                return redirect(url('co/'.$id));
             }
         }
 
@@ -72,19 +71,19 @@ class JustificationsController extends Controller
 
         $podata = Po::find($po_id);
 
-        return view('po_justifications.create', compact('id','copo', 'podata'));
+        return $copo;
     }
 
 
-   
+
     public function store(Request $request, $id, $po_id)
     {
 
-        /* 
+        /*
             Function for storing the PO JUSTIFICATIONS
             Accepts user_course_id as $id, the number of po/pso as $po_id, and
             request objects.
-          
+
          */
 
         $coursedata = UserCourse::find($id);
@@ -101,13 +100,13 @@ class JustificationsController extends Controller
             $codata["justification"]=$justification;
             $justifications[] = $codata;
         };
-        
+
         DB::table('po_justifications')->insert($justifications);
-        
+
         //Checking if PO or PSO, to get the column name for status
 
         if ($po_id>12)
-        {   
+        {
             $pso_id= $po_id-12;
             $po="pso".$pso_id;
         }
@@ -119,7 +118,7 @@ class JustificationsController extends Controller
 
         Status::where('user_course_id', $id)->update([$po => true]);
 
-        
+
         //To redirect to next PO/PSO
 
         if ($po_id<=15)
@@ -129,10 +128,10 @@ class JustificationsController extends Controller
         }
         else
         {
-            return redirect(url('co/'.$id));   
+            return redirect(url('co/'.$id));
         }
 
     }
-    
+
 
 }

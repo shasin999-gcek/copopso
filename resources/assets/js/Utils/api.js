@@ -34,5 +34,15 @@ module.exports = {
           data: response.data
         }
       }).catch(handleError);
+  },
+
+  getCoPoPsoMap(id) {
+    return axios.get(`${url}/api/user/courses/${id}/copopso-map`)
+      .catch(handleError);
+  },
+
+  fetchProgramOutcomes() {
+    return axios.get(`${url}/api/user/pos`)
+      .catch(handleError);
   }
 }

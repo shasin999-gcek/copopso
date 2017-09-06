@@ -32,16 +32,16 @@ Route::post('/testpost', 'UserApiController@testpost');
 // load initial app
 Route::get('/app/dashboard', 'HomeController@index')->middleware('auth');
 
-Route::get('/co/{id}', 'CoController@index')->middleware('auth');
-Route::get('/co/{id}/show', 'CoController@show')->middleware('auth');
+//Route::get('/co/{id}', 'CoController@index')->middleware('auth');
+//Route::get('/co/{id}/show', 'CoController@show')->middleware('auth');
 
-Route::get('/co/{id}/create', 'CoController@create')->middleware('auth');
+//Route::get('/co/{id}/create', 'CoController@create')->middleware('auth');
 Route::post('/co/{id}', 'CoController@store')->middleware('auth');
 
-Route::get('/co/{id}/edit', 'CoController@edit')->middleware('auth');
-Route::put('/co/{id}', 'CoController@update')->middleware('auth');
+//Route::get('/co/{id}/edit', 'CoController@edit')->middleware('auth');
+//Route::put('/co/{id}', 'CoController@update')->middleware('auth');
 
-Route::get('/co/{id}/createmap', 'CoPoPsoController@create')->middleware('auth');
+//Route::get('/co/{id}/createmap', 'CoPoPsoController@create')->middleware('auth');
 Route::post('/co/{id}/storemap', 'CoPoPsoController@store')->middleware('auth');
 Route::get('/co/{id}/editmap', 'CoPoPsoController@edit')->middleware('auth');
 
@@ -62,6 +62,7 @@ Route::get('/api/user', 'UserApiController@get_auth_user')->middleware('auth');
 Route::get('/api/user/pos', 'UserApiController@get_program_outcomes')->middleware('auth');
 Route::get('/api/user/courses', 'UserApiController@get_courses')->middleware('auth');
 Route::get('/api/user/courses/{id}', 'UserApiController@get_user_course_map')->middleware('auth');
+Route::get('/api/user/courses/{id}/copopso-map', 'UserApiController@get_copopso_map')->middleware('auth');
 
 // catching all routes
 Route::get('{any?}', function ($any = null) {

@@ -15,7 +15,7 @@ class NavRightList extends React.Component {
     return (
       <li className="dropdown">
 
-        <a id="ds" className="dropdown-toggle" onClick={this.toggle} href="">
+        <a id="ds" className="dropdown-toggle" onClick={this.toggle} style={{color: "#fff"}}>
           <i className="fa fa-user fa-fw"></i> <i className="fa fa-caret-down"></i>
         </a>
 

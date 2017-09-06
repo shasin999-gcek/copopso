@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import { Link } from "react-router-dom";
 
 import Loading from "../Loading";
-import { Panel, Table, Button } from "../Reusable";
+import { PageHeader, Icon, Panel, Table, Button } from "../Reusable";
 
 import api from "../../Utils/api";
 
@@ -77,7 +77,10 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <div className="page-header">Dashboard</div>
+        <PageHeader>
+          <Icon name="dashboard"></Icon>
+          &nbsp;Dashboard
+        </PageHeader>
         {
           this.state.loading
             ? <Loading />

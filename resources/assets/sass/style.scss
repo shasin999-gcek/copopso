@@ -18,7 +18,7 @@
 }
 
 .page-header {
-   font-family: 'Raleway', sans-serif;
+   font-family: 'Quicksand', sans-serif;
    font-weight: bold;
    font-size: 30px;
 }
@@ -41,6 +41,10 @@ h1, h2, h3, h4, h5, h6 {
 
 nav a, nav li>a {
    font-family: 'Catamaran', sans-serif;
+}
+
+.nav .open > a:hover {
+    background-color: #06135d;
 }
 
 /* Error Pages */

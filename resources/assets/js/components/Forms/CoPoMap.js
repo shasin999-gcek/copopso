@@ -4,6 +4,7 @@ import uuid from 'uuid';
 
 import { Error403 } from "../Errors/Errors";
 import Loading from "../Loading";
+import { PageHeader, Table, Button, InputField, Icon } from "../Reusable";
 
 import api from "../../Utils/api";
 
@@ -44,6 +45,18 @@ class PreviewCoPoMapTable extends React.Component {
     }
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.showPopover = this.showPopover.bind(this);
+    this.hidePopover = this.hidePopover.bind(this);
+    this.createTextField = this.createTextField.bind(this);
+  }
+
+
+  showPopover(e) {
+    this.popover = new bsn.Popover(e.target);
+  }
+
+  hidePopover(e) {
+    this.popover.hide();
   }
 
   onInputChange(e) {
@@ -73,9 +86,12 @@ class PreviewCoPoMapTable extends React.Component {
       errorClass = inputErrorFields[name + i] === true ? "has-error" : null;
       inputFields.push(
         <td key={ name + i }>
-          <div className={"form-group " + errorClass}>
-            <input className="form-control" type="text" name={name + i} onChange={this.onInputChange}/>
-          </div>
+            <InputField
+              errorClass={errorClass}
+              type="text"
+              name={name + i}
+              value={this.props.copoMatrix[name + i] || ""}
+              onChange={this.onInputChange}/>
         </td>
       );
     }
@@ -83,13 +99,42 @@ class PreviewCoPoMapTable extends React.Component {
     return inputFields || null;
   }
 
+  createTextField(name, count) {
+    let textFields = [];
+
+    for(var i = 1; i <= count; i++) {
+      textFields.push(
+        <td key={ name + i }>
+          { this.props.copoMatrix[name + i] }
+        </td>
+      );
+    }
+
+    return textFields || null;
+  }
+
   createUI() {
+    const { taskMode } = this.props
+    const isAddOrEditMode = taskMode === "ADD" || taskMode === "EDIT";
+
     return this.props.cos.map((co, indx) => {
       return (
         <tr key={ co.name }>
-          <th>{ co.name }</th>
-          { this.createInputField("co" + co.id + "-po", 12) }
-          { this.createInputField("co" + co.id + "-pso", 4) }
+          <th>
+            <a
+              data-placement="left"
+              data-title={co.name}
+              data-content={co.description}
+              onMouseOver={this.showPopover}
+              onMouseLeave={this.hidePopover}
+              style={{color: "#000"}}>
+              {co.name}
+            </a>
+          </th>
+          { isAddOrEditMode && this.createInputField("co" + co.id + "-po", 12) }
+          { isAddOrEditMode && this.createInputField("co" + co.id + "-pso", 4) }
+          { taskMode === "VIEW" && this.createTextField("co" + co.id + "-po", 12) }
+          { taskMode === "VIEW" && this.createTextField("co" + co.id + "-pso", 4) }
         </tr>
       )
     });
@@ -97,7 +142,7 @@ class PreviewCoPoMapTable extends React.Component {
 
   render() {
     return (
-      <table className="table table-bordered">
+      <Table tableStyle="bordered">
         <thead className="bg-primary">
           <tr>
             <th></th>
@@ -112,7 +157,7 @@ class PreviewCoPoMapTable extends React.Component {
           { this.createUI() }
         </tbody>
 
-      </table>
+      </Table>
     );
   }
 
@@ -120,6 +165,8 @@ class PreviewCoPoMapTable extends React.Component {
 
 PreviewCoPoMapTable.propTypes = {
   cos: Proptypes.array.isRequired,
+  copoMatrix: Proptypes.object.isRequired,
+  taskMode: Proptypes.string.isRequired,
   setCoPoMap: Proptypes.func.isRequired
 }
 
@@ -130,17 +177,17 @@ class CoPoMap extends React.Component {
     this.state = {
       copoMatrix: {},
       coCount: 6,
-      course: {},
       cos: [],
       loading: true,
       error: false,
       isFormValid: false,
       isChecked: false,
-      taskStatus: null
+      taskMode: null
     };
 
     this.handleOnInputChange = this.handleOnInputChange.bind(this);
     this.handleOnCheckboxChange = this.handleOnCheckboxChange.bind(this);
+    this.handleOnTaskmodeChange = this.handleOnTaskmodeChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
@@ -148,7 +195,7 @@ class CoPoMap extends React.Component {
   componentDidMount() {
     const { userCourseId } =  this.props.match.params;
 
-    api.getUserCourseMap(userCourseId)
+    api.getCoPoPsoMap(userCourseId)
       .then(function(response) {
         // if respose is null then 403 error is happened
         if(response === null) {
@@ -162,20 +209,46 @@ class CoPoMap extends React.Component {
         // update formStatus when response not equal to null
         if(response !== null) {
 
-          // initially assume form wants to be edited
-          let taskStatus = "EDIT";
+          // initially assume form wants to be added
+          let taskMode = "ADD";
 
           // update the task status to VIEW because this form is already saved to db
-          if(response.data.status >= 1) {
-            taskStatus = "VIEW";
+          if(response.data.status >= 2) {
+            taskMode = "VIEW";
+          }
+
+
+          let copoMatrix ={};  // to store copopso map
+          if(response.data.status >= 2) {
+
+            // copy of copoMatrix
+            let copyMatrix = null;
+
+            // reduce copopso_map object
+            copoMatrix = response.data.copopso_map.reduce(function(copoMatrix, map) {
+              copyMatrix = Object.assign({}, copoMatrix); // mutability
+
+              for(var i = 1, j = 1; i <= 16; i++) {
+
+                if(i > 12) {
+                  copyMatrix["co" + map.id + "-pso" + j] = map.popso["pso" + j];
+                  j++;
+                } else {
+                  copyMatrix["co" + map.id + "-po" + i] = map.popso["po" + i];
+                }
+
+              }
+
+              return copyMatrix;
+            }, {});
           }
 
           // update state
           this.setState(() => {
             return {
-              course: response.data.course,
-              cos : response.data.cos,
-              taskStatus,
+              copoMatrix,
+              cos : response.data.copopso_map,
+              taskMode,
               loading: false,
               coCount: response.data.co_count || 6
             }
@@ -236,13 +309,35 @@ class CoPoMap extends React.Component {
     this.validateForm(); // validate the complete form
   }
 
-  handleOnSubmit() {
+  handleOnSubmit(taskMode) {
     let { params } = this.props.match;
     let { copoMatrix } = this.state;
     const userCourseId = params.userCourseId;
 
-    axios.post(`/co/${userCourseId}/storemap`, copoMatrix)
-      .then(response => console.log(response.status));
+    if(taskMode === "ADD") {
+      axios.post(`/co/${userCourseId}/storemap`, copoMatrix)
+        .then(response => {
+          if(response.status == 200) {
+            this.setState({ taskMode: "VIEW" });
+          }
+        });
+    } else if (taskMode === "EDIT") {
+      axios.put(`/co/${userCourseId}/updatemap`, copoMatrix)
+        .then(response => {
+          if(response.status == 200) {
+            this.setState({ taskMode: "VIEW" });
+          }
+        });
+    }
+
+  }
+
+  handleOnTaskmodeChange() {
+    this.setState(() => {
+      return {
+        taskMode: "EDIT"
+      }
+    });
   }
 
   render () {
@@ -255,42 +350,69 @@ class CoPoMap extends React.Component {
     }
 
     const checkedClass = (this.state.isChecked === true ? "text-success" : "text-danger");
+    const isAddOrEditMode = (this.state.taskMode === "ADD" || this.state.taskMode === "EDIT");
 
     return (
       <div>
-        <div className="page-header">
-          CO-PO Mapping
-        </div>
+
+        <PageHeader>
+          Co-Po-Pso Mapping
+        </PageHeader>
+
+        {this.state.taskMode === "VIEW" &&
+          <AlertInfo style={{width: "800px"}}>
+            <strong>Info: </strong>
+            Press Edit Icon to Edit this Form
+            <Button btnStyle="danger btn-sm pull-right" onClick={this.handleOnTaskmodeChange}>
+              <Icon name="pencil" />
+            </Button>
+          </AlertInfo>
+        }
 
         <PreviewCoPoMapTable
+          taskMode={this.state.taskMode}
           cos={this.state.cos}
+          copoMatrix={this.state.copoMatrix}
           setCoPoMap={this.handleOnInputChange}
           />
 
-        <div style={{ width:"40%" }}>
-          <input
-            type="checkbox"
-            style={{ float: "left" }}
-            value={this.state.isChecked}
-            onChange={this.handleOnCheckboxChange}/>
+        {isAddOrEditMode &&
+          <div>
+            <div style={{ width:"40%" }}>
+              <input
+                type="checkbox"
+                style={{ float: "left" }}
+                value={this.state.isChecked}
+                onChange={this.handleOnCheckboxChange}/>
 
-          <label
-            className={checkedClass}
-            style={{ float: "right" }}>
-            Check this box if you wanted to add hypen (-) in blank fields.
-          </label>
+              <label
+                className={checkedClass}
+                style={{ float: "right" }}>
+                Check this box if you wanted to add hypen (-) in blank fields.
+              </label>
+            </div>
+
+            <Button
+              btnStyle="primary"
+              disabled={!this.state.isFormValid}
+              onClick={this.handleOnSubmit.bind(null, this.state.taskMode)}>
+              Submit
+            </Button>
         </div>
+        }
 
-        <button
-          type="submit"
-          className="btn btn-primary"
-          disabled={!this.state.isFormValid}
-          onClick={this.handleOnSubmit}>
-          Submit
-        </button>
       </div>
     );
   }
+}
+
+const AlertInfo = (props) => {
+  return (
+    <div
+      className="alert alert-info"
+      {...props}
+    />
+  );
 }
 
 export default CoPoMap;

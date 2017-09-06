@@ -8,6 +8,7 @@ class CoPo extends Model
 {
     //
     protected $table = 'co_po';
+    public $timestamps = false;
 
     public function co()
     {

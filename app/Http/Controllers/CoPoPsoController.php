@@ -12,19 +12,6 @@ use App\CoPo;
 
 class CoPoPsoController extends Controller
 {
-    //To do: Code to check if user has access to page, else redirect
-
-    public function create($id)
-    {
-        /*
-            Function for viewing the CO-PO-PSO matrix
-            Accepts user_course_id as $id
-            Returns the COs associated with it.
-         */
-
-        $cos = Co::where('user_course_id', $id)->first()->copo;
-        return $cos;
-    }
 
     public function store(Request $request, $id)
     {
@@ -62,44 +49,14 @@ class CoPoPsoController extends Controller
 
         DB::table('co_po')->insert($matrix);
 
-        return redirect(url('co/'.$id));
+        // update the form status to 2 (ie copopso mapping is completed)
+        $update = UserCourse::find($id);
+        $update->status = 2;
+        $update->save();
+
+        return $matrix;
     }
 
-    public function edit($id)
-    {
-        /*
-            Function for editing the CO-PO-PSO matrix
-            Accepts user_course_id as $id
-            Returns the COs associated with it.
-         */
-
-        $cos = Co::where('user_course_id', $id)->orderBy('name')->get();
-
-
-        foreach ($cos as $co) {
-            $copopso= CoPo::where('co_id', $co->id)->first();
-
-            //to convert 0 to -
-            $copopso=$copopso->getAttributes();
-            foreach ($copopso as $key => $value) {
-
-                if ($key !== "co_id")
-                {
-                    if ($value === 0)
-                    {
-                        $copopso[$key] = "-";
-                    }
-                }
-            }
-
-            $co["popso"] = array_except($copopso,['co_id']);
-
-        }
-
-          return $cos;
-      //  return view('copopso.edit', compact('id', 'cos'));
-
-    }
 
     public function update(Request $request, $id)
     {
@@ -135,6 +92,6 @@ class CoPoPsoController extends Controller
 
         }
 
-        return redirect(url('co/'.$id));
+        return $cos;
     }
 }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // importing components
 import { NavBar, NavRightList } from "./NavBar";
 import SideBar from "./SideBar";
+import { Icon } from "../Reusable";
 
 // import api object
 import api from "../../Utils/api";
@@ -14,7 +15,6 @@ const ListItem = (props) => {
   return (
     <li>
       <Link to={ props.linkTo }>
-        <i className={"fa fa-" + props.icon + " fa-fw"}></i>
           { props.children }
       </Link>
     </li>
@@ -51,15 +51,20 @@ class Nav extends React.Component {
             <li>
               <a href="/logout">
                 <i className="fa fa-sign-out fa-fw"></i>
-                log out
+                Log Out
               </a>
             </li>
           </NavRightList>
         </NavBar>
 
         <SideBar>
-          <ListItem linkTo="/app/dashboard" icon="dashboard">
-            Dashboard
+          <ListItem linkTo="/app/dashboard">
+            <Icon name="dashboard" style={{fontWeight: "bold"}}></Icon>
+            &nbsp;Dashboard
+          </ListItem>
+          <ListItem linkTo="/app/program-outcomes">
+            <Icon name="th-list" style={{fontWeight: "bold"}}></Icon>
+            &nbsp;ProgramOutcomes
           </ListItem>
         </SideBar>
       </nav>

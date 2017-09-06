@@ -6,10 +6,17 @@ use Illuminate\Http\Request;
 use Auth;
 use App\UserCourse;
 use App\Po;
+use App\Co;
+use App\CoPo;
 
 class UserApiController extends Controller
 {
-  //  get registered courses of Auth user
+  /**
+   * get registered courses of Auth user
+   * @param  void
+   * @return courses
+   */
+
   public function get_courses() {
     return Auth::User() -> courses;
   }
@@ -40,8 +47,49 @@ class UserApiController extends Controller
             -> header('Content-Type', 'application/json');
   }
 
+  // fetch all program outcomes
+  // @return App\Po
   public function get_program_outcomes() {
     return Po::all();
+  }
+
+  /**
+  * grab all copopso map
+  * @param user_course_id
+  * @return assossiative array contains mapping, status and co count
+  */
+  public function get_copopso_map($user_course_id) {
+    // grab all cos
+    $cos = Co::where('user_course_id', $user_course_id)->orderBy('name')->get();
+
+    // combine po-pos map of each cos
+    foreach ($cos as $co) {
+        $copopso= CoPo::where('co_id', $co->id)->first();
+
+        if($copopso == null)
+          break;
+          
+        //to convert 0 to -
+        $copopso=$copopso->getAttributes();
+        foreach ($copopso as $key => $value) {
+
+            if ($key !== "co_id")
+            {
+                if ($value === 0)
+                {
+                    $copopso[$key] = "-";
+                }
+            }
+        }
+
+        $co["popso"] = array_except($copopso,['co_id']);
+
+    }
+
+    $usercourse = UserCourse::find($user_course_id);
+
+    // return copopso map, status and co_count
+    return ['copopso_map' => $cos, 'status' => $usercourse->status, 'co_count' => $usercourse->co_count];
   }
 
 }
