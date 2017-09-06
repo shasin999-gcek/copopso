@@ -21,6 +21,7 @@ class Justification extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      tabLoading: true,
       error: null,
       tabs: [],
       selectedTab: "PO1",
@@ -86,6 +87,7 @@ class Justification extends React.Component {
           this.setState(() => {
             return {
               error: true,
+              tabLoading: false
             }
           });
         }
@@ -93,6 +95,7 @@ class Justification extends React.Component {
           this.setState(() => {
             return {
               copoMaps: response.data,
+              tabLoading: false
             }
           });
         }
@@ -125,12 +128,17 @@ class Justification extends React.Component {
           onSelect = {this.updateTab}
           />
 
-        <PreviewTabContent
-          tabs={this.state.tabs}
-          selectedTab= {this.state.selectedTab}
-          programOutcomes = {this.state.programOutcomes}
-          copoMaps= {this.state.copoMaps}
-          />
+        {this.state.tabLoading
+          ? <div style={{marginLeft: "35%", marginTop: "10%", color: "#777b7f"}}>
+              <i className="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+            </div>
+          : <PreviewTabContent
+              tabs={this.state.tabs}
+              selectedTab= {this.state.selectedTab}
+              programOutcomes = {this.state.programOutcomes}
+              copoMaps= {this.state.copoMaps}
+              />
+        }
 
       </div>
     );
