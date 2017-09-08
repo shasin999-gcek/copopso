@@ -62,9 +62,20 @@ class Nav extends React.Component {
             <Icon name="dashboard" style={{fontWeight: "bold"}}></Icon>
             &nbsp;Dashboard
           </ListItem>
+
           <ListItem linkTo="/app/program-outcomes">
             <Icon name="th-list" style={{fontWeight: "bold"}}></Icon>
             &nbsp;ProgramOutcomes
+          </ListItem>
+
+          <ListItem linkTo="/app/add-faculties">
+            <Icon name="user-plus" style={{fontWeight: "bold"}}></Icon>
+            &nbsp;Add Faculties
+          </ListItem>
+
+          <ListItem linkTo="/app/upload-result">
+            <Icon name="cloud-upload" style={{fontWeight: "bold"}}></Icon>
+            &nbsp;Upload Results
           </ListItem>
         </SideBar>
       </nav>

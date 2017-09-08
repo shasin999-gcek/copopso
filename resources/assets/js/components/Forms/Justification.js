@@ -206,7 +206,7 @@ const PreviewTable = (props) => {
       <tbody>
         {props.copoMaps.map((copoMap, indx) => {
           return (
-            <tr key={indx}>
+            <tr key={indx} >
               <td>
                 <a
                   data-placement="left"
@@ -217,9 +217,12 @@ const PreviewTable = (props) => {
                   {copoMap.name}
                 </a>
               </td>
-              <td>{copoMap.po_value}</td>
+              <td>{copoMap.po_value === 0 ? "-" : copoMap.po_value}</td>
               <td>
-                <InputField type="text" />
+                <InputField
+                  type="text"
+                  value={copoMap.po_value === 0 ? "No Need of Justification" : ""}
+                  disabled={copoMap.po_value === 0 && true}/>
               </td>
             </tr>
           );
