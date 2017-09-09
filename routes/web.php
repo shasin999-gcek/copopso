@@ -26,7 +26,7 @@ Route::get('/logout', function() {
   return redirect('/');
 });
 
-Route::post('/testpost', 'UserApiController@testpost');
+
 //__________________________________________
 
 // load initial app

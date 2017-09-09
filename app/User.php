@@ -33,7 +33,7 @@ class User extends Eloquent implements Authenticatable, CanResetPasswordContract
 
     public function courses()
     {
-        return $this -> belongsToMany(Course::class, 'user_course')->withPivot('id','semester','academic_year','branch','co_count', 'status');
+        return $this -> belongsToMany(Course::class, 'user_course')->withPivot('id','semester','academic_year','branch','co_count');
     }
 
     // public function usercourse()

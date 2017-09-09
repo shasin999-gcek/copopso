@@ -138,9 +138,7 @@ class DatabaseSeeder extends Seeder
 					'semester' => 1,
 					'academic_year' => 2016,
 					'branch' => "ME",
-					'co_count' => 0,
-					'status' => 0
-
+					'co_count' => 0
 				),
 				array(
 					'id' => 2,

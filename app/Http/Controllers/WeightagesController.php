@@ -78,8 +78,14 @@ class WeightagesController extends Controller
         }
        
         DB::table('co_weightage')->insert($rows);
+<<<<<<< HEAD
         $coursedata->status +=1;
         $coursedata->save();
+=======
+
+        Status::where('user_course_id', $id)->update(['weightage' => true]);
+
+>>>>>>> master
         
         return redirect(url('co/'.$id));
 

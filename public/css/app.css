@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import url(https://fonts.googleapis.com/css?family=Raleway|Droid+Sans|Catamaran|Montserrat|Quicksand);@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);@charset "UTF-8";
+=======
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+>>>>>>> master
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -8536,6 +8540,7 @@ nav li > a {
   font-family: 'Catamaran', sans-serif;
 }
 
+<<<<<<< HEAD
 .nav .open > a:hover {
   background-color: #06135d;
 }
@@ -9813,3 +9818,5 @@ input[type="checkbox"]:disabled:checked:after,
   color: inherit;
 }
 
+=======
+>>>>>>> master
