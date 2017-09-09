@@ -1,12 +1,14 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway|Droid+Sans|Catamaran|Montserrat|Quicksand);
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// metisMenu
-//@import "node_modules/metismenu/src/metisMenu";
-
 //custom style
 @import 'style';
+
+// loading spinner animation
+@import 'spinner';
+
+@import '_bootswatch';

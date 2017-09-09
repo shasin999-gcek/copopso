@@ -1,17 +1,10 @@
 
 @import 'nav-sidebar';
 
-body {
-   font-family: 'Droid Sans', sans-serif;
-}
-
 
 #page-wrapper {
-	padding-top: 80px;
-	background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b55.png'); 
+	padding-top: 40px;
 }
-
-
 
 .centered {
   overflow: hidden;
@@ -25,13 +18,81 @@ body {
 }
 
 .page-header {
-   font-family: 'Raleway', sans-serif;
+   font-family: 'Quicksand', sans-serif;
+   font-weight: bold;
+   font-size: 30px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Droid Sans', sans-serif;
 }
 
+
+.navbar-inverse {
+    background-color: rgb(27, 36, 101);
+    border-color: rgb(70, 61, 61);
+    box-shadow: 0px 2px 10px 3px rgba(0,0,0,0.20);
+}
+
+.navbar-inverse .navbar-brand {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
 nav a, nav li>a {
    font-family: 'Catamaran', sans-serif;
+}
+
+.nav .open > a:hover {
+    background-color: #06135d;
+}
+
+/* Error Pages */
+
+.error {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.error-code {
+  bottom: 60%;
+  color: #2d353c;
+  font-size: 96px;
+  line-height: 100px;
+}
+
+.error-desc {
+  font-size: 12px;
+  color: #647788;
+}
+
+/* Buttons */
+.button-group {
+  padding-top: 6px;
+}
+
+.button-group button {
+  margin-bottom: 6px;
+}
+
+/* Footer */
+footer{
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width:100%;
+    position: relative;
+    bottom: 0;
+}
+
+footer p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #283593;
+}
+
+footer a {
+
 }

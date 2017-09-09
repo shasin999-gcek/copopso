@@ -17,6 +17,7 @@ class Co extends Model
         'id', 'name', 'description', 'user_course_id'
     ];
 
+    public $timestamps = false;
 
     public function usercourse()
     {
