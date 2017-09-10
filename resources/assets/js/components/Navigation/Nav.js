@@ -24,29 +24,15 @@ const ListItem = (props) => {
 class Nav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userName: null
-    };
-  }
-
-  componentDidMount() {
-    api.getUserCourseDetails()
-      .then(function(response) {
-        this.setState(() => {
-          return {
-            userName: response.userInfo.name
-          }
-        });
-      }.bind(this));
   }
 
   render() {
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation" style={{ marginBottom: 0 }}>
+      <Main>
         <NavBar>
           <NavRightList>
             <ListItem linkTo="#" icon="user">
-              { this.state.userName }
+              { this.props.userName }
             </ListItem>
             <li>
               <a href="/logout">
@@ -68,19 +54,39 @@ class Nav extends React.Component {
             &nbsp;ProgramOutcomes
           </ListItem>
 
-          <ListItem linkTo="/app/add-faculties">
-            <Icon name="user-plus" style={{fontWeight: "bold"}}></Icon>
-            &nbsp;Add Faculties
-          </ListItem>
+          {this.props.isAdmin &&
+            <ListItem linkTo="/app/add-faculties">
+              <Icon name="user-plus" style={{fontWeight: "bold"}}></Icon>
+              &nbsp;Add Faculties
+            </ListItem>
+          }
 
-          <ListItem linkTo="/app/upload-result">
-            <Icon name="cloud-upload" style={{fontWeight: "bold"}}></Icon>
-            &nbsp;Upload Results
-          </ListItem>
+          {this.props.isAdmin &&
+            <ListItem linkTo="/app/upload-result">
+              <Icon name="cloud-upload" style={{fontWeight: "bold"}}></Icon>
+              &nbsp;Upload Results
+            </ListItem>
+          }
+
         </SideBar>
-      </nav>
+      </Main>
     );
   }
+}
+
+Nav.propTypes = {
+  userName: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool.isRequired
+}
+
+const Main = (props) => {
+  return (
+    <nav
+      className="navbar navbar-inverse navbar-fixed-top"
+      role="navigation"
+      style={{ marginBottom: 0 }} {...props}
+      />
+  )
 }
 
 export default Nav;

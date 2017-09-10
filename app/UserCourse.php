@@ -11,7 +11,7 @@ class UserCourse extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'user_id', 'course_id', 'semester', 'academic_year','branch','co_count'
+        'id', 'user_id', 'course_id', 'semester', 'academic_year','branch','co_count', 'status'
     ];
 
 

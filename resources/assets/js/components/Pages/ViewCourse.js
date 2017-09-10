@@ -115,7 +115,7 @@ class ViewCourses extends React.Component {
     if(this.state.loading) {
       return <Loading />;
     }
-
+    console.log(this.state.formStatus);
     return (
       <TaskPreview
         formStatus={ this.state.formStatus }

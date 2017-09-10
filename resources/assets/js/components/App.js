@@ -14,6 +14,9 @@ import { PageHeader, Icon } from "./Reusable";
 import { Error404, Error400 } from "./Errors/Errors";
 import Footer from "./Footer";
 
+// import api object
+import api from "../Utils/api";
+
 // return Form component based on taskId
 const RenderTask = (props) => {
   const { taskId } = props.match.params;
@@ -111,13 +114,45 @@ const Header = ({ heading, iconName }) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userName: null,
+      isAdmin: false,
+      loading: true
+    }
+  }
+
+  componentDidMount() {
+    api.getUserCourseDetails()
+      .then(function(response) {
+        this.setState(() => {
+          return {
+            userName: response.userInfo.name,
+            isAdmin: response.userInfo.is_admin,
+            loading: false
+          }
+        });
+      }.bind(this));
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div style={{marginTop: "100px", textAlign: "center"}}>
+          <PageHeader>
+            Loading...
+          </PageHeader>
+        </div>
+      )
+    }
+
     return (
       <div>
         <div id="wrapper">
-          <Nav />
+          <Nav
+            isAdmin={this.state.isAdmin}
+            userName={this.state.userName} 
+            />
           <div id="page-wrapper">
             <Switch>
               <Route exact path="/app/dashboard" component={ RenderDashboard } />

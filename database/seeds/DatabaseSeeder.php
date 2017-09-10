@@ -140,26 +140,26 @@ class DatabaseSeeder extends Seeder
 					'branch' => "ME",
 					'co_count' => 0
 				),
-				array(
-					'id' => 2,
-					'user_id' => 100,
-					'course_id' => 201,
-					'semester' => 2,
-					'academic_year' => 2017,
-					'branch' => "ME",
-					'co_count' => 0,
-					'status' => 0
-				),
-        array(
-					'id' => 3,
-					'user_id' => 101,
-					'course_id' => 201,
-					'semester' => 2,
-					'academic_year' => 2017,
-					'branch' => "ME",
-					'co_count' => 0,
-					'status' => 0
-				),
+				// array(
+				// 	'id' => 2,
+				// 	'user_id' => 100,
+				// 	'course_id' => 201,
+				// 	'semester' => 2,
+				// 	'academic_year' => 2017,
+				// 	'branch' => "ME",
+				// 	'co_count' => 0,
+				// 	'status' => 0
+				// ),
+        // array(
+				// 	'id' => 3,
+				// 	'user_id' => 101,
+				// 	'course_id' => 201,
+				// 	'semester' => 2,
+				// 	'academic_year' => 2017,
+				// 	'branch' => "ME",
+				// 	'co_count' => 0,
+				// 	'status' => 0
+				// )
 
 	    ]);
 
