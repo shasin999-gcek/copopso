@@ -178,10 +178,10 @@ const PreviewTabContent = (props) => {
       <TabPanel>
         <Panel
           style={{width: "900px"}}
-          heading={props.programOutcomes[poId].name}>
+          heading={props.programOutcomes[poId - 1].name}>
           <PreviewDescription
             heading="Description:-"
-            body={props.programOutcomes[poId].body}
+            body={props.programOutcomes[poId - 1].body}
             />
           <PreviewTable copoMaps={props.copoMaps} poId={poId}/>
           <Button btnStyle="primary">
