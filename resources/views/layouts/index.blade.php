@@ -5,8 +5,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="Developer: Octa.co,
-          CEO: Muhammed Shasin P, Category: Education, github: https://github.com/shasin999-gcek">
+        <meta name="Description" content="A web application for automating the entire
+            accreditation process in Govt. College of engineering Kannur">
+        <meta name="keywords" content="gcek,gce kannur,etlab,shasin,muhammed shasin p,
+           copopso,copopso automation,ktu,accreditation,accreditation web app,copopso automation,octaco">
+        <meta name="author" content="Octa.co">
+
          <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 

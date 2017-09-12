@@ -12,8 +12,7 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
-    "laravel-mix": "next",
-    "pdf2json": "^1.1.7"
+    "laravel-mix": "^1.4.3"
   },
   "dependencies": {
     "bootstrap.native": "^2.0.12",

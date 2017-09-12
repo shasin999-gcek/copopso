@@ -5,6 +5,7 @@ import Nav from "./Navigation/Nav";
 import CourseOutcomes from "./Forms/CourseOutcomes";
 import CoPoMap from "./Forms/CoPoMap";
 import Justification from "./Forms/Justification";
+import CoAttainment from "./Forms/CoAttainment/CoAttainment";
 import Dashboard from "./Pages/Dashboard";
 import ViewCourse from "./Pages/ViewCourse";
 import AddFaculty from "./Admin/AddFaculty";
@@ -45,6 +46,15 @@ const RenderTask = (props) => {
         <div>
           <Header heading="Add Justification"/>
           <Justification {...props}/>
+        </div>
+      );
+      break;
+
+    case '4':
+      return (
+        <div>
+          <Header heading="Co Attainment"/>
+          <CoAttainment {...props}/>
         </div>
       );
       break;
@@ -151,7 +161,7 @@ class App extends React.Component {
         <div id="wrapper">
           <Nav
             isAdmin={this.state.isAdmin}
-            userName={this.state.userName} 
+            userName={this.state.userName}
             />
           <div id="page-wrapper">
             <Switch>

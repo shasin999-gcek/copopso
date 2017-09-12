@@ -61,7 +61,7 @@ const TaskPreview = (props) => {
 }
 
 TaskPreview.defaultProps = {
-  tasks: ["Course Outcomes", "CO-PO Mapping", "PO Justification", "CO Weightage", "Upload Mark List"],
+  tasks: ["Course Outcomes", "CO-PO Mapping", "PO Justification", "CO Attainment"]
 }
 
 TaskPreview.propTypes = {
