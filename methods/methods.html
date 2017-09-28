@@ -19,11 +19,11 @@
                             <li class='active'><a data-toggle='tab' href='#vis_opgave1'>Assignment 1</a>
 
                             </li>
-                        
+
                             <li><a data-toggle='tab' href='#rediger_opgave1'>Test 1</a>
 
                             </li>
-                        
+
                             <li><a data-toggle='tab' href='#admin_opgave_billeder1'>Test 2</a>
 
                             </li>
@@ -35,11 +35,10 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="tab-content">
                 <div id='vis_opgave1' class='tab-pane fade in active'>
-                    
-                    <form class="form-vertical" id="co-po-matrix" role="form" action="/co/{{$id}}/storemap" method="POST">
+                    <form class="form-vertical" id="ASSIGNMENT" role="form">
                         <div name="assignment">
                             <table class="table table-bordered table-condensed">
                                 <tbody>
@@ -52,15 +51,15 @@
                                         <td>CO5</td>
                                         <td>CO6</td>
                                     </tr>
-                                
+
                                     <tr class="noBorder" id="add1">
                                         <td>Max Weightage</td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO6" class="form-control" size="5" required  /></td>
                                         <td></td>
                                     </tr>
 
@@ -70,29 +69,24 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div>
-                            
-                        </div>
-        
-
+                      </form>
+                    </div>
         <!-- <div class="row">
-          <input class="col-lg-1" type="checkbox" id="check_id">    
+          <input class="col-lg-1" type="checkbox" id="check_id">
           <p class="text-danger">
              Check this box if you wanted to add hypen (-) in blank fields.
           </p>
         </div> -->
-      
-    </form>
-                </div>
+
+
 
                 <div id='rediger_opgave1' class='tab-pane fade'>
                     <table id="test1" class="table table-bordered table-condensed">
                         <tbody>
-                            <tr id="ques1"> 
+                            <tr id="ques1">
                                <td style="border: 0;">
-                                    <button class="btn addq">Add Question</button>                          
-                                </td>    
+                                    <button class="btn addq">Add Question</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 0;">
@@ -101,7 +95,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table id="Test1" style="display: none;" class="table table-bordered table-condensed">
+
+                    <form class="form-vertical" id="TEST1" role="form">
+                      <table id="Test1" style="display: none;" class="table table-bordered table-condensed">
                                 <tbody>
                                     <tr class="noBorder">
                                         <td></td>
@@ -112,15 +108,15 @@
                                         <td>5</td>
                                         <td>6</td>
                                     </tr>
-                                
+
                                     <tr class="noBorder" id="test1add1">
                                         <td>Max Weightage</td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="6" class="form-control" size="5" required  /></td>
                                         <td></td>
                                     </tr>
 
@@ -128,16 +124,19 @@
                                         <td><button id="t1" class="btn test" type="button">+</button></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                      </table>
+                    </form>
                 </div>
-            
+
+
                 <div id='admin_opgave_billeder1' class='tab-pane fade'>
+
                     <table id="test2" class="table table-bordered table-condensed">
                         <tbody>
-                            <tr id="Ques1"> 
+                            <tr id="Ques1">
                                <td style="border: 0;">
-                                    <button class="btn addqq">Add Question</button>                          
-                                </td>    
+                                    <button class="btn addqq">Add Question</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 0;">
@@ -146,7 +145,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table id="Test2" style="display: none;" class="table table-bordered table-condensed">
+
+                    <form class="form-vertical" id="TEST2" role="form">
+                      <table id="Test2" style="display: none;" class="table table-bordered table-condensed">
                                 <tbody>
                                     <tr class="noBorder">
                                         <td></td>
@@ -157,15 +158,15 @@
                                         <td>5</td>
                                         <td>6</td>
                                     </tr>
-                                
+
                                     <tr class="noBorder" id="test2add1">
                                         <td>Max Weightage</td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
-                                        <td><input type="text" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="6" class="form-control" size="5" required  /></td>
                                         <td></td>
                                     </tr>
 
@@ -174,7 +175,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                </div>
+                          </form>
+                        </div>
 
                 <div id='cie' class="tab-pane fade">
                     <div class="row">afefefef</div>
@@ -182,12 +184,11 @@
             </div>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-            <button type="submit" class="btn btn-success" id="btn-submit">Submit</button>
+            <button type="submit" class="btn btn-success submit" id="btn-submit">Submit</button>
         </div>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
-  
