@@ -12,6 +12,10 @@ import {
   InputField
  } from "../Reusable";
 
+ import { 
+  Tab, TabPanel, TabContent, ListItem, SelectTabs 
+ } from "./Tab";
+
 import { Error403 } from "../Errors/Errors";
 import Loading from "../Loading";
 
@@ -151,24 +155,6 @@ class Justification extends React.Component {
   }
 }
 
-const SelectTabs = (props) => {
-
-  return (
-    <Tab>
-      {props.tabs.map(function(tab) {
-        return (
-          <ListItem
-            key={tab}
-            className={props.selectedTab === tab ? "active" : null}
-            onClick={props.onSelect.bind(null, tab)}>
-            {tab}
-          </ListItem>
-        );
-      }.bind(this))}
-    </Tab>
-  );
-
-}
 
 const PreviewTabContent = (props) => {
   const poId = Number(props.selectedTab.substr(2));
@@ -243,36 +229,5 @@ const PreviewDescription = (props) => {
   );
 }
 
-const Tab = (props) => {
-  return (
-    <ul className="nav nav-tabs" {...props} />
-  );
-}
-
-
-const ListItem = (props) => {
-  return (
-    <li style={{ cursor: "pointer", fontWeight: "bold"}} {...props}>
-      <a>
-        {props.children}
-      </a>
-    </li>
-  );
-}
-
-const TabContent = (props) => {
-  return (
-    <div
-      className="tab-content"
-      style={{marginTop: "10px"}}
-      {...props} />
-  );
-}
-
-const TabPanel = (props) => {
-  return (
-    <div className="tab-pane active" {...props} />
-  );
-}
 
 export default Justification;

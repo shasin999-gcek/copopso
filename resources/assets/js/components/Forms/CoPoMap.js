@@ -384,9 +384,11 @@ class CoPoMap extends React.Component {
               <label
                 className={checkedClass}
                 style={{ float: "right" }}>
-                Check this box if you wanted to add hypen (-) in blank fields.
+                <span>
+                  Check this box if you wanted to add hypen (-) in blank fields.
+                </span>  
               </label>
-            </div>
+            </div><br/>
 
             <Button
               btnStyle="primary"

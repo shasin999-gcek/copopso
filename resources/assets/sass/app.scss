@@ -1,14 +1,14 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway|Droid+Sans|Catamaran|Montserrat|Quicksand);
+@import url(https://fonts.googleapis.com/css?family=Roboto|Raleway|Droid+Sans|Catamaran|Montserrat|Quicksand);
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-//custom style
-@import 'style';
+// // Bootstrap
+ // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // loading spinner animation
 @import 'spinner';
 
-@import '_bootswatch';
+// @import '_bootswatch';
+
+//custom style
+@import 'style';

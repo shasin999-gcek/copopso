@@ -53,7 +53,7 @@ const RenderTask = (props) => {
     case '4':
       return (
         <div>
-          <Header heading="Co Attainment"/>
+          <Header heading="CO Attainment Calculation"/>
           <CoAttainment {...props}/>
         </div>
       );

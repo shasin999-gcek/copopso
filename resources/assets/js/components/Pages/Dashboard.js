@@ -29,7 +29,7 @@ const CoursePreview = (props) => {
                 <td>{ course.pivot.academic_year }</td>
                 <td>{ course.course_name }</td>
                 <td>{ course.pivot.branch }</td>
-                <td>{ course.pivot.semester }</td>
+                <td>S{ course.pivot.semester }</td>
                 <td>
                   <Link
                     className="btn btn-primary"

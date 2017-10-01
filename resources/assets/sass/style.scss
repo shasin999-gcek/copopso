@@ -1,6 +1,15 @@
 
 @import 'nav-sidebar';
 
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+
+th, td {
+ font-size: 15px;
+}
+
 #page-wrapper {
 	padding-top: 40px;
 }
@@ -26,7 +35,26 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Droid Sans', sans-serif;
 }
 
+.border-around {
+  border: 2px solid rgba(45, 68, 148, 0.88);
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  border-radius: 5px;
+}
 
+.flex-left {
+  flex: 7;
+  padding: 10px;
+}
+
+.flex-right {
+  padding: 10px;
+}
+
+/* ___________________________________________________________________________ */
+
+/* bootstarp customisation */
 .navbar-inverse {
     background-color: rgb(27, 36, 101);
     border-color: rgb(70, 61, 61);
@@ -45,6 +73,14 @@ nav a, nav li>a {
 .nav .open > a:hover {
     background-color: #06135d;
 }
+
+
+label, .control-label, .help-block, .checkbox, .radio {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+/* ____________________________________________________________ */
 
 /* Error Pages */
 

@@ -12,12 +12,27 @@ import Loading from "../Loading";
 import { Error403 } from "../Errors/Errors";
 import { Icon, Table } from "../Reusable"
 
+const ButtonLink = (props) => {
+  console.log(props.stateClassName)
+  return (
+     <Link
+      className={"btn btn-primary " + props.stateClassName}
+      to={{
+        pathname: props.url
+      }}>
+
+      { props.children }
+
+    </Link>
+  );
+}
 
 const TaskPreview = (props) => {
   const { match } = props;
+  const disableClass = (props.formStatus != 0) ? "active" : "disabled";
 
   return (
-    <Table tableStyle="stripped" style={{width: "800px"}}>
+    <Table tableStyle="bordered" style={{width: "800px"}}>
       <thead className="bg-primary">
         <tr>
           <th>Tasks</th>
@@ -28,23 +43,19 @@ const TaskPreview = (props) => {
       <tbody>
         {props.tasks.map((task, index) => {
 
-          const disableClass = (props.formStatus >= index) ? "active" : "disabled";
-          const btnText = (props.formStatus === index) ? "Add" : "View";
           const isCompleted = (props.formStatus > index) ? true : false;
 
           return (
-            <tr key={uuid.v4()} className={ disableClass }>
-              <td>{ task }</td>
+            <tr key={uuid.v4()}>
+              <th>{ task }</th>
               <td>
-                <Link
-                  className={"btn btn-primary " + disableClass}
-                  to={{
-                    pathname: match.url + "/task/" + (index + 1)
-                  }}>
+                <ButtonLink
+                  stateClassName={(index === 0) ? "active" : disableClass}
+                  url= {match.url + "/task/" + (index + 1)}>
 
-                  { btnText }
+                  { isCompleted ? "VIEW" : "ADD" }
 
-                </Link>
+                </ButtonLink>
               </td>
               <td>
                   {isCompleted
