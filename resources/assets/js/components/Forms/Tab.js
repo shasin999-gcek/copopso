@@ -42,7 +42,7 @@ const SelectTabs = (props) => {
         return (
           <ListItem
             key={tab}
-            className={props.selectedTab === tab ? "active" : null}
+            className={props.selectedTab === tab ? "active" : "disabled"}
             onClick={props.onSelect.bind(null, tab)}>
             {tab}
           </ListItem>

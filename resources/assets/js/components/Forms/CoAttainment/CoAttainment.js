@@ -5,7 +5,9 @@ import {
 } from "../Tab";
 
 // importing main components
-import Assignment from "./Assignment";
+import MainForm from "./MainForm";
+import ManageMultiForm from "./ManageMultiForm";
+import AddQuestion from "./AddQuestion";
 
 class CoAttainment extends React.Component {
   constructor(props) {
@@ -17,14 +19,36 @@ class CoAttainment extends React.Component {
         "Series Test 2",
         "CIE"
       ],
-      selectedTab: "Assignment"
+      selectedTab: "Assignment",
+      /*
+       * completed state used
+       * to identify whether previous
+       * form is completed
+      */
+      completed: 0, // assume no form is completd at beginning
+      currentFormId: "asgn",
+      assignment: null
     };
 
     this.updateTab = this.updateTab.bind(this);
+    this.handleOnSave = this.handleOnSave.bind(this);
   }
 
   updateTab(newTab) {
     this.setState({selectedTab: newTab});
+  }
+
+  handleOnSave(formId, values) {
+    switch (formId) {
+      case "asgn":
+        console.log("reached")
+        this.setState({assignment: values});
+        break;
+      default:
+        console.log('deafult', formId)
+        break;
+    }
+    
   }
 
   render () {
@@ -37,17 +61,38 @@ class CoAttainment extends React.Component {
           /> 
         <PreviewTabContent
           selectedTab={this.state.selectedTab}
+          formId={this.state.currentFormId}
+          onSave={this.handleOnSave.bind(null, this.state.currentFormId) }
           />
       </div>
     );
   }
 }
 
-const PreviewTabContent = ({ selectedTab }) => {
+const PreviewTabContent = (props) => {
+  let component = null;
+
+  switch (props.formId) {
+    case "asgn":
+      component = <MainForm 
+        formId="asgn" 
+        save={props.onSave}
+        />
+      break;
+    case "stest1":
+      component = <ManageMultiForm formId="stest1"/>
+      break;
+    case "stest2":
+      component = <ManageMultiForm formId="stest2"/>
+      break;  
+    default:
+      // statements_def
+      break;
+  }
   return (
     <TabContent>
       <TabPanel>
-        <Assignment />
+       { component }
       </TabPanel>
     </TabContent>
   );

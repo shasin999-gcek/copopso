@@ -17,6 +17,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/yeti/bootstrap.min.css">
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
