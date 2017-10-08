@@ -33731,28 +33731,73 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var UploadResult = function (_React$Component) {
   _inherits(UploadResult, _React$Component);
 
-  function UploadResult() {
+  function UploadResult(props) {
     _classCallCheck(this, UploadResult);
 
-    return _possibleConstructorReturn(this, (UploadResult.__proto__ || Object.getPrototypeOf(UploadResult)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (UploadResult.__proto__ || Object.getPrototypeOf(UploadResult)).call(this, props));
+
+    _this.state = {
+      percentCompleted: 0,
+      loading: false
+    };
+
+    _this.handleOnUpload = _this.handleOnUpload.bind(_this);
+    return _this;
   }
 
   _createClass(UploadResult, [{
-    key: "render",
+    key: 'handleOnUpload',
+    value: function handleOnUpload() {
+      var _this2 = this;
+
+      this.setState({ loading: true });
+
+      // get file 
+      var pdfFile = document.getElementById('pdf').files[0];
+      // create a instance of FormData
+      var formData = new FormData();
+      // append file to be uploaded 
+      formData.append('results_pdf', pdfFile);
+
+      // create axios config object
+      var config = {
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          var percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+          _this2.setState({ percentCompleted: percentCompleted, loading: false });
+        }
+
+        // upload file with axios
+      };axios.post('/upload', formData, config).then(function (response) {
+        return console.log(response);
+      });
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
+        'div',
         null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'label',
+          null,
+          'Upload results.pdf file(KTU)'
+        ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Reusable__["c" /* InputField */], {
-          type: "file",
-          id: "pdf",
-          encType: "multipart/form-data"
+          type: 'file',
+          id: 'pdf',
+          style: { width: "300px" },
+          encType: 'multipart/form-data',
+          title: 'select pdf file'
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { style: { clear: "both" } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("iframe", { id: "viewer", frameBorder: "0", scrolling: "no", width: "400", height: "600" })
-        )
+          __WEBPACK_IMPORTED_MODULE_1__Reusable__["a" /* Button */],
+          {
+            btnStyle: 'primary',
+            btnType: 'submit',
+            onClick: this.handleOnUpload },
+          'Upload File'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Progress, { percentCompleted: this.state.percentCompleted })
       );
     }
   }]);
@@ -33760,6 +33805,15 @@ var UploadResult = function (_React$Component) {
   return UploadResult;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
+var Progress = function Progress(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'div',
+    { className: 'progress', style: { width: "50%" } },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
+      className: 'progress-bar progress-bar-success',
+      style: { width: props.percentCompleted } })
+  );
+};
 /* harmony default export */ __webpack_exports__["a"] = (UploadResult);
 
 /***/ }),
