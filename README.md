@@ -22,20 +22,9 @@ Every dependencies used during development will be updated here. I kindly reques
    php artisan serve
 ```
 
-Login as "abc@xyz.com" with password "12345". Two courses have already been associated with this user .
+Login as "abc@xyz.com" with password "12345". six courses have already been associated with this user .
 
 ## Areas to Work on
-
-   
-The status of each user_course determines what's shown on this page. Current setup is such that, for the given values of $status:
-   ```
-      0 -> No steps completed. Link to CO Form. 
-      1 -> COs have been defined. Display them. Link to CO-PO Matrix form. 
-      2-17 -> CO-PO Matrix defined. Display matrix. Link to ($status-1)th PO Justification form.
-      18 -> All PO's and PSO's justified. Link to CO Weightage form.
-      19 -> Weightages filled. Link to Upload page. 
-      20 -> Upload completed.
-   ```
  
 Database:
    * Check if string lengths are compatible with requirements of each field
@@ -45,8 +34,6 @@ Database:
    * Store academic_year in user course as string? Using date formats not possible since two years are concatenated. Temporarily being stored as an integer.
  
 ## DATABASE SCHEMA
-
-![Current](https://image.ibb.co/jvaq4a/current_db.png)
 
 ![Modified](https://image.ibb.co/d88oqF/modified_db.png)
 
