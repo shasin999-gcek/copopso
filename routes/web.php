@@ -53,8 +53,7 @@ Route::post('/co/{id}/storejust/{po_id}', 'JustificationsController@store')->mid
 Route::get('/co/{id}/weightage', 'WeightagesController@create')->middleware('auth');
 Route::post('/co/{id}/weightage', 'WeightagesController@store')->middleware('auth');
 
-Route::get ('upload', 'MarksController@showForm')->middleware('auth');
-Route::post('upload', 'MarksController@store')->middleware('auth');
+Route::post('/upload', 'ResultExtracter@store')->middleware('auth');
 
 
 // REST APIs

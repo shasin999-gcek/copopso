@@ -34,7 +34,19 @@ class ResultExtracter extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fileNameWithExt = $request
+                            ->file('results_pdf')
+                            ->getClientOriginalName();
+        $fileExtension = $request
+                            ->file('results_pdf')
+                            ->getClientOriginalExtension();
+
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
+
+        $path = $request->file('results_pdf')->storeAs('public/pdfs', $fileNameToStore);
+
+        return $path;
     }
 
     /**
