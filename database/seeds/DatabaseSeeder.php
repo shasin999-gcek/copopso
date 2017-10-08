@@ -12,8 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        DB::table('pos')->insert(
-        array(
+        DB::table('pos')->insert([
         	array(
                 'id'   => '1',
                 'name' => 'Engineering Knowledge',
@@ -75,95 +74,118 @@ class DatabaseSeeder extends Seeder
 	                'name' => 'Project Management and Finance',
 	                'body' => 'Demonstrate knowledge and understanding of the engineering and management principles and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.'
 	        ),
-	        array(
-	                'id'   => '13',
-	                'name' => 'PSO1',
-	                'body' => 'Body for PSO1'
-	        ),
-	        array(
-	                'id'   => '14',
-	                'name' => 'PSO2',
-	                'body' => 'Body for PSO2'
-	        ),
-	        array(
-	                'id'   => '15',
-	                'name' => 'PSO3',
-	                'body' => 'Body for PSO3'
-	        ),
-	        array(
-	                'id'   => '16',
-	                'name' => 'PSO4',
-	                'body' => 'Body for PSO4'
-	        )
+	 			]);
 
-	 	)
-       );
+        /*User seeder*/
+				DB::table('users')->insert([
+		      [
+					'id' => 100,
+					'name' => "ABC",
+					'email' => "abc@xyz.com",
+					'password' => bcrypt("12345"),
+					'department' => 'CSE'
+		      ]
+		    ]);
 
-		DB::table('users')->insert([
-      [
-			'id' => 100,
-			'name' => "ABC",
-			'email' => "abc@xyz.com",
-			'password' => bcrypt("12345"),
-			'department' => 'CSE'
-      ],
-      [
-        'id' => 101,
-  			'name' => "shasin",
-  			'email' => "mohdshasin313@gmail.com",
-  			'password' => bcrypt("12345"),
-  			'department' => 'CSE'
-      ]
-    ]);
+				/*Courses seeder*/
+		    DB::table('course')->insert([
+					array(
+						'id' => 1,
+						'course_code' => "MA102",
+						'course_name' => "DIFFERENTIAL EQUATIONS"
+					),
+					array(
+						'id' => 2,
+						'course_code' => "CY100",
+						'course_name' => "ENGINEERING CHEMISTRY"
+					),
+					array(
+						'id' => 3,
+						'course_code' => "BE110",
+						'course_name' => "ENGINEERING GRAPHICS"
+					),
+					array(
+						'id' => 4,
+						'course_code' => "BE102",
+						'course_name' => "DESIGN&ENGINEERING"
+					),
+					array(
+						'id' => 5,
+						'course_code' => "CS100",
+						'course_name' => "BASICS OF COMPUTER PROGRAMMING"
+					),
+					array(
+						'id' => 6,
+						'course_code' => "EE100",
+						'course_name' => "BASICS OF ELECTRICAL ENGINEERING"
+					),
 
-	    DB::table('course')->insert([
-				array(
-					'id' => 200,
-					'course_code' => "MA100",
-					'course_name' => "Calculus"
-				),
-				array(
-					'id' => 201,
-					'course_code' => "CS101",
-					'course_name' => "Algorithms"
-				)
+		    ]);
 
-	    ]);
-
+		  /*UserCourse seeder*/
 	    DB::table('user_course')->insert([
 				array(
 					'id' => 1,
 					'user_id' => 100,
-					'course_id' => 200,
-					'semester' => 1,
-					'academic_year' => 2016,
-					'branch' => "ME",
+					'course_id' => 1,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
 					'co_count' => 0,
 					'status' => 0
 				),
-				// array(
-				// 	'id' => 2,
-				// 	'user_id' => 100,
-				// 	'course_id' => 201,
-				// 	'semester' => 2,
-				// 	'academic_year' => 2017,
-				// 	'branch' => "ME",
-				// 	'co_count' => 0,
-				// 	'status' => 0
-				// ),
-        // array(
-				// 	'id' => 3,
-				// 	'user_id' => 101,
-				// 	'course_id' => 201,
-				// 	'semester' => 2,
-				// 	'academic_year' => 2017,
-				// 	'branch' => "ME",
-				// 	'co_count' => 0,
-				// 	'status' => 0
-				// )
+				array(
+					'id' => 2,
+					'user_id' => 100,
+					'course_id' => 2,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
+					'co_count' => 0,
+					'status' => 0
+				),
+        array(
+					'id' => 3,
+					'user_id' => 100,
+					'course_id' => 3,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
+					'co_count' => 0,
+					'status' => 0
+				),
+				array(
+					'id' => 4,
+					'user_id' => 100,
+					'course_id' => 4,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
+					'co_count' => 0,
+					'status' => 0
+				),
+				array(
+					'id' => 5,
+					'user_id' => 100,
+					'course_id' => 5,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
+					'co_count' => 0,
+					'status' => 0
+				),
+        array(
+					'id' => 6,
+					'user_id' => 100,
+					'course_id' => 6,
+					'semester' => 2,
+					'academic_year' => "2016-2017",
+					'branch' => "CSE",
+					'co_count' => 0,
+					'status' => 0
+				)
 
 	    ]);
-
 
     }
 

@@ -36,24 +36,59 @@ export default class MainForm extends Component {
     });
   }
 
-  handleOnInputChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    const values = Object.assign({}, this.state.values, {[name]: value})
-    this.setState(() => {
+  modifyFormName(name) {
+    let splitName = name.split('-');
+    if(typeof splitName[1] === "string" && splitName[1] === "w") {
       return {
-        values
+        name: "weigtage",
+        subname: splitName[2]
+      };
+    } else {
+      return {
+        name: splitName[1],
+        subname: splitName[2]
       }
+    }
+  }
+
+  handleOnInputChange(e) {
+    const { name, subname } = this.modifyFormName(e.target.name);
+    const value = e.target.value;
+
+    this.setState((prevState) => {
+
+      if(prevState.values[name]) {
+        return {
+          values: Object.assign(
+            {}, 
+            prevState.values,
+            { [name]: Object.assign(
+                {}, 
+                prevState.values[name], 
+                {[subname]: value}
+              ) 
+            }
+          )
+        }
+      } else {
+        return {
+          values: Object.assign(
+            {}, 
+            prevState.values,
+            { [name]: { [subname]: value} }
+          )
+        }
+      }  
     });
   }
 
   handleOnSave() {
     this.props.save(this.state.values);
+    this.props.next()
   }
 
 	render() {
     const { extraRows } = this.state;
-
 		return (
 			<div>
         <BorderAround>

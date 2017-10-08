@@ -18,7 +18,7 @@ class CreateUserCourseTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('course_id');
 			$table->integer('semester');
-			$table->integer('academic_year');
+			$table->string('academic_year');
 			$table->string('branch');
 			$table->integer('co_count')->default(0);
 			$table->integer('status')->default(0);

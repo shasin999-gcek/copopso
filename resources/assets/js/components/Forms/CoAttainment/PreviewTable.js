@@ -14,11 +14,11 @@ const CreateOrUpdateRows = (props) => {
           name = props.formId + "-" + row + "-" + index;
 
           if(index === 0) 
-            return <th key="0">{row}</th>  
+            return <th key="125">{row}</th>  
 
           if(index === props.dropDownIndex)  
             return (
-              <td key={index * row}>
+              <td key={index}>
                 <select className="form-control">
                   <option>CO1</option>
                   <option>CO2</option>
@@ -30,11 +30,10 @@ const CreateOrUpdateRows = (props) => {
               </td>
             );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
           return (
-            <td key={index * row}>
+            <td key={index}>
               <InputField
                 type="text"
                 name={name}
-                value={props.values[name]}
                 onChange={props.addValues}
                 />
             </td>
@@ -51,9 +50,9 @@ const CreateOrUpdateRows = (props) => {
           {props.columns.map((header, index) => {
             name = props.formId + "-w-" + index;
             if(index === 0) 
-              return <th key="1">{ props.first }</th>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+              return <th key="152">{ props.first }</th>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             return (
-              <td key={index * 10}>
+              <td key={header}>
                 <InputField
                   type="text"
                   name={name}
@@ -76,7 +75,7 @@ CreateOrUpdateRows.propTypes = {
   formId: PropTypes.string.isRequired,
   first: PropTypes.string,
   dropDownIndex: PropTypes.number,
-  addValues: PropTypes.func.isRequired
+  addValues: PropTypes.func
 }
 
 CreateOrUpdateRows.defaultProps = {

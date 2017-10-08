@@ -13,11 +13,11 @@ export default class AddQuestion extends Component {
       extraRows: 3
     }
 
-    this.handleOnAddQuestion = 
-        this.handleOnAddQuestion.bind(this);
+    this.handleOnAddRow = 
+        this.handleOnAddRow.bind(this);
   }
 
-  handleOnAddQuestion() {
+  handleOnAddRow() {
     this.setState((prevState) => {
       if(prevState.extraRows >= 8) {
         return {
@@ -30,6 +30,7 @@ export default class AddQuestion extends Component {
     });
   }
 
+
 	render() {
 		return (
 			<div style={{width: "600px"}}>
@@ -40,12 +41,15 @@ export default class AddQuestion extends Component {
           <ButtonGroup>
             <Button 
               btnStyle="success"
-              onClick={this.handleOnAddQuestion}>
+              onClick={this.handleOnAddRow}>
               <span>Add New Question</span>
             </Button>
           </ButtonGroup>
         </BorderAround>
-        <PreviewForm numOfRows={this.state.extraRows}/>
+        <PreviewForm 
+          numOfRows={this.state.extraRows}
+          formId={this.props.formId}
+          showNext={this.props.next}/>
 			</div>
 		);
 	}
@@ -65,11 +69,18 @@ const PreviewForm = (props) => {
           </tr>
         </thead>
         <CreateOrUpdateRows
+          formId={ props.formId }
           rows={ props.numOfRows }
           columns={ props.tableHeaders }
+          values={{}}
           dropDownIndex={2} // index starts with zero
           />
       </Table>
+      <Button
+        btnStyle="success"
+        onClick={props.showNext}>
+        Next
+      </Button>
     </div>
   );
 }

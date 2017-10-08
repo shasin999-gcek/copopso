@@ -21,6 +21,20 @@
         </script>
         <script src="https://use.fontawesome.com/62b073ec0c.js"></script>
 
+        // firebase
+        <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyDOaEklbkKLlDS7tp0sneNU--gRf3wwpMw",
+            authDomain: "copopso-gcek.firebaseapp.com",
+            databaseURL: "https://copopso-gcek.firebaseio.com",
+            projectId: "copopso-gcek",
+            storageBucket: "copopso-gcek.appspot.com",
+            messagingSenderId: "108657912049"
+          };
+          firebase.initializeApp(config);
+        </script>
 
     </head>
 
