@@ -29,7 +29,10 @@ class UploadResult extends React.Component {
       onUploadProgress: (progressEvent) => {
         let percentCompleted = 
           Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-        this.setState({ percentCompleted, loading: false });   
+        this.setState({ 
+          percentCompleted: percentCompleted + "%",
+          loading: false 
+        });   
       }
     }
 
@@ -41,23 +44,32 @@ class UploadResult extends React.Component {
   render () {
     return (
       <div>
-        <label>
-          Upload results.pdf file(KTU)
-        </label>
-        <InputField
-          type="file"
-          id="pdf"
-          style={{width: "300px"}}
-          encType="multipart/form-data"
-          title="select pdf file"
-          />
-        <Button
-          btnStyle="primary"
-          btnType="submit"
-          onClick={this.handleOnUpload}>
-          Upload File
-        </Button>  
-        <Progress percentCompleted={this.state.percentCompleted}/>
+        {!this.state.loading && 
+          <UploadSection>
+            <InputField
+              type="file"
+              id="pdf"
+              encType="multipart/form-data"
+              title="select pdf file"
+              />
+            <Button
+              btnStyle="primary"
+              btnType="submit"
+              onClick={this.handleOnUpload}>
+              Upload File
+            </Button>  
+          </UploadSection>
+        }
+        {this.state.loading &&
+          <div>
+            <h4 className="text-success">
+              Uploading...{this.state.percentCompleted}
+            </h4>
+            <Progress 
+              percentCompleted={this.state.percentCompleted}
+              />
+          </div>  
+        }
       </div>
     );
   }
@@ -73,4 +85,13 @@ const Progress = (props) => {
     </div>
   );
 }
+
+const UploadSection = (props) => {
+  return (
+    <div style={{width: "300px"}} 
+      {...props}
+      />
+  );
+}
+
 export default UploadResult;
