@@ -29,16 +29,20 @@ class UploadResult extends React.Component {
       onUploadProgress: (progressEvent) => {
         let percentCompleted = 
           Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+        console.log(percentCompleted + "%");  
         this.setState({ 
           percentCompleted: percentCompleted + "%",
-          loading: false 
         });   
       }
     }
 
     // upload file with axios
     axios.post('/upload', formData, config)
-      .then(response => console.log(response));
+      .then(response => {
+        if(response.status === 200) {
+          this.setState({loading:false});
+        }
+      });
   }
 
   render () {
