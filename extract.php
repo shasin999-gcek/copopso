@@ -1,4 +1,5 @@
 <?php
+
   function text($data)
   {
     for ($i=0; $i < count($data) ; $i++) {
@@ -50,7 +51,7 @@
     }
 
     $branches[$header] = [];
-    $courses = [];
+    //$courses = [];
 
     fgetcsv($file);
 
@@ -58,10 +59,10 @@
     {
       if($line == "")
         continue;
-      $course_code = $line;
+      //$course_code = $line;
       while(($course_name = trim(fgetcsv($file)[0]))== "")
         continue;
-      array_push($courses,[$course_code => $course_name]);
+      //array_push($courses,[$course_code => $course_name]);
     }
 
 
@@ -97,12 +98,53 @@
       }
     }
 
-    $branches[$header]["COURSES"] = $courses;
+    //$branches[$header]["COURSES"] = $courses;
     $branches[$header]["RESULT"] = $result;
     $header = $register_no;
 
   }
-  $b = "COMPUTER SCIENCE";
-  print_result($branches[$b]["RESULT"],$b);
+  //$b = "CIVIL ENGINEERING";
+  //print_result($branches[$b]["RESULT"],$b);
+  //print_r($branches);
+  fclose($file);
 
+
+
+  $formula = array("O"=>10,
+                   "A+"=>9,
+                   "A"=>8.5,
+                   "B+"=>8,
+                   "B"=>7,
+                   "C"=>6,
+                   "P"=>5,
+                   "F"=>0,
+                   "FE"=>0,
+                   "Absent"=>0
+                 );
+
+
+  function calculate($formula,$result)
+  {
+    $branch_avg = 0;
+    $total_students = count($result);
+    foreach ($result as $key => $students) {
+      foreach ($students as $register_no => $courses) {
+        $student_total = 0;
+        foreach ($courses as $course_code => $grade) {
+          $student_total+= $formula[$grade] * 9.5;
+        }
+        $branch_avg+=$student_total/count($courses);
+      }
+    }
+    return $branch_avg/$total_students;
+  }
+
+  $SEE = [];
+
+
+  foreach ($branches as $branch_name => $branch_content) {
+    $SEE[$branch_name] = calculate($formula,$branch_content["RESULT"]);
+  }
+
+  print_r($SEE);
 ?>
