@@ -83,7 +83,8 @@ class DatabaseSeeder extends Seeder
 					'name' => "ABC",
 					'email' => "abc@xyz.com",
 					'password' => bcrypt("12345"),
-					'department' => 'CSE'
+					'department' => 'CSE',
+					'is_admin' => 1
 		      ]
 		    ]);
 

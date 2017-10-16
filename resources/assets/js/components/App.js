@@ -158,10 +158,10 @@ class App extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div style={{marginTop: "100px", textAlign: "center"}}>
-          <PageHeader>
+        <div style={{marginTop: "20%", textAlign: "center"}}>
+          <h1 style = {{fontFamily: "QuickSand"}}>
             Loading...
-          </PageHeader>
+          </h1>
         </div>
       )
     }
