@@ -49,5 +49,11 @@ module.exports = {
   fetchProgramOutcomes() {
     return axios.get(`${url}/api/user/pos`)
       .catch(handleError);
+  },
+
+  getResult(academicYear, semester) {
+    return axios.get(`${url}/api/admin/results/?
+        academic_year=${academicYear}&&semester=${semester}`)
+      .catch(handleError);
   }
 }

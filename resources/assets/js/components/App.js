@@ -10,6 +10,7 @@ import Dashboard from "./Pages/Dashboard";
 import ViewCourse from "./Pages/ViewCourse";
 import AddFaculty from "./Admin/AddFaculty";
 import UploadResult from "./Admin/UploadResult";
+import ViewResult from "./Admin/ViewResult";
 import ProgramOutcomes from "./Pages/ProgramOutcomes";
 import { PageHeader, Icon } from "./Reusable";
 import { Error404, Error400 } from "./Errors/Errors";
@@ -103,8 +104,17 @@ const RenderAddFaculty = (props) => {
 const RenderUploadResult = (props) => {
   return (
     <div>
-      <Header heading="Upload Results" iconName="cloud-upload"/>
+      <Header heading="Results (KTU Academics)" iconName="cloud-upload"/>
       <UploadResult {...props}/>
+    </div>
+  );
+}
+
+const RenderViewResult = (props) => {
+  return (
+    <div>
+      <Header heading="View Result" iconName="bar-chart"/>
+      <ViewResult {...props} />
     </div>
   );
 }
@@ -168,7 +178,8 @@ class App extends React.Component {
               <Route exact path="/app/dashboard" component={ RenderDashboard } />
               <Route exact path="/app/program-outcomes" component={ RenderProgramOutcomes } />
               <Route exact path="/app/add-faculties" component={ RenderAddFaculty } />
-              <Route exact path="/app/upload-result" component={ RenderUploadResult } />
+              <Route exact path="/app/results" component={ RenderUploadResult } />
+              <Route path="/app/results/view" component={ RenderViewResult } />
               <Route exact path="/app/course/:userCourseId" component={ RenderViewCourse } />
               <Route exact path="/app/course/:userCourseId/task/:taskId" render={ RenderTask } />
               <Route component={ Error404 } />

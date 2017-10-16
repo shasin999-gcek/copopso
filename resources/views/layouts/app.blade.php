@@ -43,6 +43,7 @@
      <div id="root">
      </div>
 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
      <script src="{{ URL::asset('js/app.js') }}"></script>
      <script>
        /* (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

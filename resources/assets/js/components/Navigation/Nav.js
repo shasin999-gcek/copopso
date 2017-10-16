@@ -62,7 +62,7 @@ class Nav extends React.Component {
           }
 
           {this.props.isAdmin &&
-            <ListItem linkTo="/app/upload-result">
+            <ListItem linkTo="/app/results">
               <Icon name="cloud-upload" style={{fontWeight: "bold"}}></Icon>
               &nbsp;Upload Results
             </ListItem>

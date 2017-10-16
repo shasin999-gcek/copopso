@@ -54,6 +54,7 @@ Route::get('/co/{id}/weightage', 'WeightagesController@create')->middleware('aut
 Route::post('/co/{id}/weightage', 'WeightagesController@store')->middleware('auth');
 
 Route::post('/upload', 'ResultExtracter@store')->middleware('auth');
+Route::get('/api/admin/results', 'ResultExtracter@show')->middleware('auth');
 
 
 // REST APIs
