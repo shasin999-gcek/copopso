@@ -17,7 +17,7 @@
     $result = [];
     foreach ($grade as $key => $value) {
       list($course_code, $GRADE) = explode("(",$value);
-      $result[$course_code] = rtrim($GRADE,")");
+      $result[trim($course_code)] = trim(rtrim($GRADE,")"));
     }
     return $result;
   }
@@ -51,7 +51,7 @@
     }
 
     $branches[$header] = [];
-    //$courses = [];
+    $courses = [];
 
     fgetcsv($file);
 
@@ -59,10 +59,11 @@
     {
       if($line == "")
         continue;
-      //$course_code = $line;
+      $course_code = $line;
       while(($course_name = trim(fgetcsv($file)[0]))== "")
         continue;
       //array_push($courses,[$course_code => $course_name]);
+      $courses[$course_code] = $course_name;
     }
 
 
@@ -98,7 +99,7 @@
       }
     }
 
-    //$branches[$header]["COURSES"] = $courses;
+    $branches[$header]["COURSES"] = $courses;
     $branches[$header]["RESULT"] = $result;
     $header = $register_no;
 
@@ -123,28 +124,37 @@
                  );
 
 
-  function calculate($formula,$result)
+  function calculate($formula,$course_names,$result)
   {
-    $branch_avg = 0;
+    $course_see = [];
     $total_students = count($result);
     foreach ($result as $key => $students) {
       foreach ($students as $register_no => $courses) {
         $student_total = 0;
         foreach ($courses as $course_code => $grade) {
-          $student_total+= $formula[$grade] * 9.5;
+          //print_r($course_code);
+          // echo "<br><br>";
+          // break;
+          if(!isset($course_see[$course_names[$course_code]])){
+            $course_see[$course_names[$course_code]] = 0;
+          }
+
+          else {
+            $course_see[$course_names[$course_code]]+= ($formula[$grade] * 9.5 ) / $total_students;
+          }
         }
-        $branch_avg+=$student_total/count($courses);
       }
     }
-    return $branch_avg/$total_students;
+    return $course_see;
   }
 
   $SEE = [];
 
 
   foreach ($branches as $branch_name => $branch_content) {
-    $SEE[$branch_name] = calculate($formula,$branch_content["RESULT"]);
-  }
+    $SEE[$branch_name] = calculate($formula,$branch_content["COURSES"],$branch_content["RESULT"]);
 
+  }
+  //print_r($branches["ELECTRICAL AND ELECTRONICS ENGINEERING"]["COURSES"]);
   print_r($SEE);
 ?>
