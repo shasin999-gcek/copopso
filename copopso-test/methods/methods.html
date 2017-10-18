@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Methods</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <div class='col-md-12'>
+                <div class='row'>
+                    <div class='col-md-12' style='margin-top: -50px;'>
+                        <ul class='nav nav-pills'>
+                            <li class='active'><a data-toggle='tab' href='#vis_opgave1'>Assignment 1</a>
+
+                            </li>
+
+                            <li><a data-toggle='tab' href='#rediger_opgave1'>Test 1</a>
+
+                            </li>
+
+                            <li><a data-toggle='tab' href='#admin_opgave_billeder1'>Test 2</a>
+
+                            </li>
+
+                            <li><a data-toggle='tab' href='#cie'>CIE</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div id='vis_opgave1' class='tab-pane fade in active'>
+                    <form class="form-vertical" id="ASSIGNMENT" role="form">
+                        <div name="assignment">
+                            <table class="table table-bordered table-condensed">
+                                <tbody>
+                                    <tr class="noBorder">
+                                        <td></td>
+                                        <td>CO1</td>
+                                        <td>CO2</td>
+                                        <td>CO3</td>
+                                        <td>CO4</td>
+                                        <td>CO5</td>
+                                        <td>CO6</td>
+                                    </tr>
+
+                                    <tr class="noBorder" id="add1">
+                                        <td>Max Weightage</td>
+                                        <td><input type="text" name="CO1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="CO6" class="form-control" size="5" required  /></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr id="add" name="add" class="noBorder">
+                                        <td><button id="b1" class="btn add-more" type="button">+</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </form>
+                    </div>
+        <!-- <div class="row">
+          <input class="col-lg-1" type="checkbox" id="check_id">
+          <p class="text-danger">
+             Check this box if you wanted to add hypen (-) in blank fields.
+          </p>
+        </div> -->
+
+
+
+                <div id='rediger_opgave1' class='tab-pane fade'>
+                    <table id="test1" class="table table-bordered table-condensed">
+                        <tbody>
+                            <tr id="ques1">
+                               <td style="border: 0;">
+                                    <button class="btn addq">Add Question</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 0;">
+                                    <button class="btn next">Next</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <form class="form-vertical" id="TEST1" role="form">
+                      <table id="Test1" style="display: none;" class="table table-bordered table-condensed">
+                                <tbody>
+                                    <tr class="noBorder">
+                                        <td></td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                    </tr>
+
+                                    <tr class="noBorder" id="test1add1">
+                                        <td>Max Weightage</td>
+                                        <td><input type="text" name="1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="6" class="form-control" size="5" required  /></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr  name="add" class="noBorder">
+                                        <td><button id="t1" class="btn test" type="button">+</button></td>
+                                    </tr>
+                                </tbody>
+                      </table>
+                    </form>
+                </div>
+
+
+                <div id='admin_opgave_billeder1' class='tab-pane fade'>
+
+                    <table id="test2" class="table table-bordered table-condensed">
+                        <tbody>
+                            <tr id="Ques1">
+                               <td style="border: 0;">
+                                    <button class="btn addqq">Add Question</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 0;">
+                                    <button id="test2" class="btn next">Next</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <form class="form-vertical" id="TEST2" role="form">
+                      <table id="Test2" style="display: none;" class="table table-bordered table-condensed">
+                                <tbody>
+                                    <tr class="noBorder">
+                                        <td></td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                    </tr>
+
+                                    <tr class="noBorder" id="test2add1">
+                                        <td>Max Weightage</td>
+                                        <td><input type="text" name="1" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="2" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="3" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="4" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="5" class="form-control" size="5" required  /></td>
+                                        <td><input type="text" name="6" class="form-control" size="5" required  /></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr  name="add" class="noBorder">
+                                        <td><button id="t2" class="btn test" type="button">+</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                          </form>
+                        </div>
+
+                <div id='cie' class="tab-pane fade">
+                    <div class="row">afefefef</div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <button type="submit" class="btn btn-success submit" id="btn-submit">Submit</button>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
