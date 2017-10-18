@@ -15,7 +15,7 @@ class AddForeignKeysToUserCourseTable extends Migration {
 		Schema::table('user_course', function(Blueprint $table)
 		{
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('CASCADE');
-			$table->foreign('course_id')->references('id')->on('course')->onUpdate('RESTRICT')->onDelete('CASCADE');
+			$table->foreign('course_id')->references('id')->on('courses')->onUpdate('RESTRICT')->onDelete('CASCADE');
 		});
 	}
 
