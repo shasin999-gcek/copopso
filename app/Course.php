@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     //Since table is named course right now:
-    protected $table = 'course';
+    protected $table = 'courses';
 
     protected $fillable = [
         'id', 'course_code', 'course_name'
     ];
-	
+
 	public function users()
     {
         return $this -> belongsToMany(User::class, 'user_course')->withPivot('id','semester','academic_year','branch','co_count');
